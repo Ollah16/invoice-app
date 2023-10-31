@@ -1,110 +1,143 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Table from 'react-bootstrap/Table';
-import { useEffect } from 'react';
 import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import html2pdf from 'html2pdf.js'
+import axios from 'axios';
+import { Navbar } from 'react-bootstrap';
+import { MdOutlineArrowBack } from 'react-icons/md'
+import StateDownloadPage from './stateDownloadPage';
+import ServerDownloadPage from './serverDownloadPage';
 
-const DownloadPage = ({ state }) => {
-    let downloadPage = useRef()
-    const navigate = useNavigate()
+const DownloadPage = ({
+    state,
+    handleClearState,
+    handleNavigation
+}) => {
+
+    const downloadCurrentPage = useRef()
+    const { userSalesId, page } = useParams()
+    let [userInvoice, setUserInvoice] = useState('')
+    let [userData, setUserData] = useState('')
+    const accessToken = localStorage.getItem('accessToken')
+
     useEffect(() => {
-        const downPage = () => {
-            const pageId = downloadPage.current
-            const opt = {
-                margin: [0, 0, 0, 0],
-                filename: 'invoice.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 5 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            html2pdf().set(opt).from(pageId).save();
+        switch (true) {
+            case page === 'homepage' && state.isLogged:
+                handleSaveDownload();
+                break;
+            case page === 'records':
+                handleGetInvoice();
+                break;
+            case page === 'homepage' && !state.isLogged:
+                handleDownloadPage();
+                break;
         }
-        downPage();
-        navigate('/')
     }, [])
 
-    return (<>{state.invoice.map((data, index) => (
-        <Container key={index} className="invoice-container" ref={downloadPage}>
-            <Row className="header-row">
-                <Col className="text-center logo-col">
-                    {/* <img src={`./assets/imgs/${data.logo}`} alt="Company Logo" className="logo" /> */}
-                </Col>
-                <Col><strong className="info-title">{data.whoisFrom}</strong></Col>
-            </Row>
-            <Row className="info-row mt-4">
-                <Col xs={6} className="sender-info">
-                    <strong className="info-subtitle">{data.billTo_title}:</strong>
-                    <address className="info-content">{data.billTo}</address>
-                </Col>
-                <Col xs={6} className="invoice-info text-right">
-                    <div><strong>Invoice Number:</strong> {data.invoiceNum}</div>
-                    <div><strong>{data.date_title}:</strong> {data.date}</div>
-                    <div><strong>{data.due_Date_title}:</strong> {data.dueDate}</div>
-                </Col>
-            </Row>
+    useEffect(() => {
+        if (!userData.length && !userData.length) return
+        console.log(userData)
+        handleDownloadPage()
 
-            <Row className="additional-info-row mt-3">
-                <Col xs={6} className="address-info">
-                    <div><strong>{data.address_title}:</strong></div>
-                    <address>{data.address}</address>
+    }, [userInvoice, userData])
+
+    const handleDownloadPage = () => {
+        const pageId = downloadCurrentPage.current
+        var opt = {
+            margin: 1,
+            filename: 'myfile.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(pageId).save();
+        handleReturn()
+    }
+
+    const handleReturn = () => {
+        switch (true) {
+            case page === 'records':
+                handleNavigation('/records');
+                break;
+            case page === 'homepage':
+                handleNavigation('/')
+                // handleClearState();
+                break;
+        }
+    }
+
+    const handleGetInvoice = () => {
+        axios.get(`http://localhost:9080/invoice/getinvoice/${userSalesId}`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        }).then((response) => {
+            const { userInvoice, userData } = response.data
+            setUserInvoice(userInvoice)
+            setUserData(userData)
+            console.log(userData)
+        }).catch((err) => { console.error(err) })
+    }
+
+    const handleSaveDownload = () => {
+        const formData = new FormData();
+
+        for (const key in state) {
+            const value = state[key];
+            if (key === 'data') {
+                formData.append(key, JSON.stringify(value));
+            } else {
+                formData.append(key, value);
+            }
+        }
+        axios.post('http://localhost:9080/invoice/saveinvoice', formData, {
+            headers: {
+                'Content-Type': 'multipart/formdata',
+                'Authorization': `Bearer ${accessToken}`
+            }
+        }).catch((err) => { console.error(err) })
+        handleDownloadPage()
+    }
+
+    return (<Container className='invoice-homepage' fluid>
+        <Navbar>
+            <Container>
+                <Col lg={4} >
+                    <Navbar.Brand href="#home" className='text-white'>Invoice Generator</Navbar.Brand>
                 </Col>
-                <Col xs={6} className="po-info text-right">
-                    <div><strong>{data.po_title}:</strong> {data.poNumber}</div>
-                    <div><strong>{data.payment_title}:</strong> {data.paymentTerms}</div>
+            </Container>
+        </Navbar>
+        <Row>
+            <Col lg={2} md={2} sm={4} xs={4} className='return-col'>
+                <button onClick={() => handleReturn()}> <MdOutlineArrowBack /><span>{page === 'records' ? 'Records' : 'Home'}</span></button>
+            </Col>
+        </Row>
+
+        {console.log(userInvoice)}
+
+        {page === 'records' && userInvoice.length &&
+            userInvoice.map((invoice, index) =>
+            (<ServerDownloadPage
+                downloadCurrentPage={downloadCurrentPage}
+                invoice={invoice}
+                key={index}
+                index={index}
+                userData={userData} />))
+        }
+        {page === 'homepage' &&
+            <StateDownloadPage state={state} downloadCurrentPage={downloadCurrentPage} />
+        }
+
+        < footer className='footer-container' >
+            < Row className="invoice-footer" >
+                <Col lg={12} className="text-center">
+                    <p>&copy; {new Date().getFullYear()} Invoice Generator. All Rights Reserved.</p>
                 </Col>
-            </Row>
-
-            <hr className="divider mt-4" />
-
-            <Table striped bordered className="items-table mt-4">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Rate</th>
-                        <th>Quantity</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.data.map((item, index) => (<tr key={index}>
-                        <td>{item.description}</td>
-                        <td>{item.quantity}</td>
-                        <td>{data.currency}{item.rate}</td>
-                        <td>{data.currency}{item.amount}</td>
-                    </tr>))}
-                </tbody>
-            </Table>
-
-            <hr className="divider mt-4" />
-
-            <Row className="footer-row mt-4 justify-content-between align-items-center">
-                <Col xs={12} md={4} className="notes-col">
-                    <div>
-                        <strong className="footer-title">{data.note_title}:</strong>
-                        <p className="footer-content">{data.note}</p>
-                    </div>
-                    <div>
-                        <strong className="footer-title">{data.terms_title}:</strong>
-                        <p className="footer-content">{data.terms}</p>
-                    </div>
-                </Col>
-
-                <Col xs={12} md={4} className="summary-col text-right">
-                    <strong>{data.subtotal_title}:</strong> {data.currency}{data.subTotal}<br />
-                    {data.isDiscount && <><strong>{data.discount_title}:</strong> {data.currency}{data.discount}<br /></>}
-                    {data.isShipping && <><strong>{data.tax_title}:</strong> {data.currency}{data.tax}<br /></>}
-                    {data.isTax && <><strong>{data.shipping_title}:</strong> {data.currency}{data.ship}<br /></>}
-                    <strong>{data.amountpaid_title}:</strong> {data.currency}{data.amountPaid}<br />
-                    <strong>{data.balancedue_title}:</strong> {data.currency}{data.balance}<br />
-                    <strong>{data.total_title}:</strong> {data.currency}{data.total}
-                </Col>
-            </Row>
-        </Container>
-    ))}
-    </>);
+            </Row >
+        </footer >
+    </Container >);
 }
 export default DownloadPage;

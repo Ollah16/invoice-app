@@ -1,61 +1,67 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DownloadPage from './downloadPage';
 import myReducer, { initialState } from './reducer';
 import HomePage from './homePage';
+import RegisterPage from './authenticatePage';
+import RecordPage from './recordPage';
 
 const App = () => {
   let [state, dispatch] = useReducer(myReducer, initialState)
 
   const actionTypes = {
-    addRate: 'ADD_RATE',
-    addAmount: 'ADD_AMOUNT',
+    IS_LOGGED: 'IS_LOGGED',
+    LOG_OUT: 'LOG_OUT',
+    CLEAR_STATE: 'CLEAR_STATE',
+    IS_REGISTER: 'IS_REGISTER',
+    ADD_RATE: 'ADD_RATE',
     addQuantity: 'ADD_QUANTITY',
-    addAmount: 'ADD_AMOUNT',
-    addDescription: 'ADD_DESCRIPTION',
-    subtotal: 'SUB-TOTAL',
-    total: 'TOTAL',
-    shipping: 'SHIPPING',
-    tax: 'TAX',
-    discount: 'DISCOUNT',
-    isShipping: 'IS_SHIPPING',
-    isTax: 'IS_TAX',
-    isDiscount: 'IS_DISCOUNT',
-    isNotDiscount: 'IS_NOTDISCOUNT',
-    isNotShipping: 'IS_NOTSHIPPING',
-    isNotTax: 'IS_NOTTAX',
-    amountPaid: 'AMOUNT_PAID',
-    balance: 'BALANCE',
-    poTitle: 'PO_TITLE',
-    dueDateTitle: 'DUEDATE_TITLE',
-    paymentTitle: 'PAYMENT_TITLE',
-    dateTitle: 'DATE_TITLE',
-    addressTitle: 'ADDRESS_TITLE',
-    billTitle: 'BILL_TITLE',
-    subtotalTitle: 'SUBTOTAL_TITLE',
-    discountTitle: 'DISCOUNT_TITLE',
-    taxTitle: 'TAX_TITLE',
-    shippingTitle: 'SHIPPING_TITLE',
-    amountPaidTitle: 'AMOUNTPAID_TITLE',
-    totalTitle: 'TOTAL_TITLE',
-    balanceDueTitle: 'BALANCEDUE_TITLE',
-    whoisfrom: 'WHOISFROM',
-    bill: 'BILL',
-    address: 'ADDRESS',
-    date: 'DATE',
-    paymentTerms: 'PAYMENT_TERMS',
-    dueDate: 'DUE_DATE',
-    poNumber: 'PO_NUMBER',
-    invoiceNumber: 'INVOICE_NUMBER',
-    logo: 'LOGO',
-    noteTitle: 'NOTE-TITLE',
-    note: 'NOTE',
-    termsTitle: 'TERMS-TITLE',
-    terms: 'TERMS',
-    download: 'DOWNLOAD',
-    currency: 'CURRENCY'
+    ADD_AMOUNT: 'ADD_AMOUNT',
+    ADD_DESCRIPTION: 'ADD_DESCRIPTION',
+    SUB_TOTAL: 'SUB_TOTAL',
+    TOTAL: 'TOTAL',
+    SHIPPING: 'SHIPPING',
+    TAX: 'TAX',
+    DISCOUNT: 'DISCOUNT',
+    IS_SHIPPING: 'IS_SHIPPING',
+    IS_TAX: 'IS_TAX',
+    IS_DISCOUNT: 'IS_DISCOUNT',
+    IS_NOT_DISCOUNT: 'IS_NOT_DISCOUNT',
+    IS_NOT_SHIPPING: 'IS_NOT_SHIPPING',
+    IS_NOT_TAX: 'IS_NOT_TAX',
+    AMOUNT_PAID: 'AMOUNT_PAID',
+    BALANCE: 'BALANCE',
+    PO_TITLE: 'PO_TITLE',
+    DUE_DATE_TITLE: 'DUE_DATE_TITLE',
+    PAYMENT_TITLE: 'PAYMENT_TITLE',
+    DATE_TITLE: 'DATE_TITLE',
+    ADDRESS_TITLE: 'ADDRESS_TITLE',
+    BILL_TITLE: 'BILL_TITLE',
+    SUB_TOTAL_TITLE: 'SUB_TOTAL_TITLE',
+    DISCOUNT_TITLE: 'DISCOUNT_TITLE',
+    TAX_TITLE: 'TAX_TITLE',
+    SHIPPING_TITLE: 'SHIPPING_TITLE',
+    AMOUNT_PAID_TITLE: 'AMOUNT_PAID_TITLE',
+    TOTAL_TITLE: 'TOTAL_TITLE',
+    BALANCE_DUE_TITLE: 'BALANCE_DUE_TITLE',
+    WHOISFROM: 'WHOISFROM',
+    BILL: 'BILL',
+    ADDRESS: 'ADDRESS',
+    DATE: 'DATE',
+    PAYMENT_TERMS: 'PAYMENT_TERMS',
+    DUE_DATE: 'DUE_DATE',
+    PO_NUMBER: 'PO_NUMBER',
+    INVOICE_NUMBER: 'INVOICE_NUMBER',
+    LOGO: 'LOGO',
+    NOTE_TITLE: 'NOTE_TITLE',
+    NOTE: 'NOTE',
+    TERMS_TITLE: 'TERMS_TITLE',
+    TERMS: 'TERMS',
+    CURRENCY: 'CURRENCY',
+    MESSAGE: 'MESSAGE',
+    CLOSE_MESSAGE: 'CLOSE_MESSAGE'
   }
 
   const navigate = useNavigate()
@@ -63,104 +69,104 @@ const App = () => {
   const handleDataInp = (type, event, index) => {
     switch (type) {
       case 'rate':
-        dispatch({ type: actionTypes.addRate, payload: { rate: event, index } })
+        dispatch({ type: actionTypes.ADD_RATE, payload: { rate: event, index } })
         break;
       case 'quantity':
         dispatch({ type: actionTypes.addQuantity, payload: { quantity: event, index } })
         break;
       case 'description':
-        dispatch({ type: actionTypes.addDescription, payload: { description: event, index } })
+        dispatch({ type: actionTypes.ADD_DESCRIPTION, payload: { description: event, index } })
         break;
     }
-    dispatch({ type: actionTypes.addAmount, payload: { index } })
-    dispatch({ type: actionTypes.subtotal })
-    dispatch({ type: actionTypes.total })
-    dispatch({ type: actionTypes.balance })
+    dispatch({ type: actionTypes.ADD_AMOUNT, payload: { index } })
+    dispatch({ type: actionTypes.SUB_TOTAL })
+    dispatch({ type: actionTypes.TOTAL })
+    dispatch({ type: actionTypes.BALANCE })
   }
 
   const handleCustomInputs = (type, value) => {
     switch (type) {
       case 'currency':
-        dispatch({ type: actionTypes.currency, payload: { value } })
+        dispatch({ type: actionTypes.CURRENCY, payload: { value } })
         break;
-      case 'note-title':
-        dispatch({ type: actionTypes.noteTitle, payload: { value } })
+      case 'note_title':
+        dispatch({ type: actionTypes.NOTE_TITLE, payload: { value } })
         break;
       case 'note':
-        dispatch({ type: actionTypes.note, payload: { value } })
+        dispatch({ type: actionTypes.NOTE, payload: { value } })
         break;
-      case 'terms-title':
-        dispatch({ type: actionTypes.termsTitle, payload: { value } })
+      case 'terms_title':
+        dispatch({ type: actionTypes.TERMS_TITLE, payload: { value } })
         break;
       case 'terms':
-        dispatch({ type: actionTypes.terms, payload: { value } })
+        dispatch({ type: actionTypes.TERMS, payload: { value } })
         break
-      case 'po-title':
-        dispatch({ type: actionTypes.poTitle, payload: { value } })
+      case 'po_title':
+        dispatch({ type: actionTypes.PO_TITLE, payload: { value } })
         break;
-      case 'duedate-title':
-        dispatch({ type: actionTypes.dueDateTitle, payload: { value } })
+      case 'duedate_title':
+        dispatch({ type: actionTypes.DUE_DATE_TITLE, payload: { value } })
         break;
-      case 'payment-title':
-        dispatch({ type: actionTypes.paymentTitle, payload: { value } })
+      case 'payment_title':
+        dispatch({ type: actionTypes.PAYMENT_TITLE, payload: { value } })
         break
-      case 'date-title':
-        dispatch({ type: actionTypes.dateTitle, payload: { value } })
+      case 'date_title':
+        dispatch({ type: actionTypes.DATE_TITLE, payload: { value } })
         break;
-      case 'address-title':
-        dispatch({ type: actionTypes.addressTitle, payload: { value } })
+      case 'address_title':
+        dispatch({ type: actionTypes.ADDRESS_TITLE, payload: { value } })
         break;
-      case 'bill-title':
-        dispatch({ type: actionTypes.billTitle, payload: { value } })
+      case 'bill_title':
+        dispatch({ type: actionTypes.BILL_TITLE, payload: { value } })
         break;
-      case 'subtotal-title':
-        dispatch({ type: actionTypes.subtotalTitle, payload: { value } })
+      case 'subtotal_title':
+        dispatch({ type: actionTypes.SUB_TOTAL_TITLE, payload: { value } })
         break;
-      case 'discount-title':
-        dispatch({ type: actionTypes.discountTitle, payload: { value } })
+      case 'discount_title':
+        dispatch({ type: actionTypes.DISCOUNT_TITLE, payload: { value } })
         break
-      case 'tax-title':
-        dispatch({ type: actionTypes.taxTitle, payload: { value } })
+      case 'tax_title':
+        dispatch({ type: actionTypes.TAX_TITLE, payload: { value } })
         break
-      case 'shipping-title':
-        dispatch({ type: actionTypes.shippingTitle, payload: { value } })
+      case 'shipping_title':
+        dispatch({ type: actionTypes.SHIPPING_TITLE, payload: { value } })
         break;
-      case 'amountpaid-title':
-        dispatch({ type: actionTypes.amountPaidTitle, payload: { value } })
+      case 'amountpaid_title':
+        dispatch({ type: actionTypes.AMOUNT_PAID_TITLE, payload: { value } })
         break;
-      case 'total-title':
-        dispatch({ type: actionTypes.totalTitle, payload: { value } })
+      case 'total_title':
+        dispatch({ type: actionTypes.TOTAL_TITLE, payload: { value } })
         break;
-      case 'balancedue-title':
-        dispatch({ type: actionTypes.balanceDueTitle, payload: { value } })
+      case 'balancedue_title':
+        dispatch({ type: actionTypes.BALANCE_DUE_TITLE, payload: { value } })
         break;
       case 'whoisfrom':
-        dispatch({ type: actionTypes.whoisfrom, payload: { value } })
+        dispatch({ type: actionTypes.WHOISFROM, payload: { value } })
         break;
       case 'bill':
-        dispatch({ type: actionTypes.bill, payload: { value } })
+        dispatch({ type: actionTypes.BILL, payload: { value } })
         break;
       case 'address':
-        dispatch({ type: actionTypes.address, payload: { value } })
+        dispatch({ type: actionTypes.ADDRESS, payload: { value } })
         break;
       case 'date':
-        dispatch({ type: actionTypes.date, payload: { value } })
+        dispatch({ type: actionTypes.DATE, payload: { value } })
         break;
       case 'paymentterms':
-        dispatch({ type: actionTypes.paymentTerms, payload: { value } })
+        dispatch({ type: actionTypes.PAYMENT_TERMS, payload: { value } })
         break;
       case 'duedate':
-        dispatch({ type: actionTypes.dueDate, payload: { value } })
+        dispatch({ type: actionTypes.DUE_DATE, payload: { value } })
         break;
       case 'ponumber':
-        dispatch({ type: actionTypes.poNumber, payload: { value } })
+        dispatch({ type: actionTypes.PO_NUMBER, payload: { value } })
         break;
       case 'invoiceno':
-        dispatch({ type: actionTypes.invoiceNumber, payload: { value } })
+        dispatch({ type: actionTypes.INVOICE_NUMBER, payload: { value } })
         break;
       case 'logo':
         let newValue = value.substring(12)
-        dispatch({ type: actionTypes.logo, payload: { value: newValue } })
+        dispatch({ type: actionTypes.LOGO, payload: { value: newValue } })
         break;
     }
   }
@@ -171,68 +177,137 @@ const App = () => {
 
   const handleDeleteRow = (index) => {
     dispatch({ type: 'DELETE_ROW', payload: { index } })
-    dispatch({ type: actionTypes.subtotal })
-    dispatch({ type: actionTypes.total })
-    dispatch({ type: actionTypes.balance })
+    dispatch({ type: actionTypes.SUB_TOTAL })
+    dispatch({ type: actionTypes.TOTAL })
+    dispatch({ type: actionTypes.BALANCE })
   }
 
   const handleInputs = (type, value) => {
     switch (type) {
       case 'discount':
-        dispatch({ type: actionTypes.discount, payload: { value } })
+        dispatch({ type: actionTypes.DISCOUNT, payload: { value } })
         break;
       case 'shipping':
-        dispatch({ type: actionTypes.shipping, payload: { value } })
+        dispatch({ type: actionTypes.SHIPPING, payload: { value } })
         break;
       case 'tax':
-        dispatch({ type: actionTypes.tax, payload: { value } })
+        dispatch({ type: actionTypes.TAX, payload: { value } })
         break;
       case 'amountpaid':
-        dispatch({ type: actionTypes.amountPaid, payload: { value } })
+        dispatch({ type: actionTypes.AMOUNT_PAID, payload: { value } })
     }
-    dispatch({ type: actionTypes.subtotal })
-    dispatch({ type: actionTypes.total })
-    dispatch({ type: actionTypes.balance })
+    dispatch({ type: actionTypes.SUB_TOTAL })
+    dispatch({ type: actionTypes.TOTAL })
+    dispatch({ type: actionTypes.BALANCE })
   }
 
   const handleInputsBtn = (type) => {
     switch (type) {
       case 'xdiscount':
-        dispatch({ type: actionTypes.isNotDiscount })
-        dispatch({ type: actionTypes.total })
+        dispatch({ type: actionTypes.IS_NOT_DISCOUNT })
+        dispatch({ type: actionTypes.TOTAL })
         break;
       case 'xshipping':
-        dispatch({ type: actionTypes.isNotShipping })
+        dispatch({ type: actionTypes.IS_NOT_SHIPPING })
         break;
       case 'xtax':
-        dispatch({ type: actionTypes.isNotTax })
+        dispatch({ type: actionTypes.IS_NOT_TAX })
         break;
       case '+discount':
-        dispatch({ type: actionTypes.isDiscount })
+        dispatch({ type: actionTypes.IS_DISCOUNT })
         break;
       case '+shipping':
-        dispatch({ type: actionTypes.isShipping })
+        dispatch({ type: actionTypes.IS_SHIPPING })
         break;
       case '+tax':
-        dispatch({ type: actionTypes.isTax })
+        dispatch({ type: actionTypes.IS_TAX })
         break;
     }
-    dispatch({ type: actionTypes.total })
-    dispatch({ type: actionTypes.balance })
+    dispatch({ type: actionTypes.TOTAL })
+    dispatch({ type: actionTypes.BALANCE })
   }
 
-  const handleDownload = () => {
-    dispatch({ type: actionTypes.download })
-    navigate('/download')
+  const handleAuth = () => {
+    dispatch({ type: actionTypes.IS_LOGGED });
+  };
+
+  const handleDownload = (data) => {
+    const { userSalesId, page } = data;
+    if (!state.isLogged) {
+      handleNavigation(`/authenticate/${page}`);
+      return;
+    }
+
+    if (page && userSalesId) {
+      handleNavigation(`/download/${userSalesId}/${page}`);
+    } else if (page) {
+      handleNavigation(`/download/${userSalesId}/${page}`);
+    }
+  }
+
+
+  const handleClearState = () => {
+    dispatch({ type: actionTypes.CLEAR_STATE })
+  }
+
+  const handleNavigation = (page) => {
+    navigate(page)
+  }
+
+  const handleSignOut = () => {
+    dispatch({ type: actionTypes.LOG_OUT })
+  }
+
+  const handleLogo = (e) => {
+    dispatch({ type: actionTypes.LOGO, payload: { logo: e.target.files[0] } })
+  }
+
+  const handleMessage = (message) => {
+    dispatch({ type: actionTypes.MESSAGE, payload: { message } })
+  }
+
+  const handleCloseMessage = () => {
+    dispatch({ type: actionTypes.CLOSE_MESSAGE })
   }
 
   return (
     <Routes>
       <Route
-        path='/*' element={<HomePage handleInputs={handleInputs} handleDataInp={handleDataInp} state={state} handleCustomInputs={handleCustomInputs} handleAddRow={handleAddRow} handleDeleteRow={handleDeleteRow}
-          handleInputsBtn={handleInputsBtn} handleDownload={handleDownload} />} />
+        path='/*' element={<HomePage
+          handleLogo={handleLogo}
+          handleSignOut={handleSignOut}
+          handleInputs={handleInputs}
+          handleDataInp={handleDataInp}
+          state={state}
+          handleCustomInputs={handleCustomInputs}
+          handleAddRow={handleAddRow}
+          handleDeleteRow={handleDeleteRow}
+          handleInputsBtn={handleInputsBtn}
+          handleDownload={handleDownload}
+          handleNavigation={handleNavigation}
+          handleMessage={handleMessage} />} />
 
-      <Route path='/download' element={<DownloadPage state={state} />} />
+      <Route path='/download/:userSalesId/:page'
+        element={<DownloadPage
+          state={state}
+          handleClearState={handleClearState}
+          handleNavigation={handleNavigation} />} />
+
+      <Route path='/authenticate/:page'
+        element={<RegisterPage
+          state={state}
+          handleAuth={handleAuth}
+          handleNavigation={handleNavigation}
+          handleDownload={handleDownload}
+          handleCloseMessage={handleCloseMessage}
+          handleMessage={handleMessage}
+        />} />
+
+      <Route path='/records'
+        element={<RecordPage
+          state={state}
+          handleDownload={handleDownload}
+          handleNavigation={handleNavigation} />} />
     </Routes>
   )
 }

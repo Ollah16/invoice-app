@@ -2,13 +2,15 @@ import React from "react"
 import { Col } from "react-bootstrap"
 
 const InvoiceData = ({ handleDataInp, state, handleDeleteRow, handleAddRow }) => {
+
+    let { data, currency } = state
     return (
         <Col sm={12} xs={12} >
-            {state.data.map((each, index) => (
+            {data.map((each, index) => (
                 <div key={index} className='invoice-data-div'>
                     <div className='d-flex justify-content-between align-items-center'>
-                        <span><span> Amount:</span><span>{`${state.currency}${each.amount}.00`}</span></span>
-                        <span>{state.data.length > 1 && <button className='py-0 border-0 bg-transparent' onClick={() => handleDeleteRow(index)}>x</button>}</span>
+                        <span><span> Amount:</span><span>{`${currency}${each.amount}.00`}</span></span>
+                        <span>{data.length > 1 && <button className='py-0 border-0 bg-transparent' onClick={() => handleDeleteRow(index)}>x</button>}</span>
                     </div>
                     <div >
                         <span>

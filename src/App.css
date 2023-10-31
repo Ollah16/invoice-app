@@ -73,7 +73,7 @@
   text-align: center;
 }
 
-img {
+.file-input-col .logo {
   width: 10em;
   height: 7em;
   margin: .3em 0;
@@ -216,6 +216,7 @@ img {
   border: 1px solid #c3d2e3;
   text-align: start;
   border-radius: 2.9px;
+  height: 2em;
   margin: 0;
 }
 
@@ -388,8 +389,21 @@ h1 {
   align-items: center;
 }
 
+.download-button {
+  display: flex;
+  width: 100%;
+  padding: .1em .01em;
+  color: yellow;
+  background-color: #0b3a6b;
+  border: none;
+  border-radius: 2.9px;
+  justify-content: center;
+  align-items: center;
+}
+
 .outer-content-col button:hover,
-.outer-content-colxs button:hover {
+.outer-content-colxs button:hover,
+.download-button:hover {
   color: rgb(227, 227, 8);
   background-color: #11457c;
 }
@@ -427,127 +441,188 @@ h1 {
   outline: 1px solid #c3d2e3;
 }
 
-
-.invoice-container {
+.footer-container {
   display: flex;
   flex-direction: column;
+  min-height: 10vh;
 }
 
 .invoice-footer {
-  background-color: #113358 !important;
+  background-color: #113358;
   color: white;
   padding: 10px 0;
   text-align: center;
-  margin-top: auto;
-  border-top: 2px solid #ffc107;
-}
-
-.invoice-footer p {
-  margin: 0;
-}
-
-.invoice-container {
-  background-color: #f8f8f8;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px 0;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.header-row {
-  border-bottom: 2px solid #f0f0f0;
-}
-
-.logo-col .logo {
-  width: 150px;
-}
-
-.info-row,
-.additional-info-row,
-.footer-row {
-  color: #333;
-}
-
-.info-title,
-.info-subtitle,
-.info-content,
-.footer-title,
-.footer-content {
-  margin-bottom: 5px;
-}
-
-.address-info address,
-.sender-info address {
-  font-style: normal;
-  color: #555;
-}
-
-.divider {
-  border: 0;
-  border-top: 2px dashed #ddd;
-}
-
-.items-table {
   width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+}
+
+.login-form {
   margin-bottom: 20px;
 }
 
-.items-table thead tr {
-  background-color: #4a90e2;
-  color: #fff;
+label {
+  color: #113358;
+  font-weight: 600;
 }
 
-.items-table tbody tr:nth-child(odd) {
-  background-color: #f0f0f0;
+input {
+  border: 1px solid #113358;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
 }
 
-.items-table th,
-.items-table td {
+.text-center {
+  text-align: center;
+}
+
+.login-button {
+  background-color: #ffc107;
+  color: #113358;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.signup-button {
+  background-color: #113358;
+  color: #ffc107;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.signup-link {
+  color: #113358;
+  font-weight: 600;
+  text-align: center;
+}
+
+.signup-link button {
+  border: none;
+  background-color: transparent;
+}
+
+.proceed-col {
+  display: flex;
+  justify-content: center;
+}
+
+.proceed-col button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.03em solid black;
+  border-radius: 2.9px;
+  color: white;
+  background-color: #113358;
+  transition: background-color 0.6s, color 0.3s;
+}
+
+.proceed-col button:hover {
+  color: white;
+  background-color: #074d99;
+}
+
+.record-signup-div {
+  text-align: center;
+  font-size: 2em;
+}
+
+.record-signup-div button {
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.record-signup-div button:hover {
+  text-decoration: none;
+}
+
+.invoice-container {
+  background-color: rgb(252, 249, 249);
+  padding: 1em;
+  border: 0.01em solid rgba(89, 130, 174, .5);
+}
+
+.return-col button {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 2.1px;
+  background-color: transparent;
+  transition: background-color 0.3s;
+  margin: 1.5em 0.5em;
+}
+
+.return-col button:hover {
+  background-color: rgba(145, 144, 144, .4);
+}
+
+.authenticate-col-btn button {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.invoice-container {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header-row {
+  margin: 2em 0;
+}
+
+.logo-col img {
+  width: 5em;
+  height: 5em;
+}
+
+.sender-info,
+.bill-to-info,
+.address-info,
+.po-info {
+  margin-top: 10px;
+}
+
+.dotted-line {
+  border-top: 1px dashed #000;
+  margin: 2em 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
   padding: 10px;
   text-align: left;
 }
 
-.notes-col,
-.summary-col {
-  padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 8px;
+.message-col div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffc107;
+  padding: 0 2em;
+  border-radius: 1em;
+  color: #000;
 }
 
-.footer-title {
-  color: #4a90e2;
-}
-
-.summary-col {
-  background-color: #f9f8e6;
-}
-
-@media only screen and (max-width: 767px) {
-
-  .sender-info,
-  .invoice-info,
-  .address-info,
-  .po-info {
-    text-align: center;
-  }
-
-  .summary-col,
-  .notes-col {
-    margin-top: 20px;
-  }
-}
-
-strong {
-  color: #4a90e2;
-}
-
-.info-row strong,
-.additional-info-row strong,
-.footer-row strong {
-  font-size: 1.2em;
-}
-
-.info-row,
-.additional-info-row {
-  margin-bottom: 20px;
+.message-col div button {
+  color: red;
+  border: none;
+  background-color: transparent;
 }

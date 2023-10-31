@@ -2,7 +2,12 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { BiSolidDownload } from 'react-icons/bi';
 
-const DownloadPage = ({ handleCustomInputs, handleDownload }) => {
+const DownloadPage = ({
+    handleCustomInputs,
+    handleDownload,
+    state,
+    handleNavigation
+}) => {
     return (<Row className='outer-content-colxs'>
         <Col sm={12} xs={12} className="m-0 d-flex justify-content-center">
             <label htmlFor="currency">Currency</label>
@@ -23,7 +28,17 @@ const DownloadPage = ({ handleCustomInputs, handleDownload }) => {
             </select>
         </Col>
         <Col sm={12} xs={12} className="my-1 d-flex justify-content-center">
-            <button onClick={handleDownload}><BiSolidDownload />Download Invoice</button>
+            <button
+                style={{ opacity: state.total > 0 ? 1 : 0.5 }}
+                disabled={state.total <= 0}
+                onClick={() => handleDownload({ userSalesId: null, page: 'homepage' })}
+            >
+                <BiSolidDownload /> Download Invoice
+            </button>
+        </Col>
+
+        <Col sm={12} xs={12} className="my-1 d-flex justify-content-center">
+            <button onClick={() => handleNavigation('/records')}>View Records</button>
         </Col>
     </Row>)
 }

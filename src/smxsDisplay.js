@@ -5,9 +5,20 @@ import CustomDataPage from "./smxscustomPage"
 import DownloadPage from "./smxsDownloadPage"
 
 const SmXsDisplay = ({
-    state, handleInputs, handleDataInp, handleInputButtons, handleAddRow, handleDeleteRow,
-    handleDownload, handleCustomInputs, handleInputsBtn
+    state,
+    handleInputs,
+    handleDataInp,
+    handleInputButtons,
+    handleAddRow,
+    handleDeleteRow,
+    handleDownload,
+    handleCustomInputs,
+    handleInputsBtn,
+    handleLogo
 }) => {
+
+
+    let { termsTitle, whoIsFrom, logo, address, noteTitle, billToTitle, addressTitle, invoiceNum, dueDateTitle, poTitle, paymentTitle, dateTitle, billTo, poNumber, terms, date, dueDate, paymentTerms, note } = state
     return (<>
         <Row className="d-flex justify-content-center">
             <Col className='xssm-display'>
@@ -19,25 +30,27 @@ const SmXsDisplay = ({
                     <label htmlFor='1'>#</label>
                     <input
                         id='1'
-                        value={state.invoiceNum}
+                        value={invoiceNum}
                         onInput={(event) => handleCustomInputs('invoiceno', event.target.value)}
+                        className='text-end'
                         placeholder="1"
                     />
                 </Col>
 
                 <Col sm={12} xs={12}>
                     <Col sm={4} xs={4} className='file-input-col-sm'>
-                        {/* {state.logo &&
-                            <img className='logo' src={require(`./assets/imgs/${state.logo}`)} />} */}
-                        {!state.logo &&
+                        {logo ?
+                            < img className='logo' src={URL.createObjectURL(logo)} name='logo' alt="logo" />
+                            :
                             <div>
-                                <label className='text-center' htmlFor='logo'>+ Add You Logo</label>
+                                <label htmlFor='logo'>+ Add You Logo</label>
                                 <input
                                     id='logo'
                                     type='file'
-                                    onInput={(event) => handleCustomInputs('logo', event.target.value)}
+                                    onInput={handleLogo}
+                                    className='text-center d-none'
                                     placeholder="+ Add You Logo"
-                                    className="d-none"
+                                    aria-describedby="basic-addon1"
                                 />
                             </div>}
                     </Col>
@@ -47,7 +60,7 @@ const SmXsDisplay = ({
                     <div className="norm-Input-div">
                         <input
                             onInput={(event) => handleCustomInputs('whoisfrom', event.target.value)}
-                            value={state.reciever}
+                            value={whoIsFrom}
                             placeholder="Who is the invoice from? (required)"
                         />
                     </div>
@@ -55,12 +68,12 @@ const SmXsDisplay = ({
                 <Row className="justify-content-center">
                     <Col sm={11} xs={11} className="custom-input-col">
                         <div className="custom-input-div">
-                            <input value={state.billTo_title} onInput={(event) => handleCustomInputs('bill-title', event.target.value)} />
+                            <input value={billToTitle} onInput={(event) => handleCustomInputs('bill_title', event.target.value)} />
                         </div>
                         <div className="norm-Input-div">
                             <input
                                 onInput={(event) => handleCustomInputs('bill', event.target.value)}
-                                value={state.billTo}
+                                value={billTo}
                                 type="text"
                                 placeholder="Who is the invoice to?(required)"
                             />
@@ -69,63 +82,63 @@ const SmXsDisplay = ({
 
                     <Col sm={11} xs={11} className="custom-input-col">
                         <div className="custom-input-div">
-                            <input value={state.address_title} onInput={(event) => handleCustomInputs('address-title', event.target.value)} />
+                            <input value={addressTitle} onInput={(event) => handleCustomInputs('address_title', event.target.value)} />
                         </div>
                         <div className="norm-Input-div">
                             <input
                                 onInput={(event) => handleCustomInputs('address', event.target.value)}
                                 type="text"
-                                value={state.shipTo}
+                                value={address}
                                 placeholder="(optional)"
                             />
                         </div>
                     </Col>
                 </Row>
                 <Row className=" justify-content-end">
-                    <Col sm={8} xs={8} className='invoice-data'>
+                    <Col sm={10} xs={10} className='invoice-data'>
                         <div className="custom-input-div">
-                            <input value={state.date_title} onInput={(event) => handleCustomInputs('date-title', event.target.value)} />
+                            <input value={dateTitle} onInput={(event) => handleCustomInputs('date_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
-                                value={state.date}
+                                value={date}
                                 onInput={(event) => handleCustomInputs('date', event.target.value)}
                                 type='date' />
                         </div>
                     </Col>
 
-                    <Col sm={8} xs={8} className='invoice-data'>
+                    <Col sm={10} xs={10} className='invoice-data'>
                         <div className="custom-input-div">
-                            <input value={state.payment_title} onInput={(event) => handleCustomInputs('payment-title', event.target.value)} />
+                            <input value={paymentTitle} onInput={(event) => handleCustomInputs('payment_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
-                                value={state.paymentTerms}
+                                value={paymentTerms}
                                 onInput={(event) => handleCustomInputs('paymentterms', event.target.value)}
                                 type='text' />
                         </div>
                     </Col>
 
-                    <Col sm={8} xs={8} className='invoice-data'>
+                    <Col sm={10} xs={10} className='invoice-data'>
                         <div className="custom-input-div">
-                            <input value={state.due_Date_title} onInput={(event) => handleCustomInputs('duedate-title', event.target.value)} />
+                            <input value={dueDateTitle} onInput={(event) => handleCustomInputs('duedate_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
-                                value={state.dueDate}
+                                value={dueDate}
                                 onInput={(event) => handleCustomInputs('duedate', event.target.value)}
                                 type='date'
                                 placeholder="Recipient's username" />
                         </div>
                     </Col>
 
-                    <Col sm={8} xs={8} className='invoice-data'>
+                    <Col sm={10} xs={10} className='invoice-data'>
                         <div className="custom-input-div">
-                            <input value={state.po_title} onInput={(event) => handleCustomInputs('po-title', event.target.value)} />
+                            <input value={poTitle} onInput={(event) => handleCustomInputs('po_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
-                                value={state.poNumber}
+                                value={poNumber}
                                 onInput={(event) => handleCustomInputs('ponumber', event.target.value)}
                                 aria-label="Recipient's username"
                                 aria-describedby="basic-addon2"
@@ -137,24 +150,24 @@ const SmXsDisplay = ({
 
                 <Col sm={12} xs={12} className='notesTerms-col'>
                     <div className='customInput'>
-                        <input value={state.note_title} onInput={(event) => handleCustomInputs('note-title', event.target.value)} />
+                        <input value={noteTitle} onInput={(event) => handleCustomInputs('note_title', event.target.value)} />
                     </div>
                     <div className='normInput'>
                         <input
                             id='notes'
-                            value={state.note}
+                            value={note}
                             onInput={(event) => handleCustomInputs('note', event.target.value)}
                             type="text"
                             placeholder="Notes- relevant information" />
                     </div>
 
                     <div className='customInput'>
-                        <input value={state.terms_title} onInput={(event) => handleCustomInputs('terms-title', event.target.value)} />
+                        <input value={termsTitle} onInput={(event) => handleCustomInputs('terms_title', event.target.value)} />
                     </div>
                     <div className='normInput'>
                         <input
                             id='terms'
-                            value={state.terms}
+                            value={terms}
                             onInput={(event) => handleCustomInputs('terms', event.target.value)}
                             placeholder="Terms & conditions-late fees, payment method, delivery schedule" />
                     </div>
@@ -164,7 +177,7 @@ const SmXsDisplay = ({
                     handleDataInp={handleDataInp} handleInputs={handleInputs} handleInputButtons={handleInputButtons} state={state} />
             </Col >
         </Row >
-        <DownloadPage handleCustomInputs={handleCustomInputs} handleDownload={handleDownload} />
+        <DownloadPage handleCustomInputs={handleCustomInputs} handleDownload={handleDownload} state={state} />
     </>)
 }
 export default SmXsDisplay

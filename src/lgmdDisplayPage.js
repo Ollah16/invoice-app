@@ -6,22 +6,32 @@ import InvoiceData from "./lgmdInvoiceDataPage";
 import DownloadBtnPage from "./lgmdDownloadPage";
 
 const LgMdDisplay = ({
-    state, handleInputs, handleDataInp, handleInputButtons, handleAddRow, handleDeleteRow,
-    handleDownload, handleCustomInputs, handleInputsBtn }) => {
+    state,
+    handleInputs,
+    handleDataInp,
+    handleInputButtons,
+    handleAddRow,
+    handleDeleteRow,
+    handleDownload,
+    handleCustomInputs,
+    handleInputsBtn,
+    handleLogo,
+    handleNavigation }) => {
 
+    const { billToTitle, poNumber, whoIsFrom, address, addressTitle, dueDateTitle, poTitle, paymentTitle, dateTitle, billTo, invoiceNum, date, dueDate, paymentTerms, logo } = state
     return (<Row className='justify-content-between'>
         <Col lg={8} md={8} className="inner-content-col">
             <Col lg={12} md={12} className='d-flex justify-content-between align-items-center'>
                 <Col lg={6} md={6} className='file-input-col'>
-                    {/* {state.logo &&
-                        <img className='logo' src={require(`./assets/imgs/${state.logo}`)} />} */}
-                    {!state.logo &&
+                    {logo ?
+                        < img className='logo' src={URL.createObjectURL(logo)} name='logo' alt="logo" />
+                        :
                         <div>
                             <label htmlFor='logo'>+ Add You Logo</label>
                             <input
                                 id='logo'
                                 type='file'
-                                onInput={(event) => handleCustomInputs('logo', event.target.value)}
+                                onInput={handleLogo}
                                 className='text-center d-none'
                                 placeholder="+ Add You Logo"
                                 aria-describedby="basic-addon1"
@@ -37,7 +47,7 @@ const LgMdDisplay = ({
                         <label htmlFor='1'>#</label>
                         <input
                             id='1'
-                            value={state.invoiceNum}
+                            value={invoiceNum}
                             onInput={(event) => handleCustomInputs('invoiceno', event.target.value)}
                             className='text-end'
                             placeholder="1"
@@ -52,7 +62,7 @@ const LgMdDisplay = ({
                         <div className="norm-Input-div">
                             <input
                                 onInput={(event) => handleCustomInputs('whoisfrom', event.target.value)}
-                                value={state.reciever}
+                                value={whoIsFrom}
                                 placeholder="Who is the invoice from? (required)" />
                         </div>
                     </Col>
@@ -60,12 +70,12 @@ const LgMdDisplay = ({
                     <Row className='justify-content-around'>
                         <Col lg={6} md={6} className="custom-input-col">
                             <div className="custom-input-div">
-                                <input value={state.billTo_title} onInput={(event) => handleCustomInputs('bill-title', event.target.value)} />
+                                <input value={billToTitle} onInput={(event) => handleCustomInputs('bill_title', event.target.value)} />
                             </div>
                             <div className="norm-Input-div">
                                 <input
                                     onInput={(event) => handleCustomInputs('bill', event.target.value)}
-                                    value={state.billTo}
+                                    value={billTo}
                                     type="text"
                                     placeholder="Who is the invoice to?(required)"
                                 />
@@ -74,13 +84,13 @@ const LgMdDisplay = ({
 
                         <Col lg={6} md={6} className="custom-input-col">
                             <div className="custom-input-div">
-                                <input value={state.address_title} onInput={(event) => handleCustomInputs('address-title', event.target.value)} />
+                                <input value={addressTitle} onInput={(event) => handleCustomInputs('address_title', event.target.value)} />
                             </div>
                             <div className="norm-Input-div">
                                 <input
                                     onInput={(event) => handleCustomInputs('address', event.target.value)}
                                     type="text"
-                                    value={state.shipTo}
+                                    value={address}
                                     placeholder="(optional)"
                                 />
                             </div>
@@ -91,11 +101,11 @@ const LgMdDisplay = ({
                 <Col lg={4} md={4}>
                     <Col className='invoice-data'>
                         <div className="custom-input-div">
-                            <input className='text-end' value={state.date_title} onInput={(event) => handleCustomInputs('date-title', event.target.value)} />
+                            <input className='text-end' value={dateTitle} onInput={(event) => handleCustomInputs('date_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
-                                value={state.date}
+                                value={date}
                                 onInput={(event) => handleCustomInputs('date', event.target.value)}
                                 type='date' />
                         </div>
@@ -103,11 +113,11 @@ const LgMdDisplay = ({
 
                     <Col className='invoice-data'>
                         <div className="custom-input-div">
-                            <input className='text-end' value={state.payment_title} onInput={(event) => handleCustomInputs('payment-title', event.target.value)} />
+                            <input className='text-end' value={paymentTitle} onInput={(event) => handleCustomInputs('payment_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
-                                value={state.paymentTerms}
+                                value={paymentTerms}
                                 onInput={(event) => handleCustomInputs('paymentterms', event.target.value)}
                                 type='text' />
                         </div>
@@ -115,11 +125,11 @@ const LgMdDisplay = ({
 
                     <Col className='invoice-data'>
                         <div className="custom-input-div">
-                            <input className='text-end' value={state.due_Date_title} onInput={(event) => handleCustomInputs('duedate-title', event.target.value)} />
+                            <input className='text-end' value={dueDateTitle} onInput={(event) => handleCustomInputs('duedate_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
-                                value={state.dueDate}
+                                value={dueDate}
                                 onInput={(event) => handleCustomInputs('duedate', event.target.value)}
                                 type='date'
                                 placeholder="Recipient's username" />
@@ -128,11 +138,11 @@ const LgMdDisplay = ({
 
                     <Col className='invoice-data'>
                         <div className="custom-input-div">
-                            <input className='text-end' value={state.po_title} onInput={(event) => handleCustomInputs('po-title', event.target.value)} />
+                            <input className='text-end' value={poTitle} onInput={(event) => handleCustomInputs('po_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
-                                value={state.poNumber}
+                                value={poNumber}
                                 onInput={(event) => handleCustomInputs('ponumber', event.target.value)}
                                 aria-label="Recipient's username"
                                 aria-describedby="basic-addon2"
@@ -142,17 +152,33 @@ const LgMdDisplay = ({
                 </Col>
             </Col>
 
-            <InvoiceData handleDataInp={handleDataInp} state={state} handleAddRow={handleAddRow} handleDeleteRow={handleDeleteRow} />
+            <InvoiceData
+                handleDataInp={handleDataInp}
+                state={state}
+                handleAddRow={handleAddRow}
+                handleDeleteRow={handleDeleteRow} />
 
             <Row className="justify-content-between">
 
-                <TermAndCondPage state={state} handleCustomInputs={handleCustomInputs} />
+                <TermAndCondPage
+                    state={state}
+                    handleCustomInputs={handleCustomInputs} />
 
-                <CustomDataPage handleInputsBtn={handleInputsBtn} handleCustomInputs={handleCustomInputs} handleDataInp={handleDataInp} handleInputs={handleInputs} handleInputButtons={handleInputButtons} state={state} />
+                <CustomDataPage
+                    handleInputsBtn={handleInputsBtn}
+                    handleCustomInputs={handleCustomInputs}
+                    handleDataInp={handleDataInp}
+                    handleInputs={handleInputs}
+                    handleInputButtons={handleInputButtons}
+                    state={state} />
             </Row>
         </Col>
         <Col lg={3} md={3}>
-            <DownloadBtnPage state={state} handleDownload={handleDownload} handleCustomInputs={handleCustomInputs} />
+            <DownloadBtnPage
+                state={state}
+                handleDownload={handleDownload}
+                handleCustomInputs={handleCustomInputs}
+                handleNavigation={handleNavigation} />
         </Col>
     </Row >)
 }

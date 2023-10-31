@@ -1,21 +1,29 @@
 import React from "react"
 import { Col, Row } from "react-bootstrap"
 import TotalPage from "./smxstotalPage"
-const CustomDataPage = ({ handleInputs, state, handleCustomInputs, handleInputsBtn }) => {
+const CustomDataPage = ({
+    handleInputs,
+    state,
+    handleCustomInputs,
+    handleInputsBtn
+}) => {
+
+    let { discountTitle, taxTitle, shippingTitle, subTotal, isShipping, isDiscount, isTax, currency, subTotalTitle } = state
+
     return (<Row>
         <Col sm={12} xs={12} className='custom-col'>
             <div className='customInput'>
-                <input value={state.subtotal_title} onInput={(event) => handleCustomInputs('subtotal-title', event.target.value)} className='text-end' placeholder='Subtotal' />
+                <input value={subTotalTitle} onInput={(event) => handleCustomInputs('subtotal_title', event.target.value)} className='text-end' placeholder='Subtotal' />
             </div>
             <div className='customInputbutton d-flex justify-content-end px-4'>
-                {`${state.currency.toString().substring(0, 3)}${state.subTotal}.00`}
+                {`${currency.toString().substring(0, 3)}${subTotal}.00`}
             </div>
         </Col>
 
-        {state.isDiscount &&
+        {isDiscount === 1 &&
             <Col sm={12} xs={12} className='custom-col'>
                 <div className='customInput'>
-                    <input value={state.discount_title} onInput={(event) => handleCustomInputs('discount-title', event.target.value)} className='text-end' placeholder='Discount' />
+                    <input value={discountTitle} onInput={(event) => handleCustomInputs('discount_title', event.target.value)} className='text-end' placeholder='Discount' />
                 </div>
                 <div className='customInputbutton'>
                     <input className='text-end'
@@ -27,10 +35,10 @@ const CustomDataPage = ({ handleInputs, state, handleCustomInputs, handleInputsB
                 </div>
             </Col>}
 
-        {state.isTax &&
+        {isTax === 1 &&
             <Col sm={12} xs={12} className='custom-col'>
                 <div className='customInput'>
-                    <input value={state.tax_title} onInput={(event) => handleCustomInputs('tax-title', event.target.value)} className='text-end' placeholder='Tax' />
+                    <input value={taxTitle} onInput={(event) => handleCustomInputs('tax_title', event.target.value)} className='text-end' placeholder='Tax' />
                 </div>
                 <div className='customInputbutton'>
                     <input className='text-end'
@@ -42,10 +50,10 @@ const CustomDataPage = ({ handleInputs, state, handleCustomInputs, handleInputsB
                 </div>
             </Col>}
 
-        {state.isShipping &&
+        {isShipping === 1 &&
             <Col sm={12} xs={12} className='custom-col'>
                 <div className='customInput'>
-                    <input value={state.shipping_title} onInput={(event) => handleCustomInputs('shipping-title', event.target.value)} className='text-end' placeholder='Shipping' />
+                    <input value={shippingTitle} onInput={(event) => handleCustomInputs('shipping_title', event.target.value)} className='text-end' placeholder='Shipping' />
                 </div>
                 <div className='customInputbutton'>
                     <input className='text-end'
@@ -58,15 +66,15 @@ const CustomDataPage = ({ handleInputs, state, handleCustomInputs, handleInputsB
             </Col>}
 
         <Col sm={12} xs={12} className='custom-btn px-4'>
-            {!state.isDiscount &&
+            {isDiscount === 0 &&
                 <button onClick={() => handleInputsBtn('+discount')} >
                     +Discount
                 </button>}
-            {!state.isTax &&
+            {isTax === 0 &&
                 <button onClick={() => handleInputsBtn('+tax')} >
                     +Tax
                 </button>}
-            {!state.isShipping &&
+            {isShipping === 0 &&
                 <button onClick={() => handleInputsBtn('+shipping')} >
                     +Shipping
                 </button>}
