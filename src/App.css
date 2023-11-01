@@ -3,12 +3,14 @@
   font-size: 1em;
   background-color: rgba(201, 213, 226, 0.2);
   font-family: 'Arial Narrow Bold';
+  padding: 0 !important;
 }
 
 .navbar {
   background-color: #113358 !important;
   padding: 10px 0;
   border-bottom: 2px solid #ffc107;
+  margin: 0;
   margin-bottom: 1.2em;
 }
 
@@ -444,7 +446,6 @@ h1 {
 .footer-container {
   display: flex;
   flex-direction: column;
-  min-height: 10vh;
 }
 
 .invoice-footer {
@@ -454,8 +455,8 @@ h1 {
   text-align: center;
   width: 100%;
   box-sizing: border-box;
-  position: fixed;
-  bottom: 0;
+  position: relative;
+  margin: 0 !important;
 }
 
 .login-form {

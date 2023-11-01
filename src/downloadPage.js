@@ -64,13 +64,14 @@ const DownloadPage = ({
                 break;
             case page === 'homepage':
                 handleNavigation('/')
-                // handleClearState();
+                handleClearState();
                 break;
         }
     }
 
     const handleGetInvoice = () => {
-        axios.get(`http://localhost:9080/invoice/getinvoice/${userSalesId}`, {
+        // axios.get(`http://localhost:9080/invoice/getinvoice/${userSalesId}`, {
+        axios.get(`https://invoice-back-end.vercel.app/invoice/getinvoice/${userSalesId}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             }
@@ -78,7 +79,6 @@ const DownloadPage = ({
             const { userInvoice, userData } = response.data
             setUserInvoice(userInvoice)
             setUserData(userData)
-            console.log(userData)
         }).catch((err) => { console.error(err) })
     }
 
@@ -93,7 +93,8 @@ const DownloadPage = ({
                 formData.append(key, value);
             }
         }
-        axios.post('http://localhost:9080/invoice/saveinvoice', formData, {
+        // axios.post('http://localhost:9080/invoice/saveinvoice', formData, {
+        axios.post('https://invoice-back-end.vercel.app/invoice/saveinvoice', formData, {
             headers: {
                 'Content-Type': 'multipart/formdata',
                 'Authorization': `Bearer ${accessToken}`

@@ -16,27 +16,25 @@ const LgMdDisplay = ({
     handleCustomInputs,
     handleInputsBtn,
     handleLogo,
-    handleNavigation }) => {
+    handleNavigation,
+    isDownloadButtonDisabled }) => {
 
     const { billToTitle, poNumber, whoIsFrom, address, addressTitle, dueDateTitle, poTitle, paymentTitle, dateTitle, billTo, invoiceNum, date, dueDate, paymentTerms, logo } = state
     return (<Row className='justify-content-between'>
         <Col lg={8} md={8} className="inner-content-col">
             <Col lg={12} md={12} className='d-flex justify-content-between align-items-center'>
                 <Col lg={6} md={6} className='file-input-col'>
-                    {logo ?
-                        < img className='logo' src={URL.createObjectURL(logo)} name='logo' alt="logo" />
-                        :
-                        <div>
-                            <label htmlFor='logo'>+ Add You Logo</label>
-                            <input
-                                id='logo'
-                                type='file'
-                                onInput={handleLogo}
-                                className='text-center d-none'
-                                placeholder="+ Add You Logo"
-                                aria-describedby="basic-addon1"
-                            />
-                        </div>}
+                    <div>
+                        <label htmlFor='logo'>{!logo ? '+ Add You Logo' : logo.name}</label>
+                        <input
+                            id='logo'
+                            type='file'
+                            onInput={handleLogo}
+                            className='text-center d-none'
+                            placeholder="+ Add You Logo"
+                            aria-describedby="basic-addon1"
+                        />
+                    </div>
                 </Col>
 
                 <Col lg={4} md={4}>
@@ -178,7 +176,9 @@ const LgMdDisplay = ({
                 state={state}
                 handleDownload={handleDownload}
                 handleCustomInputs={handleCustomInputs}
-                handleNavigation={handleNavigation} />
+                handleNavigation={handleNavigation}
+                isDownloadButtonDisabled={isDownloadButtonDisabled}
+            />
         </Col>
     </Row >)
 }

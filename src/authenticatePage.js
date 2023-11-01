@@ -11,7 +11,8 @@ const RegisterPage = ({
     handleNavigation,
     handleDownload,
     handleMessage,
-    handleCloseMessage
+    handleCloseMessage,
+    isDownloadButtonDisabled
 }) => {
 
     let [isLogin, setLogin] = useState(true)
@@ -43,6 +44,7 @@ const RegisterPage = ({
             case 'signin':
                 try {
                     const response = await axios.post('http://localhost:9080/authenticate/login', { email, password }, {
+                        // const response = await axios.post('https://invoice-back-end.vercel.app/authenticate/login', { email, password }, {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
@@ -55,13 +57,13 @@ const RegisterPage = ({
                         setEmail('');
                     }
                 } catch (err) {
-                    const { error } = err.response.data;
-                    handleMessage(error)
+                    console.error(err)
                 }
                 break;
 
             case 'signup':
-                await axios.post('http://localhost:9080/authenticate/register', { email, password }, {
+                await axios.post('https://invoice-back-end.vercel.app/authenticate/register', { email, password }, {
+                    // await axios.post('http://localhost:9080/authenticate/register', { email, password }, {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
@@ -73,8 +75,7 @@ const RegisterPage = ({
                         setLogin(true);
                     }
                 }).catch((err) => {
-                    const { error } = err.response.data;
-                    handleMessage(error)
+                    console.error(err)
                 })
                 break;
         }
@@ -151,7 +152,11 @@ const RegisterPage = ({
             !state.isLogged && state.total > 0 &&
             <Row className="justify-content-center">
                 <Col lg={6} md={6} sm={10} xs={10} className="proceed-col">
-                    <button onClick={() => handleNavigation(`/download/${'proceed'}/${page}`)}><span>Proceed to download</span><IoCaretForward /><IoCaretForward /></button>
+                    <button
+                        disabled={isDownloadButtonDisabled}
+                        onClick={() => handleNavigation(`/download/${'proceed'}/${page}`)}>
+                        <span>Proceed to download</span><IoCaretForward /><IoCaretForward />
+                    </button>
                 </Col>
             </Row>
         }

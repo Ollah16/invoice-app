@@ -14,7 +14,8 @@ const SmXsDisplay = ({
     handleDownload,
     handleCustomInputs,
     handleInputsBtn,
-    handleLogo
+    handleLogo,
+    isDownloadButtonDisabled
 }) => {
 
 
@@ -39,20 +40,17 @@ const SmXsDisplay = ({
 
                 <Col sm={12} xs={12}>
                     <Col sm={4} xs={4} className='file-input-col-sm'>
-                        {logo ?
-                            < img className='logo' src={URL.createObjectURL(logo)} name='logo' alt="logo" />
-                            :
-                            <div>
-                                <label htmlFor='logo'>+ Add You Logo</label>
-                                <input
-                                    id='logo'
-                                    type='file'
-                                    onInput={handleLogo}
-                                    className='text-center d-none'
-                                    placeholder="+ Add You Logo"
-                                    aria-describedby="basic-addon1"
-                                />
-                            </div>}
+                        <div>
+                            <label htmlFor='logo'>{!logo ? '+ Add You Logo' : logo.name}</label>
+                            <input
+                                id='logo'
+                                type='file'
+                                onInput={handleLogo}
+                                className='text-center d-none'
+                                placeholder="+ Add You Logo"
+                                aria-describedby="basic-addon1"
+                            />
+                        </div>
                     </Col>
                 </Col>
 
@@ -177,7 +175,10 @@ const SmXsDisplay = ({
                     handleDataInp={handleDataInp} handleInputs={handleInputs} handleInputButtons={handleInputButtons} state={state} />
             </Col >
         </Row >
-        <DownloadPage handleCustomInputs={handleCustomInputs} handleDownload={handleDownload} state={state} />
+        <DownloadPage handleCustomInputs={handleCustomInputs}
+            handleDownload={handleDownload}
+            state={state}
+            isDownloadButtonDisabled={isDownloadButtonDisabled} />
     </>)
 }
 export default SmXsDisplay

@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { BiSolidDownload } from 'react-icons/bi';
 
 const DownloadBtnPage = ({
     handleCustomInputs,
     handleDownload,
-    state,
-    handleNavigation }) => {
+    handleNavigation,
+    isDownloadButtonDisabled }) => {
 
     return (<Row className='outer-content-col'>
         <Col lg={10} md={10}>
             <Row className="justify-content-center my-2">
                 <button
-                    style={{ opacity: state.data.length ? 1 : 0.5 }}
-                    disabled={state.data.length < 0}
+                    style={{ opacity: isDownloadButtonDisabled ? 1 : 0.5 }}
+                    disabled={!isDownloadButtonDisabled}
                     onClick={() => handleDownload({ userSalesId: null, page: 'homepage' })}
                 >
                     <BiSolidDownload /> Download Invoice

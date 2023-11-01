@@ -16,7 +16,8 @@ const RecordPage = ({
         const handleFetchRecords = async () => {
             if (state.isLogged) {
                 try {
-                    const response = await axios.get('http://localhost:9080/invoice/fetchrecords',
+                    // const response = await axios.get('http://localhost:9080/invoice/fetchrecords',
+                    const response = await axios.get('https://invoice-back-end.vercel.app/invoice/fetchrecords',
                         {
                             headers: { 'Authorization': `Bearer ${accessToken}` }
                         })

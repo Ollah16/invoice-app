@@ -6,8 +6,10 @@ const DownloadPage = ({
     handleCustomInputs,
     handleDownload,
     state,
-    handleNavigation
+    handleNavigation,
+    isDownloadButtonDisabled
 }) => {
+
     return (<Row className='outer-content-colxs'>
         <Col sm={12} xs={12} className="m-0 d-flex justify-content-center">
             <label htmlFor="currency">Currency</label>
@@ -29,8 +31,8 @@ const DownloadPage = ({
         </Col>
         <Col sm={12} xs={12} className="my-1 d-flex justify-content-center">
             <button
-                style={{ opacity: state.total > 0 ? 1 : 0.5 }}
-                disabled={state.total <= 0}
+                style={{ opacity: isDownloadButtonDisabled ? 1 : 0.5 }}
+                disabled={!isDownloadButtonDisabled}
                 onClick={() => handleDownload({ userSalesId: null, page: 'homepage' })}
             >
                 <BiSolidDownload /> Download Invoice

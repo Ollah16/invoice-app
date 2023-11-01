@@ -16,7 +16,8 @@ const HomePage = ({
     handleInputs,
     handleDataInp,
     handleInputsBtn,
-    handleNavigation
+    handleNavigation,
+    isDownloadButtonDisabled
 }) => {
 
     const handleAuth = () => {
@@ -40,7 +41,7 @@ const HomePage = ({
             </Container>
         </Navbar>
 
-        <Col className='d-block d-md-none'>
+        <Col className='d-block d-md-none m-2'>
             <SmXsDisplay
                 handleLogo={handleLogo}
                 state={state}
@@ -52,10 +53,11 @@ const HomePage = ({
                 handleCustomInput={handleCustomInput}
                 handleDownload={handleDownload}
                 handleInputsBtn={handleInputsBtn}
+                isDownloadButtonDisabled={isDownloadButtonDisabled}
             />
         </Col>
 
-        <Col className='d-none d-md-block'>
+        <Col className='d-none d-md-block m-2'>
             <LgMdDisplay
                 handleLogo={handleLogo}
                 handleNavigation={handleNavigation}
@@ -67,7 +69,9 @@ const HomePage = ({
                 handleInputs={handleInputs}
                 handleCustomInput={handleCustomInput}
                 handleDownload={handleDownload}
-                handleInputsBtn={handleInputsBtn} />
+                handleInputsBtn={handleInputsBtn}
+                isDownloadButtonDisabled={isDownloadButtonDisabled}
+            />
         </Col>
 
 

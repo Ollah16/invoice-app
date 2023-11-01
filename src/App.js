@@ -9,7 +9,11 @@ import RegisterPage from './authenticatePage';
 import RecordPage from './recordPage';
 
 const App = () => {
-  let [state, dispatch] = useReducer(myReducer, initialState)
+  const [state, dispatch] = useReducer(myReducer, initialState)
+
+  const isDownloadButtonDisabled = state.data.some((item) => (
+    item.description && item.amount && item.quantity && item.rate
+  ));
 
   const actionTypes = {
     IS_LOGGED: 'IS_LOGGED',
@@ -274,6 +278,7 @@ const App = () => {
     <Routes>
       <Route
         path='/*' element={<HomePage
+          isDownloadButtonDisabled={isDownloadButtonDisabled}
           handleLogo={handleLogo}
           handleSignOut={handleSignOut}
           handleInputs={handleInputs}
@@ -295,6 +300,7 @@ const App = () => {
 
       <Route path='/authenticate/:page'
         element={<RegisterPage
+          isDownloadButtonDisabled={isDownloadButtonDisabled}
           state={state}
           handleAuth={handleAuth}
           handleNavigation={handleNavigation}
