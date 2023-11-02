@@ -20,7 +20,7 @@ const LgMdDisplay = ({
     proceedDownload }) => {
 
     const { billToTitle, poNumber, whoIsFrom, address, addressTitle, dueDateTitle, poTitle, paymentTitle, dateTitle, billTo, invoiceNum, date, dueDate, paymentTerms, logo } = state
-    return (<Row className='justify-content-between'>
+    return (<Row className='justify-content-between m-1'>
         <Col lg={8} md={8} className="inner-content-col">
             <Col lg={12} md={12} className='d-flex justify-content-between align-items-center'>
                 <Col lg={6} md={6} className='file-input-col'>
@@ -47,7 +47,7 @@ const LgMdDisplay = ({
                             id='1'
                             value={invoiceNum}
                             onInput={(event) => handleCustomInputs('invoiceno', event.target.value)}
-                            className='text-center'
+                            className='text-end'
                             placeholder="1"
                         />
                     </div>

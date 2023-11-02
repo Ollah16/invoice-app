@@ -28,7 +28,7 @@ const HomePage = ({
 
     return (<Container className='invoice-homepage' fluid>
         <Navbar>
-            <Container>
+            <Container className='m-0'>
                 <Col lg={4} className='text-start'>
                     <Navbar.Brand href="#home" className='text-white'>Invoice Generator</Navbar.Brand>
                 </Col>
@@ -40,7 +40,7 @@ const HomePage = ({
             </Container>
         </Navbar>
 
-        <Col className='d-block d-md-none m-2'>
+        <Col className='d-block d-md-none'>
             <SmXsDisplay
                 handleLogo={handleLogo}
                 handleNavigation={handleNavigation}
@@ -57,7 +57,7 @@ const HomePage = ({
             />
         </Col>
 
-        <Col className='d-none d-md-block m-2'>
+        <Col className='d-none d-md-block'>
             <LgMdDisplay
                 handleLogo={handleLogo}
                 handleNavigation={handleNavigation}

@@ -42,7 +42,7 @@ const RecordPage = ({
         <Navbar>
             <Container>
                 <Col lg={4} >
-                    <Navbar.Brand href="#home" className='text-white'>Invoice Generator</Navbar.Brand>
+                    <Navbar.Brand onClick={() => handleNavigation('/')} className='text-white'>Invoice Generator</Navbar.Brand>
                 </Col>
             </Container>
         </Navbar>

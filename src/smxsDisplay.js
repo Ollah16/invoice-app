@@ -22,8 +22,8 @@ const SmXsDisplay = ({
 
 
     let { termsTitle, whoIsFrom, logo, address, noteTitle, billToTitle, addressTitle, invoiceNum, dueDateTitle, poTitle, paymentTitle, dateTitle, billTo, poNumber, terms, date, dueDate, paymentTerms, note } = state
-    return (<>
-        <Row className="d-flex justify-content-center">
+    return (<Row className="m-1">
+        <Row className="d-flex justify-content-center ">
             <Col className='xssm-display'>
                 <Col sm={12} xs={12}>
                     <h1 className='text-start'>INVOICE</h1>
@@ -182,6 +182,6 @@ const SmXsDisplay = ({
             state={state}
             proceedDownload={proceedDownload}
             handleNavigation={handleNavigation} />
-    </>)
+    </Row >)
 }
 export default SmXsDisplay

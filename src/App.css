@@ -4,7 +4,6 @@
   background-color: rgba(201, 213, 226, 0.2);
   font-family: 'Arial Narrow Bold';
   padding: 0 !important;
-  height: 100%;
 }
 
 .navbar {
@@ -132,7 +131,7 @@
 
 .invoice-no-div input:focus,
 .invoice-no-col input:focus {
-  border: none;
+  border: .01em solid #668ab0;
   outline: .01em solid #668ab0;
   border-radius: 2.9px;
   height: 2.1em;
@@ -151,14 +150,13 @@
 
 
 .custom-input-col .norm-Input-div input:focus {
-  border: none;
+  border: .01em solid #abc0d8;
   outline: .01em solid #668ab0;
   border-radius: 2.9px;
 }
 
 .custom-input-col .norm-Input-div input:hover {
-  border: none;
-  outline: .01em solid #668ab0;
+  border: .01em solid #668ab0;
   border-top-right-radius: 2.9px;
   border-bottom-right-radius: 2.9px;
 
@@ -187,7 +185,7 @@
 }
 
 .invoice-data .norm-input-div input:focus {
-  border: none;
+  border: .01em solid #c3d2e3;
   outline: .01em solid #668ab0;
   border-top-right-radius: 2.9px;
   border-bottom-right-radius: 2.9px;
@@ -254,7 +252,7 @@
 .notesTerms-col .normInput input:focus,
 .custom-col .customInputbutton input:focus,
 .invoice-data-div input:focus {
-  border: none;
+  border: .01em solid #c3d2e3;
   outline: .01em solid #668ab0;
 }
 
@@ -283,6 +281,9 @@
   width: 59%;
 }
 
+.invoice-data .custom-input-div {
+  margin: 0 .2em;
+}
 
 .custom-col .customInput input,
 .notesTerms-col .customInput input,
@@ -290,7 +291,7 @@
 .custom-input-col .custom-input-div input {
   width: 100%;
   padding: .1em .2em;
-  margin-right: .2em;
+  margin-right: .9em;
   border: none;
   border-radius: 2px;
   height: 2em;
