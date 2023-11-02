@@ -38,10 +38,12 @@ const DownloadPage = ({
     }, [])
 
     useEffect(() => {
-        if (!userData.length && !userData.length) return
-        handleDownloadPage()
+        if (userInvoice.length === 0 && userData.length === 0) {
+            return;
+        }
+        handleDownloadPage();
+    }, [userInvoice, userData]);
 
-    }, [userInvoice, userData])
 
     const handleDownloadPage = () => {
         const pageId = downloadCurrentPage.current

@@ -7,11 +7,11 @@ const ServerDownloadPage = ({
     downloadCurrentPage,
     userData
 }) => {
-
+    console.log(invoice.logo)
     return (<Container key={index} className="invoice-container" ref={downloadCurrentPage}>
         <Row className="header-row">
             <Col className="text-center logo-col">
-                <img src={`https://expressbuckett.s3.eu-west-2.amazonaws.com/${invoice.logo}`} alt="Company Logo" className="logo" />
+                <img src={`https://expressbuckett.s3.eu-west-2.amazonaws.com/invoicelogo/${invoice.logo}`} alt="Company Logo" className="logo" />
             </Col>
         </Row>
 
