@@ -17,7 +17,7 @@ const LgMdDisplay = ({
     handleInputsBtn,
     handleLogo,
     handleNavigation,
-    isDownloadButtonDisabled }) => {
+    proceedDownload }) => {
 
     const { billToTitle, poNumber, whoIsFrom, address, addressTitle, dueDateTitle, poTitle, paymentTitle, dateTitle, billTo, invoiceNum, date, dueDate, paymentTerms, logo } = state
     return (<Row className='justify-content-between'>
@@ -47,7 +47,7 @@ const LgMdDisplay = ({
                             id='1'
                             value={invoiceNum}
                             onInput={(event) => handleCustomInputs('invoiceno', event.target.value)}
-                            className='text-end'
+                            className='text-center'
                             placeholder="1"
                         />
                     </div>
@@ -99,7 +99,7 @@ const LgMdDisplay = ({
                 <Col lg={4} md={4}>
                     <Col className='invoice-data'>
                         <div className="custom-input-div">
-                            <input className='text-end' value={dateTitle} onInput={(event) => handleCustomInputs('date_title', event.target.value)} />
+                            <input className='text-center' value={dateTitle} onInput={(event) => handleCustomInputs('date_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
@@ -111,7 +111,7 @@ const LgMdDisplay = ({
 
                     <Col className='invoice-data'>
                         <div className="custom-input-div">
-                            <input className='text-end' value={paymentTitle} onInput={(event) => handleCustomInputs('payment_title', event.target.value)} />
+                            <input className='text-center' value={paymentTitle} onInput={(event) => handleCustomInputs('payment_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
@@ -123,7 +123,7 @@ const LgMdDisplay = ({
 
                     <Col className='invoice-data'>
                         <div className="custom-input-div">
-                            <input className='text-end' value={dueDateTitle} onInput={(event) => handleCustomInputs('duedate_title', event.target.value)} />
+                            <input className='text-center' value={dueDateTitle} onInput={(event) => handleCustomInputs('duedate_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
@@ -136,7 +136,7 @@ const LgMdDisplay = ({
 
                     <Col className='invoice-data'>
                         <div className="custom-input-div">
-                            <input className='text-end' value={poTitle} onInput={(event) => handleCustomInputs('po_title', event.target.value)} />
+                            <input className='text-center' value={poTitle} onInput={(event) => handleCustomInputs('po_title', event.target.value)} />
                         </div>
                         <div className="norm-input-div">
                             <input
@@ -177,7 +177,7 @@ const LgMdDisplay = ({
                 handleDownload={handleDownload}
                 handleCustomInputs={handleCustomInputs}
                 handleNavigation={handleNavigation}
-                isDownloadButtonDisabled={isDownloadButtonDisabled}
+                proceedDownload={proceedDownload}
             />
         </Col>
     </Row >)

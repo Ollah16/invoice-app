@@ -39,7 +39,6 @@ const DownloadPage = ({
 
     useEffect(() => {
         if (!userData.length && !userData.length) return
-        console.log(userData)
         handleDownloadPage()
 
     }, [userInvoice, userData])
@@ -48,7 +47,7 @@ const DownloadPage = ({
         const pageId = downloadCurrentPage.current
         var opt = {
             margin: 1,
-            filename: 'myfile.pdf',
+            filename: 'invoice.pdf',
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2 },
             jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
@@ -103,7 +102,7 @@ const DownloadPage = ({
         handleDownloadPage()
     }
 
-    return (<Container className='invoice-homepage' fluid>
+    return (<Container className='invoice-homepage' fluid style={{ opacity: '0' }}>
         <Navbar>
             <Container>
                 <Col lg={4} >
@@ -117,9 +116,7 @@ const DownloadPage = ({
             </Col>
         </Row>
 
-        {console.log(userInvoice)}
-
-        {page === 'records' && userInvoice.length &&
+        {page === 'records' && userInvoice.length > 0 &&
             userInvoice.map((invoice, index) =>
             (<ServerDownloadPage
                 downloadCurrentPage={downloadCurrentPage}
@@ -128,6 +125,7 @@ const DownloadPage = ({
                 index={index}
                 userData={userData} />))
         }
+
         {page === 'homepage' &&
             <StateDownloadPage state={state} downloadCurrentPage={downloadCurrentPage} />
         }

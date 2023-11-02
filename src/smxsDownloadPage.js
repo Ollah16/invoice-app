@@ -5,10 +5,8 @@ import { BiSolidDownload } from 'react-icons/bi';
 const DownloadPage = ({
     handleCustomInputs,
     handleDownload,
-    state,
-    handleNavigation,
-    isDownloadButtonDisabled
-}) => {
+    proceedDownload,
+    handleNavigation }) => {
 
     return (<Row className='outer-content-colxs'>
         <Col sm={12} xs={12} className="m-0 d-flex justify-content-center">
@@ -31,8 +29,8 @@ const DownloadPage = ({
         </Col>
         <Col sm={12} xs={12} className="my-1 d-flex justify-content-center">
             <button
-                style={{ opacity: isDownloadButtonDisabled ? 1 : 0.5 }}
-                disabled={!isDownloadButtonDisabled}
+                style={{ opacity: proceedDownload ? 1 : 0.5 }}
+                disabled={!proceedDownload}
                 onClick={() => handleDownload({ userSalesId: null, page: 'homepage' })}
             >
                 <BiSolidDownload /> Download Invoice

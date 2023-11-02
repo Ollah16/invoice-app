@@ -13,7 +13,6 @@ const TermAndCondPage = ({
             </div>
             <div className='normInput'>
                 <input
-                    id='notes'
                     value={note}
                     onInput={(event) => handleCustomInputs('note', event.target.value)}
                     type="text"
@@ -24,7 +23,6 @@ const TermAndCondPage = ({
             </div>
             <div className='normInput'>
                 <input
-                    id='terms'
                     value={terms}
                     onInput={(event) => handleCustomInputs('terms', event.target.value)}
                     placeholder="Terms & conditions-late fees, payment method, delivery schedule" />

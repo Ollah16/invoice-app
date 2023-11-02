@@ -15,7 +15,9 @@ const SmXsDisplay = ({
     handleCustomInputs,
     handleInputsBtn,
     handleLogo,
-    isDownloadButtonDisabled
+    isDownloadButtonDisabled,
+    handleNavigation,
+    proceedDownload
 }) => {
 
 
@@ -178,7 +180,8 @@ const SmXsDisplay = ({
         <DownloadPage handleCustomInputs={handleCustomInputs}
             handleDownload={handleDownload}
             state={state}
-            isDownloadButtonDisabled={isDownloadButtonDisabled} />
+            proceedDownload={proceedDownload}
+            handleNavigation={handleNavigation} />
     </>)
 }
 export default SmXsDisplay

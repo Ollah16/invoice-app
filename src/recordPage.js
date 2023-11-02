@@ -53,7 +53,7 @@ const RecordPage = ({
         </Row>
         <Row className='justify-content-center'>
             {saleRecords.length > 0 ?
-                <Col lg={8} md={8} xs={10} sm={10}>
+                <Col lg={8} md={8} xs={8} sm={8} className='table-responsive'>
                     {saleRecords.map((record, index) => (
                         <Table bordered key={index} className='text-center'>
                             <thead>

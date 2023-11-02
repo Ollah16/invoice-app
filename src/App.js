@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,10 +10,29 @@ import RecordPage from './recordPage';
 
 const App = () => {
   const [state, dispatch] = useReducer(myReducer, initialState)
+  let [proceedDownload, setProceed] = useState('');
 
-  const isDownloadButtonDisabled = state.data.some((item) => (
-    item.description && item.amount && item.quantity && item.rate
-  ));
+  useEffect(() => {
+    const isDataValid = state.data.every(item => (item.description && item.amount && item.rate && item.quantity));
+    const requiredFields = [
+      state.total,
+      state.logo,
+      state.whoIsFrom,
+      state.billTo,
+      state.address,
+      state.poNumber,
+      state.terms,
+      state.invoiceNum,
+      state.date,
+      state.dueDate,
+      state.paymentTerms,
+      state.note,
+      state.amountPaid
+    ];
+    const areFieldsValid = requiredFields.every((value) => value);
+    setProceed(isDataValid && areFieldsValid ? true : false)
+  }, [state])
+
 
   const actionTypes = {
     IS_LOGGED: 'IS_LOGGED',
@@ -237,6 +256,7 @@ const App = () => {
 
   const handleDownload = (data) => {
     const { userSalesId, page } = data;
+
     if (!state.isLogged) {
       handleNavigation(`/authenticate/${page}`);
       return;
@@ -278,7 +298,7 @@ const App = () => {
     <Routes>
       <Route
         path='/*' element={<HomePage
-          isDownloadButtonDisabled={isDownloadButtonDisabled}
+          proceedDownload={proceedDownload}
           handleLogo={handleLogo}
           handleSignOut={handleSignOut}
           handleInputs={handleInputs}
@@ -300,7 +320,6 @@ const App = () => {
 
       <Route path='/authenticate/:page'
         element={<RegisterPage
-          isDownloadButtonDisabled={isDownloadButtonDisabled}
           state={state}
           handleAuth={handleAuth}
           handleNavigation={handleNavigation}

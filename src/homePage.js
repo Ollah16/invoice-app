@@ -17,8 +17,7 @@ const HomePage = ({
     handleDataInp,
     handleInputsBtn,
     handleNavigation,
-    isDownloadButtonDisabled
-}) => {
+    proceedDownload }) => {
 
     const handleAuth = () => {
         if (!state.isLogged) {
@@ -44,6 +43,7 @@ const HomePage = ({
         <Col className='d-block d-md-none m-2'>
             <SmXsDisplay
                 handleLogo={handleLogo}
+                handleNavigation={handleNavigation}
                 state={state}
                 handleCustomInputs={handleCustomInputs}
                 handleDataInp={handleDataInp}
@@ -53,7 +53,7 @@ const HomePage = ({
                 handleCustomInput={handleCustomInput}
                 handleDownload={handleDownload}
                 handleInputsBtn={handleInputsBtn}
-                isDownloadButtonDisabled={isDownloadButtonDisabled}
+                proceedDownload={proceedDownload}
             />
         </Col>
 
@@ -70,7 +70,8 @@ const HomePage = ({
                 handleCustomInput={handleCustomInput}
                 handleDownload={handleDownload}
                 handleInputsBtn={handleInputsBtn}
-                isDownloadButtonDisabled={isDownloadButtonDisabled}
+                proceedDownload={proceedDownload}
+
             />
         </Col>
 

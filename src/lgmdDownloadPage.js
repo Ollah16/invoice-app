@@ -6,22 +6,24 @@ const DownloadBtnPage = ({
     handleCustomInputs,
     handleDownload,
     handleNavigation,
-    isDownloadButtonDisabled }) => {
+    proceedDownload }) => {
 
     return (<Row className='outer-content-col'>
         <Col lg={10} md={10}>
             <Row className="justify-content-center my-2">
                 <button
-                    style={{ opacity: isDownloadButtonDisabled ? 1 : 0.5 }}
-                    disabled={!isDownloadButtonDisabled}
+                    style={{ opacity: proceedDownload ? 1 : 0.5 }}
+                    disabled={!proceedDownload}
                     onClick={() => handleDownload({ userSalesId: null, page: 'homepage' })}
                 >
                     <BiSolidDownload /> Download Invoice
                 </button>
             </Row>
+
             <Row className="justify-content-center m-0">
                 <label htmlFor="currency">Currency</label>
             </Row>
+
             <Row className="justify-content-center m-0 ">
                 <select id="currency" className="my-0" onChange={(event) => handleCustomInputs('currency', event.target.value)}>
                     <option value="US$">USD ($)</option>

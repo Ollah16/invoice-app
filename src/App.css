@@ -85,13 +85,13 @@
 .invoice-no-div {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .invoice-no-col {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .invoice-no-div label,
@@ -168,10 +168,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.custom-input-div {
-  margin: 0 1em;
 }
 
 .invoice-data .norm-input-div input {
@@ -341,12 +337,12 @@
   width: 40%;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .custom-btn {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: .3em 0;
 
 }
@@ -448,6 +444,7 @@ h1 {
   display: flex;
   flex-direction: column;
   background-color: transparent;
+  margin-top: 5em;
 }
 
 .invoice-footer {
@@ -458,9 +455,8 @@ h1 {
   width: 100%;
   box-sizing: border-box;
   position: fixed;
-  margin: 0 !important;
-  top: 3;
   bottom: 0;
+  margin: 0 !important;
 }
 
 .login-form {
