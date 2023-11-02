@@ -4,6 +4,7 @@
   background-color: rgba(201, 213, 226, 0.2);
   font-family: 'Arial Narrow Bold';
   padding: 0 !important;
+  height: 100%;
 }
 
 .navbar {
@@ -446,6 +447,7 @@ h1 {
 .footer-container {
   display: flex;
   flex-direction: column;
+  background-color: transparent;
 }
 
 .invoice-footer {
@@ -455,8 +457,10 @@ h1 {
   text-align: center;
   width: 100%;
   box-sizing: border-box;
-  position: relative;
+  position: fixed;
   margin: 0 !important;
+  top: 3;
+  bottom: 0;
 }
 
 .login-form {
