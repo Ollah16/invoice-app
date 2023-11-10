@@ -131,7 +131,7 @@
 
 .invoice-no-div input:focus,
 .invoice-no-col input:focus {
-  border: .01em solid #668ab0;
+  border: .01px solid #668ab0;
   outline: .01em solid #668ab0;
   border-radius: 2.9px;
   height: 2.1em;
@@ -613,18 +613,12 @@ td {
   text-align: left;
 }
 
-.message-col div {
+.message-col {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #ffc107;
   padding: 0 2em;
   border-radius: 1em;
   color: #000;
-}
-
-.message-col div button {
-  color: red;
-  border: none;
-  background-color: transparent;
 }

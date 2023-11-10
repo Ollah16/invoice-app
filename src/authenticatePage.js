@@ -50,14 +50,16 @@ const RegisterPage = ({
                         }
                     });
                     const { accessToken } = response.data;
+
                     if (accessToken) {
                         handleAuth();
                         localStorage.setItem('accessToken', accessToken);
                         setPassword('');
                         setEmail('');
                     }
+
                 } catch (err) {
-                    console.error(err)
+                    handleMessage(err.response.data.error)
                 }
                 break;
 
@@ -70,17 +72,17 @@ const RegisterPage = ({
                 }).then((response) => {
                     const { message } = response.data
                     if (message) {
+                        handleMessage(message)
                         setPassword('');
                         setEmail('');
                         setLogin(true);
                     }
                 }).catch((err) => {
-                    console.error(err)
+                    handleMessage(err.response.data.error)
                 })
                 break;
         }
     };
-
 
 
     return (<Container className='invoice-homepage' fluid>
@@ -91,17 +93,19 @@ const RegisterPage = ({
                 </Col>
             </Container>
         </Navbar>
+
         <Row>
             <Col lg={2} md={2} sm={4} xs={4} className='return-col'>
                 <button onClick={() => handleNavigation(page)}> <MdOutlineArrowBack /><span>Back</span></button>
             </Col>
         </Row>
-        {state.message && <Row className="justify-content-center my-1">
-            <Col lg={3} md={4} sm={5} xs={6} className="message-col">
-                <div><span>{state.message}</span> <button
-                    onClick={() => handleCloseMessage()}>x</button></div>
-            </Col>
-        </Row>}
+
+        {state.message &&
+            <Row className="justify-content-center my-1">
+                <Col lg={3} md={4} sm={5} xs={6} className="message-col">
+                    {state.message}
+                </Col>
+            </Row>}
 
         <Row className="justify-content-center my-2">
             <Col lg={6} md={8} sm={10} xs={10} className="bg-white p-3 text-center">
@@ -140,11 +144,14 @@ const RegisterPage = ({
                         {isLogin ? "Sign In" : 'Sign Up'}
                     </button>
                 </div>
-                {isLogin && (
+                {isLogin ? (
                     <p className="signup-link">
                         New here?  <button onClick={() => setLogin(false)}>Register now</button>
                     </p>
-                )}
+                ) :
+                    <p className="signup-link">
+                        Existing user?  <button onClick={() => setLogin(true)}>Sign In</button>
+                    </p>}
             </Col>
         </Row>
 

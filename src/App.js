@@ -288,6 +288,10 @@ const App = () => {
 
   const handleMessage = (message) => {
     dispatch({ type: actionTypes.MESSAGE, payload: { message } })
+
+    setTimeout(() => {
+      handleCloseMessage()
+    }, 2000)
   }
 
   const handleCloseMessage = () => {
