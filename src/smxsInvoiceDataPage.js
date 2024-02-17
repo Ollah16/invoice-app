@@ -1,7 +1,11 @@
 import React from "react"
 import { Col } from "react-bootstrap"
 
-const InvoiceData = ({ handleDataInp, state, handleDeleteRow, handleAddRow }) => {
+const InvoiceData = ({
+    handleDataInp,
+    state,
+    handleDeleteRow,
+    handleAddRow }) => {
 
     let { data, currency } = state
     return (

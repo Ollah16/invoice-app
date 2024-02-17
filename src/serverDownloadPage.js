@@ -7,7 +7,7 @@ const ServerDownloadPage = ({
     downloadCurrentPage,
     userData
 }) => {
-    console.log(invoice.logo)
+
     return (<Container key={index} className="invoice-container" ref={downloadCurrentPage}>
         <Row className="header-row">
             <Col className="text-center logo-col">

@@ -1,6 +1,7 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-import TotalAllPage from "./lgmdTotalPage";
+import TotalAllPage from "./totalPage";
+import { RxCross2 } from "react-icons/rx";
 
 const CustomDataPage = ({
     handleInputs,
@@ -16,7 +17,7 @@ const CustomDataPage = ({
                 <div className='customInput'>
                     <input value={subTotalTitle} onInput={(event) => handleCustomInputs('subtotal_title', event.target.value)} className='text-end' placeholder='Subtotal' />
                 </div>
-                <div className='customInputbutton d-flex justify-content-end px-4'>
+                <div className='customInputbutton d-flex justify-content-end'>
                     {`${currency.toString().substring(0, 3)}${subTotal}.00`}
                 </div>
             </Col>
@@ -31,7 +32,7 @@ const CustomDataPage = ({
                             onInput={(event) => handleInputs('discount', Number(event.target.value))} placeholder='%' />
                         <button className='cancel-button'
                             onClick={() => handleInputsBtn('xdiscount')}>
-                            x
+                            <span><RxCross2 /></span>
                         </button>
                     </div>
                 </Col>}
@@ -46,7 +47,7 @@ const CustomDataPage = ({
                             onInput={(event) => handleInputs('tax', Number(event.target.value))} placeholder='%' />
                         <button className='cancel-button'
                             onClick={() => handleInputsBtn('xtax')}>
-                            x
+                            <span><RxCross2 /></span>
                         </button>
                     </div>
                 </Col>}
@@ -61,7 +62,7 @@ const CustomDataPage = ({
                             onInput={(event) => handleInputs('shipping', Number(event.target.value))} placeholder='%' />
                         <button className='cancel-button'
                             onClick={() => handleInputsBtn('xshipping')}>
-                            x
+                            <span><RxCross2 /></span>
                         </button>
                     </div>
                 </Col>}

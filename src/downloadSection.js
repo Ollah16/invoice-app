@@ -8,9 +8,9 @@ const DownloadBtnPage = ({
     handleNavigation,
     proceedDownload }) => {
 
-    return (<Row className='outer-content-col'>
-        <Col lg={10} md={10}>
-            <Row className="justify-content-center my-2">
+    return (<Row className='outer-content-col p-0 mx-auto me-auto'>
+        <Col lg={10} md={12} sm={12} xs={12} className='p-0'>
+            <Row className="justify-content-center my-2 downloadBtnWrapper">
                 <button
                     style={{ opacity: proceedDownload ? 1 : 0.5 }}
                     disabled={!proceedDownload}
@@ -20,11 +20,11 @@ const DownloadBtnPage = ({
                 </button>
             </Row>
 
-            <Row className="justify-content-center m-0">
+            <Row className="mt-2 mb-0 labelWrapper">
                 <label htmlFor="currency">Currency</label>
             </Row>
 
-            <Row className="justify-content-center m-0 ">
+            <Row className="mb-2 mt-0 currencyWrapper">
                 <select id="currency" className="my-0" onChange={(event) => handleCustomInputs('currency', event.target.value)}>
                     <option value="US$">USD ($)</option>
                     <option value="GB£">GBP (£)</option>
@@ -40,8 +40,8 @@ const DownloadBtnPage = ({
                 </select>
             </Row>
 
-            <Row className="justify-content-center my-5">
-                <button onClick={() => handleNavigation('/records')}>View Records</button>
+            <Row className="justify-content-center my-2 recordBtnWrapper">
+                <button onClick={() => handleNavigation('/records')}>History</button>
             </Row>
 
         </Col>

@@ -3,10 +3,10 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DownloadPage from './downloadPage';
-import myReducer, { initialState } from './reducer';
 import HomePage from './homePage';
 import RegisterPage from './authenticatePage';
 import RecordPage from './recordPage';
+import myReducer, { initialState } from './useReducer/reducer';
 
 const App = () => {
   const [state, dispatch] = useReducer(myReducer, initialState)
@@ -254,6 +254,10 @@ const App = () => {
     dispatch({ type: actionTypes.IS_LOGGED });
   };
 
+  const toggleAuth = (type) => {
+    handleNavigation(`/authenticate/${type}`)
+  }
+
   const handleDownload = (data) => {
     const { userSalesId, page } = data;
 
@@ -269,12 +273,12 @@ const App = () => {
     }
   }
 
-
   const handleClearState = () => {
     dispatch({ type: actionTypes.CLEAR_STATE })
   }
 
   const handleNavigation = (page) => {
+    console.log(page)
     navigate(page)
   }
 
@@ -287,15 +291,16 @@ const App = () => {
   }
 
   const handleMessage = (message) => {
+
     dispatch({ type: actionTypes.MESSAGE, payload: { message } })
 
-    setTimeout(() => {
-      handleCloseMessage()
-    }, 2000)
-  }
+    const message_col = document.querySelector('.message-col')
 
-  const handleCloseMessage = () => {
-    dispatch({ type: actionTypes.CLOSE_MESSAGE })
+    message_col.classList.add('visible')
+
+    setTimeout(() => {
+      message_col.classList.remove('visible')
+    }, 5000)
   }
 
   return (
@@ -308,6 +313,7 @@ const App = () => {
           handleInputs={handleInputs}
           handleDataInp={handleDataInp}
           state={state}
+          toggleAuth={toggleAuth}
           handleCustomInputs={handleCustomInputs}
           handleAddRow={handleAddRow}
           handleDeleteRow={handleDeleteRow}
@@ -328,7 +334,6 @@ const App = () => {
           handleAuth={handleAuth}
           handleNavigation={handleNavigation}
           handleDownload={handleDownload}
-          handleCloseMessage={handleCloseMessage}
           handleMessage={handleMessage}
         />} />
 

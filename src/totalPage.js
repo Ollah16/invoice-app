@@ -1,20 +1,25 @@
-import React from "react";
-import { Col } from "react-bootstrap";
-const TotalPage = ({ state, handleCustomInputs, handleInputs }) => {
+import React from 'react'
+import { Col } from 'react-bootstrap'
 
-    let { balanceDueTitle, balance, currency, amountPaidTitle, amountPaid, totalTitle, total } = state
+const TotalAllPage = ({
+    state,
+    handleCustomInputs,
+    handleInputs
+}) => {
+
+    let { balanceDueTitle, totalTitle, amountPaidTitle, total, balance, amountPaid, currency } = state
 
     return (<>
-        <Col sm={12} xs={12} className="custom-col">
+        <Col lg={12} md={12} className="custom-col">
             <div className='customInput'>
                 <input value={totalTitle} onInput={(event) => handleCustomInputs('total_title', event.target.value)} className='text-end' placeholder='Total' />
             </div>
-            <div className='customInputbutton d-flex justify-content-end px-4'>
+            <div className='customInputbutton text-end'>
                 {`${currency.toString().substring(0, 3)}${total}.00`}
             </div>
         </Col>
 
-        <Col sm={12} xs={12} className="custom-col">
+        <Col lg={12} md={12} className="custom-col">
             <div className='customInput'>
                 <input value={amountPaidTitle} onInput={(event) => handleCustomInputs('amountpaid_title', event.target.value)} className='text-end' placeholder='Amount Paid' />
             </div>
@@ -26,14 +31,16 @@ const TotalPage = ({ state, handleCustomInputs, handleInputs }) => {
                 />
             </div>
         </Col>
-        <Col sm={12} xs={12} className="custom-col">
+
+        <Col lg={12} md={12} className="custom-col">
             <div className='customInput'>
                 <input value={balanceDueTitle} onInput={(event) => handleCustomInputs('balancedue_title', event.target.value)} className='text-end' placeholder='Balance Due' />
             </div>
-            <div className='customInputbutton d-flex justify-content-end px-4'>
+            <div className='customInputbutton text-end'>
                 <span className='d-flex justify-content-end'>{`${currency.toString().substring(0, 3)}${balance}.00`}</span>
             </div>
         </Col >
-    </>)
+    </>
+    )
 }
-export default TotalPage
+export default TotalAllPage

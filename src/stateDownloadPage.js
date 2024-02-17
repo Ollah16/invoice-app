@@ -1,6 +1,8 @@
 import React from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
-const StateDownloadPage = ({ state, downloadCurrentPage }) => {
+const StateDownloadPage = ({
+    state,
+    downloadCurrentPage }) => {
 
     const { discountTitle, termsTitle, taxTitle, shippingTitle, noteTitle, balanceDueTitle, totalTitle,
         subTotalTitle, amountPaidTitle, billToTitle, addressTitle, dueDateTitle, poTitle, paymentTitle, dateTitle,

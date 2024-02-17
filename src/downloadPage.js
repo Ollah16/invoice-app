@@ -10,12 +10,27 @@ import { Navbar } from 'react-bootstrap';
 import { MdOutlineArrowBack } from 'react-icons/md'
 import StateDownloadPage from './stateDownloadPage';
 import ServerDownloadPage from './serverDownloadPage';
+import { useControl } from './customHook/useControl';
 
-const DownloadPage = ({
-    state,
-    handleClearState,
-    handleNavigation
-}) => {
+const DownloadPage = () => {
+
+    const [state,
+        proceedDownload,
+        handleDataInp,
+        handleCustomInputs,
+        handleAddRow,
+        handleDeleteRow,
+        handleInputs,
+        handleInputsBtn,
+        handleAuth,
+        handleDownload,
+        handleClearState,
+        handleNavigation,
+        handleSignOut,
+        handleLogo,
+        handleMessage,
+        handleCloseMessage,
+        toggleAuth] = useControl()
 
     const downloadCurrentPage = useRef()
     const { userSalesId, page } = useParams()

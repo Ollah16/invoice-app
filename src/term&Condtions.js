@@ -7,7 +7,7 @@ const TermAndCondPage = ({
 
     let { termsTitle, noteTitle, terms, note, } = state
     return (
-        <Col lg={6} md={6} className='notesTerms-col'>
+        <Col lg={7} md={7} className='notesTerms-col'>
             <div className='customInput'>
                 <input value={noteTitle} onInput={(event) => handleCustomInputs('note_title', event.target.value)} />
             </div>

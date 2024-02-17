@@ -43,6 +43,7 @@ export const initialState = {
 }
 
 const myReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case "IS_LOGGED":
             return {

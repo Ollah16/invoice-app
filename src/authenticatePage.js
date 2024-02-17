@@ -1,24 +1,49 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Navbar, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useAsyncError, useParams } from "react-router-dom";
 import { IoCaretForward } from 'react-icons/io5'
 import { MdOutlineArrowBack } from 'react-icons/md'
+import { useControl } from "./customHook/useControl";
+import FooterPage from "./footer";
 
-const RegisterPage = ({
+const RegisterPage = ({ state,
+    isDownloadButtonDisabled,
     handleAuth,
-    state,
-    handleNavigation,
     handleDownload,
-    handleMessage,
-    handleCloseMessage,
-    isDownloadButtonDisabled
+    handleNavigation,
+    handleMessage
 }) => {
+
+    // const [state,
+    //     proceedDownload,
+    //     handleDataInp,
+    //     handleCustomInputs,
+    //     handleAddRow,
+    //     handleDeleteRow,
+    //     handleInputs,
+    //     handleInputsBtn,
+    //     handleAuth,
+    //     handleDownload,
+    //     handleClearState,
+    //     handleNavigation,
+    //     handleSignOut,
+    //     handleLogo,
+    //     handleMessage,
+    //     handleCloseMessage,
+    //     toggleAuth] = useControl()
+
 
     let [isLogin, setLogin] = useState(true)
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
     let { page } = useParams()
+
+    useEffect(() => {
+        const footer_container = document.querySelector('.footer-container')
+        footer_container.classList.add('fixed')
+
+    }, [])
 
     useEffect(() => {
         if (state.isLogged) return handleNavigation('/')
@@ -34,9 +59,13 @@ const RegisterPage = ({
                 handleNavigation(page);
             }
             page = null
+        } else if (page === 'signup') {
+            setLogin(false)
+        } else if (page === 'signin') {
+            setLogin(true)
+
         }
     }, [state.isLogged])
-
 
     const handleAuthentication = async (type) => {
         if (!email && !password) return handleMessage('inputs cant be blank')
@@ -84,7 +113,6 @@ const RegisterPage = ({
         }
     };
 
-
     return (<Container className='invoice-homepage' fluid>
         <Navbar>
             <Container>
@@ -94,87 +122,89 @@ const RegisterPage = ({
             </Container>
         </Navbar>
 
-        <Row>
-            <Col lg={2} md={2} sm={4} xs={4} className='return-col'>
-                <button onClick={() => handleNavigation(page)}> <MdOutlineArrowBack /><span>Back</span></button>
-            </Col>
-        </Row>
+        <div className="authPage">
 
-        {state.message &&
-            <Row className="justify-content-center my-1">
-                <Col lg={3} md={4} sm={5} xs={6} className="message-col">
-                    {state.message}
-                </Col>
-            </Row>}
-
-        <Row className="justify-content-center my-2">
-            <Col lg={6} md={8} sm={10} xs={10} className="bg-white p-3 text-center">
-                <h4>Sign in or register to securely store your invoices for easy access anytime, anywhere, whenever you need them</h4>
-            </Col>
-        </Row>
-        <Row className="justify-content-center my-2">
-            <Col lg={6} md={8} sm={10} xs={10} className="bg-white p-3">
-                <div className="login-form">
-                    <label className="d-block" htmlFor="email">Email</label>
-                    <input
-                        className="w-100"
-                        id="email"
-                        value={email}
-                        type="email"
-                        placeholder="Email"
-                        onInput={(event) => setEmail(event.target.value)}
-                    />
-                </div>
-                <div className="login-form">
-                    <label className="d-block" htmlFor="password">Password</label>
-                    <input
-                        className="w-100"
-                        id="password"
-                        value={password}
-                        type="password"
-                        placeholder="Password"
-                        onInput={(event) => setPassword(event.target.value)}
-                    />
-                </div>
-                <div className="text-center">
-                    <button
-                        onClick={isLogin ? () => handleAuthentication('signin') : () => handleAuthentication('signup')}
-                        className={isLogin ? "login-button" : "signup-button"}
-                    >
-                        {isLogin ? "Sign In" : 'Sign Up'}
-                    </button>
-                </div>
-                {isLogin ? (
-                    <p className="signup-link">
-                        New here?  <button onClick={() => setLogin(false)}>Register now</button>
-                    </p>
-                ) :
-                    <p className="signup-link">
-                        Existing user?  <button onClick={() => setLogin(true)}>Sign In</button>
-                    </p>}
-            </Col>
-        </Row>
-
-        {
-            !state.isLogged && state.total > 0 &&
-            <Row className="justify-content-center">
-                <Col lg={6} md={6} sm={10} xs={10} className="proceed-col">
-                    <button
-                        disabled={isDownloadButtonDisabled}
-                        onClick={() => handleNavigation(`/download/${'proceed'}/${page}`)}>
-                        <span>Proceed to download</span><IoCaretForward /><IoCaretForward />
-                    </button>
+            <Row>
+                <Col lg={2} md={2} sm={4} xs={4} className='return-col'>
+                    <button onClick={() => handleNavigation(page)}> <MdOutlineArrowBack /><span>Back</span></button>
                 </Col>
             </Row>
-        }
 
-        <footer className='footer-container'>
-            < Row className="invoice-footer" >
-                <Col lg={12} className="text-center">
-                    <p>&copy; {new Date().getFullYear()} Invoice Generator. All Rights Reserved.</p>
-                </Col>
-            </Row >
-        </footer>
+            {state.message &&
+                <Row className="justify-content-center my-1">
+                    <Col lg={3} md={4} sm={5} xs={6} className="message-col">
+                        {state.message}
+                    </Col>
+                </Row>}
+
+            <Container className="information_section">
+
+                <Row className="justify-content-center mt-2">
+                    <Col lg={6} md={8} sm={10} xs={10} className="bg-white p-3 text-center">
+                        <h4>Sign in or register to securely store your invoices for easy access anytime, anywhere, whenever you need them</h4>
+                    </Col>
+                </Row>
+
+                <Row className="justify-content-center mb-2 auth_form">
+                    <Col lg={6} md={8} sm={10} xs={10} className="bg-white p-3">
+                        <div className="login-form">
+                            <input
+                                className="w-100"
+                                value={email}
+                                type="email"
+                                placeholder="Email"
+                                onInput={(event) => setEmail(event.target.value)}
+                            />
+                        </div>
+                        <div className="login-form">
+                            <input
+                                className="w-100"
+                                value={password}
+                                type="password"
+                                placeholder="Password"
+                                onInput={(event) => setPassword(event.target.value)}
+                            />
+                        </div>
+                        <div className="text-center my-1">
+                            <button
+                                onClick={isLogin ? () => handleAuthentication('signin') : () => handleAuthentication('signup')}
+                                className={isLogin ? "login-button" : "signup-button"}
+                            >
+                                {isLogin ? "Sign In" : 'Sign Up'}
+                            </button>
+                        </div>
+
+                    </Col>
+                </Row>
+
+                <Row className="justify-content-center my-2">
+                    <Col className="accessApp" lg={6} md={8} sm={10} xs={10}>
+                        {isLogin ? (
+                            <p className="signup-link m-0">
+                                Dont have an account?  <button onClick={() => setLogin(false)}>Sign Up</button>
+                            </p>
+                        ) :
+                            <p className="signup-link m-0">
+                                Existing user?  <button onClick={() => setLogin(true)}>Sign In</button>
+                            </p>}
+                    </Col>
+                </Row>
+
+                {
+                    !state.isLogged && state.total > 0 &&
+                    <Row className="justify-content-center my-3">
+                        <Col lg={6} md={6} sm={10} xs={10} className="proceed-col">
+                            <button
+                                disabled={isDownloadButtonDisabled}
+                                onClick={() => handleNavigation(`/download/${'proceed'}/${page}`)}>
+                                <span>Proceed to download</span><IoCaretForward /><IoCaretForward />
+                            </button>
+                        </Col>
+                    </Row>
+                }
+            </Container>
+        </div>
+        <FooterPage />
     </Container >
     )
 }
