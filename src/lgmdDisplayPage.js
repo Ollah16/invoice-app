@@ -12,7 +12,7 @@ import ImageComp from "./imageComp";
 const LgMdDisplay = (
     {
         state,
-        handleInputs,
+        handleInputValue,
         handleDataInp,
         handleInputButtons,
         handleAddRow,
@@ -87,7 +87,7 @@ const LgMdDisplay = (
                     handleInputsBtn={handleInputsBtn}
                     handleCustomInputs={handleCustomInputs}
                     handleDataInp={handleDataInp}
-                    handleInputs={handleInputs}
+                    handleInputValue={handleInputValue}
                     handleInputButtons={handleInputButtons}
                     state={state} />
             </Row>

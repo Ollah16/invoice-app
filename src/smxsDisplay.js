@@ -11,7 +11,7 @@ import ImageComp from "./imageComp"
 
 const SmXsDisplay = ({
     state,
-    handleInputs,
+    handleInputValue,
     handleDataInp,
     handleInputButtons,
     handleAddRow,
@@ -87,7 +87,7 @@ const SmXsDisplay = ({
                     handleInputsBtn={handleInputsBtn}
                     handleCustomInputs={handleCustomInputs}
                     handleDataInp={handleDataInp}
-                    handleInputs={handleInputs}
+                    handleInputValue={handleInputValue}
                     handleInputButtons={handleInputButtons}
                     state={state} />
 

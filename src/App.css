@@ -6,6 +6,7 @@
   padding: 0 !important;
   min-height: 100vh;
   overflow: hidden;
+  position: relative;
 }
 
 .navbar {
@@ -64,7 +65,21 @@
   overflow: hidden;
   position: relative;
   z-index: 3;
-  box-shadow: 2px 2px 3px 1px gray;
+  /* box-shadow: 2px 2px 3px 1px gray; */
+}
+
+.xssm-display {
+  padding: .8em;
+  margin: 1em 1.5rem;
+  width: 100%;
+  /* border-right: thick double rgba(4, 7, 21, 0.5);
+  border-bottom: thick double rgba(4, 7, 21, 0.5); */
+  border-right: 3px double rgba(67, 67, 68, 0.5);
+  border-bottom: 3px double rgba(67, 67, 68, 0.5);
+  border-top: 1px solid rgba(4, 7, 21, 0.5);
+  border-left: 1px solid rgba(4, 7, 21, 0.5);
+  border-right-style: inset;
+  background-color: white;
 }
 
 .gapInclude {
@@ -145,17 +160,7 @@ div.largeScreen {
   width: 5%;
 } */
 
-.xssm-display {
-  padding: .8em;
-  margin: 1em 1.5rem;
-  width: 90%;
-  border-right: thick double rgba(4, 7, 21, 0.5);
-  border-bottom: thick double rgba(4, 7, 21, 0.5);
-  border-top: 1px solid rgba(4, 7, 21, 0.5);
-  border-left: 1px solid rgba(4, 7, 21, 0.5);
-  border-right-style: inset;
-  background-color: white;
-}
+
 
 @media (min-width:768px) {
 
@@ -233,29 +238,25 @@ div.largeScreen {
   border-bottom-left-radius: 0px;
   height: 2.2em;
   width: 8em;
-  text-align: start;
   padding-left: .5em;
   padding-bottom: .4em;
 }
 
 .invoice-no-div input:hover,
 .invoice-no-col input:hover {
-  border: none;
-  outline: .01em solid #668ab0;
+  border: 1px solid #668ab0;
   border-top-right-radius: 2.9px;
   border-bottom-right-radius: 2.9px;
-  height: 2.1em;
 
 }
 
 .invoice-no-div input:focus,
 .invoice-no-col input:focus {
-  border: .01px solid #668ab0;
-  outline: .01em solid #668ab0;
+  outline: 0;
+  border: 1px solid #abc0d8;
   border-radius: 2.9px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  height: 2.1em;
 }
 
 .custom-input-col .norm-Input-div input {
@@ -272,7 +273,7 @@ div.largeScreen {
 
 .custom-input-col .norm-Input-div input:focus {
   border: .01em solid #abc0d8;
-  outline: .01em solid #668ab0;
+  outline: 0;
   border-radius: 2.9px;
 }
 
@@ -313,7 +314,7 @@ div.largeScreen {
 
 .invoice-data .norm-input-div input:focus {
   border: .01em solid #c3d2e3;
-  outline: .01em solid #668ab0;
+  outline: 0;
   border-top-right-radius: 2.9px;
   border-bottom-right-radius: 2.9px;
 }
@@ -444,7 +445,7 @@ div.largeScreen {
 .custom-col .customInputbutton input:focus,
 .invoice-data-div input:focus {
   border: .01em solid #c3d2e3;
-  outline: .01em solid #668ab0;
+  outline: 0;
 }
 
 
@@ -495,8 +496,8 @@ div.largeScreen {
 .notesTerms-col .customInput input:focus,
 .invoice-data .custom-input-div input:focus,
 .custom-input-col .custom-input-div input:focus {
-  outline: 1px solid #c3d2e3;
-  border: 1px solid white;
+  outline: 0;
+  border: .01em solid #abc0d8;
 
   /* border: none; */
 }
@@ -505,7 +506,13 @@ div.largeScreen {
   width: 40%;
   overflow: hidden;
   text-wrap: wrap;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
 
+.custom-col .customInputbutton input {
+  text-wrap: wrap;
 }
 
 .custom-col .customInputbutton input {
@@ -544,7 +551,13 @@ div.largeScreen {
   border: none;
   margin: .3em 0;
   color: #0b3a6b;
-  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-btn button span svg {
+  margin-bottom: 2px;
 }
 
 .cancel-button {
@@ -553,6 +566,10 @@ div.largeScreen {
   background-color: transparent;
   width: 20%;
   transition: color 200ms ease-in-out;
+}
+
+.cancel-button span svg {
+  font-size: 14px;
 }
 
 .cancel-button:hover {
@@ -630,6 +647,7 @@ h1 {
   right: -10%;
   width: 90%;
   height: 2.2em;
+  color: rgb(84, 83, 83);
   text-align: start;
   cursor: pointer;
   border-radius: 2.9px;
@@ -726,7 +744,8 @@ h1 {
 }
 
 .outer-content-col select:focus {
-  outline: 1px solid #c3d2e3;
+  border: 0.01em solid #668ab0;
+  outline: 0;
 }
 
 .footer-container {
@@ -767,7 +786,7 @@ h1 {
   padding: 5px 0;
 }
 
-.footerWrapper ul li:not(.footerWrapper ul li:first-of-type):hover span {
+.footerWrapper ul li:not(.footerWrapper ul li:first-of-type) span:hover {
   text-decoration: underline;
   color: #0b3a6b;
 }
@@ -1048,7 +1067,7 @@ label {
   }
 
   .navRoutes.collapsed {
-    height: 220px;
+    height: 250px;
   }
 
   .navRoutes ul {
@@ -1074,6 +1093,10 @@ label {
   .navRoutes ul li button {
     cursor: pointer;
     transition: color 250ms ease-in-out;
+    background-color: transparent;
+    border: 0;
+    color: inherit;
+    padding: 0 !important;
   }
 
   .navRoutes ul li span:hover,
@@ -1081,14 +1104,14 @@ label {
     color: rgb(191, 189, 189) !important;
   }
 
-  .navRoutes ul li:first-of-type::before,
-  .navRoutes ul li:nth-of-type(2)::after {
-    content: '';
-    height: .1px;
+
+  .navRoutes ul li hr {
+    height: 1px;
     background-color: rgb(119, 118, 118);
     width: 100%;
-    margin: .5rem 0;
+    margin: 0;
     display: inline-block;
+    vertical-align: middle;
   }
 
   .navRoutes ul li:last-of-type button,
@@ -1356,5 +1379,43 @@ td {
   .navBar_container,
   .navRoutes {
     padding: 0 1.5rem !important;
+  }
+}
+
+
+
+.moving-background {
+  color: red;
+  width: 100%;
+  animation: moveBackground 60s linear infinite;
+  position: absolute;
+  top: 10%;
+  z-index: 40;
+  overflow: hidden;
+}
+
+@keyframes moveBackground {
+  0% {
+    transform: translate(25%, 0%);
+  }
+
+  25% {
+    transform: translate(10%, 50%);
+  }
+
+  50% {
+    transform: translate(50%, 100%);
+  }
+
+  51% {
+    transform: translate(100%, 0%);
+  }
+
+  75% {
+    transform: translate(50%, 50%);
+  }
+
+  100% {
+    transform: translate(0%, 100%);
   }
 }

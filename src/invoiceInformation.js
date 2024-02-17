@@ -11,7 +11,7 @@ const InvInfo = ({
             <Col lg={9} md={9} className="custom-input-col">
                 <div className="norm-Input-div">
                     <input
-                        onInput={(event) => handleCustomInputs('whoisfrom', event.target.value)}
+                        onInput={(event) => handleCustomInputs('WHOISFROM', event.target.value)}
                         value={whoIsFrom}
                         placeholder="Who is the invoice from? (required)" />
                 </div>
@@ -20,11 +20,11 @@ const InvInfo = ({
             <Row className='justify-content-around smadjust'>
                 <Col lg={6} md={6} className="custom-input-col">
                     <div className="custom-input-div">
-                        <input value={billToTitle} onInput={(event) => handleCustomInputs('bill_title', event.target.value)} />
+                        <input value={billToTitle} onInput={(event) => handleCustomInputs('BILL_TITLE', event.target.value)} />
                     </div>
                     <div className="norm-Input-div">
                         <input
-                            onInput={(event) => handleCustomInputs('bill', event.target.value)}
+                            onInput={(event) => handleCustomInputs('BILL', event.target.value)}
                             value={billTo}
                             type="text"
                             placeholder="Who is the invoice to?(required)"
@@ -34,11 +34,11 @@ const InvInfo = ({
 
                 <Col lg={6} md={6} className="custom-input-col">
                     <div className="custom-input-div">
-                        <input value={addressTitle} onInput={(event) => handleCustomInputs('address_title', event.target.value)} />
+                        <input value={addressTitle} onInput={(event) => handleCustomInputs('ADDRESS_TITLE', event.target.value)} />
                     </div>
                     <div className="norm-Input-div">
                         <input
-                            onInput={(event) => handleCustomInputs('address', event.target.value)}
+                            onInput={(event) => handleCustomInputs('ADDRESS', event.target.value)}
                             type="text"
                             value={address}
                             placeholder="(optional)"

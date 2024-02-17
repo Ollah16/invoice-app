@@ -10,36 +10,36 @@ const DateTermsPage = ({
     return (<Col >
         <Col className='invoice-data'>
             <div className="custom-input-div">
-                <input value={dateTitle} onInput={(event) => handleCustomInputs('date_title', event.target.value)} />
+                <input value={dateTitle} onInput={(event) => handleCustomInputs('DATE_TITLE', event.target.value)} />
             </div>
             <div className="norm-input-div">
                 <input
                     value={date}
-                    onInput={(event) => handleCustomInputs('date', event.target.value)}
+                    onInput={(event) => handleCustomInputs('DATE', event.target.value)}
                     type='date' />
             </div>
         </Col>
 
         <Col className='invoice-data'>
             <div className="custom-input-div">
-                <input value={paymentTitle} onInput={(event) => handleCustomInputs('payment_title', event.target.value)} />
+                <input value={paymentTitle} onInput={(event) => handleCustomInputs('PAYMENT_TITLE', event.target.value)} />
             </div>
             <div className="norm-input-div">
                 <input
                     value={paymentTerms}
-                    onInput={(event) => handleCustomInputs('paymentterms', event.target.value)}
+                    onInput={(event) => handleCustomInputs('PAYMENT_TERMS', event.target.value)}
                     type='text' />
             </div>
         </Col>
 
         <Col className='invoice-data'>
             <div className="custom-input-div">
-                <input value={dueDateTitle} onInput={(event) => handleCustomInputs('duedate_title', event.target.value)} />
+                <input value={dueDateTitle} onInput={(event) => handleCustomInputs('DUE_DATE_TITLE', event.target.value)} />
             </div>
             <div className="norm-input-div">
                 <input
                     value={dueDate}
-                    onInput={(event) => handleCustomInputs('duedate', event.target.value)}
+                    onInput={(event) => handleCustomInputs('DUE_DATE', event.target.value)}
                     type='date'
                     placeholder="Recipient's username" />
             </div>
@@ -47,12 +47,12 @@ const DateTermsPage = ({
 
         <Col className='invoice-data'>
             <div className="custom-input-div">
-                <input value={poTitle} onInput={(event) => handleCustomInputs('po_title', event.target.value)} />
+                <input value={poTitle} onInput={(event) => handleCustomInputs('PO_TITLE', event.target.value)} />
             </div>
             <div className="norm-input-div">
                 <input
                     value={poNumber}
-                    onInput={(event) => handleCustomInputs('ponumber', event.target.value)}
+                    onInput={(event) => handleCustomInputs('PO_NUMBER', event.target.value)}
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
                 />

@@ -13,7 +13,7 @@ const InvoiceEntry = ({ state,
                 <input
                     id='1'
                     value={state.invoiceNum}
-                    onInput={(event) => handleCustomInputs('invoiceno', event.target.value)}
+                    onInput={(event) => handleCustomInputs('INVOICE_NUMBER', event.target.value)}
                     className='text-end'
                     placeholder="1"
                 />

@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Navbar, Row } from "react-bootstrap";
-import { useAsyncError, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { IoCaretForward } from 'react-icons/io5'
 import { MdOutlineArrowBack } from 'react-icons/md'
-import { useControl } from "./customHook/useControl";
 import FooterPage from "./footer";
 
 const RegisterPage = ({ state,
@@ -14,24 +13,6 @@ const RegisterPage = ({ state,
     handleNavigation,
     handleMessage
 }) => {
-
-    // const [state,
-    //     proceedDownload,
-    //     handleDataInp,
-    //     handleCustomInputs,
-    //     handleAddRow,
-    //     handleDeleteRow,
-    //     handleInputs,
-    //     handleInputsBtn,
-    //     handleAuth,
-    //     handleDownload,
-    //     handleClearState,
-    //     handleNavigation,
-    //     handleSignOut,
-    //     handleLogo,
-    //     handleMessage,
-    //     handleCloseMessage,
-    //     toggleAuth] = useControl()
 
 
     let [isLogin, setLogin] = useState(true)
@@ -55,8 +36,6 @@ const RegisterPage = ({ state,
                 handleNavigation('/');
             } else if (page === 'homepage') {
                 handleDownload({ userSalesId: null, page });
-            } else if (page === 'records') {
-                handleNavigation(page);
             }
             page = null
         } else if (page === 'signup') {
@@ -139,7 +118,7 @@ const RegisterPage = ({ state,
 
             <Container className="information_section">
 
-                <Row className="justify-content-center mt-2">
+                <Row className="justify-content-center my-2">
                     <Col lg={6} md={8} sm={10} xs={10} className="bg-white p-3 text-center">
                         <h4>Sign in or register to securely store your invoices for easy access anytime, anywhere, whenever you need them</h4>
                     </Col>

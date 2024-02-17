@@ -43,7 +43,7 @@ export const initialState = {
 }
 
 const myReducer = (state = initialState, action) => {
-
+    console.log(action)
     switch (action.type) {
         case "IS_LOGGED":
             return {
@@ -113,7 +113,7 @@ const myReducer = (state = initialState, action) => {
                 data: state.data.filter((_, index) => action.payload.index !== index)
             }
 
-        case 'ADD_RATE':
+        case 'RATE':
             const data = state.data.map((datas, index) => action.payload.index === index ?
                 ({
                     ...datas,
@@ -124,7 +124,7 @@ const myReducer = (state = initialState, action) => {
                 data
             }
 
-        case 'ADD_QUANTITY':
+        case 'QUANTITY':
             const updatedata = state.data.map((datas, index) =>
                 action.payload.index === index ?
                     ({
@@ -137,7 +137,7 @@ const myReducer = (state = initialState, action) => {
                 data: updatedata
             }
 
-        case 'ADD_DESCRIPTION':
+        case 'DESCRIPTION':
             const dataUpdate = state.data.map((datas, index) => action.payload.index === index ? ({
                 ...datas,
                 description: action.payload.description

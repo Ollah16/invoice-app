@@ -25,7 +25,7 @@ const DownloadBtnPage = ({
             </Row>
 
             <Row className="mb-2 mt-0 currencyWrapper">
-                <select id="currency" className="my-0" onChange={(event) => handleCustomInputs('currency', event.target.value)}>
+                <select id="currency" className="my-0" onChange={(event) => handleCustomInputs('CURRENCY', event.target.value)}>
                     <option value="US$">USD ($)</option>
                     <option value="GB£">GBP (£)</option>
                     <option value="EU€">EUR (€)</option>

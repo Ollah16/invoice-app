@@ -2,30 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Navbar, Row } from 'react-bootstrap';
 import SmXsDisplay from './smxsDisplay';
 import LgMdDisplay from './lgmdDisplayPage';
-import { BiSolidDownload } from 'react-icons/bi';
 import FooterPage from './footer';
 import { GiHamburgerMenu } from "react-icons/gi";
+import { LuBadgeDollarSign } from "react-icons/lu";
 
 
-const HomePage = ({
-    state,
-    proceedDownload,
-    handleDataInp,
-    handleCustomInputs,
-    handleAddRow,
-    handleDeleteRow,
-    handleInputs,
-    handleInputsBtn,
-    handleAuth,
-    handleDownload,
-    handleClearState,
-    handleNavigation,
-    handleSignOut,
-    handleLogo,
-    handleMessage,
-    handleCloseMessage,
-    toggleAuth
-}) => {
+const HomePage = (
+    {
+        state,
+        proceedDownload,
+        handleDataInp,
+        handleCustomInputs,
+        handleAddRow,
+        handleDeleteRow,
+        handleInputValue,
+        handleInputsBtn,
+        handleAuth,
+        handleDownload,
+        handleClearState,
+        handleNavigation,
+        handleSignOut,
+        handleLogo,
+        handleMessage,
+        handleCloseMessage,
+        toggleAuth
+    }
+) => {
 
     let [innerWid, setWidth] = useState(window.innerWidth)
     let [isNavToggle, setToggle] = useState(false)
@@ -101,6 +103,10 @@ const HomePage = ({
     }, [])
 
     return (<Container className='invoice-homepage' fluid>
+        {/* <div className="moving-background" >
+            <LuBadgeDollarSign size={40} />
+        </div> */}
+
         <Navbar>
             <Container className='navBar_container'>
                 <Col className='navBrandCol'>
@@ -123,8 +129,10 @@ const HomePage = ({
             <Container className={`navRoutes ${isNavToggle ? 'collapsed' : ''}`}>
 
                 <ul>
+                    <li><hr></hr></li>
                     <li><span>Help</span></li>
                     <li><span>Invoice Guide</span></li>
+                    <li><hr></hr></li>
                     <li><button onClick={() => toggleAuth('signin')}>Sign In</button></li>
                     <li><button onClick={() => toggleAuth('signup')}>Sign Up</button></li>
                 </ul>
@@ -139,7 +147,7 @@ const HomePage = ({
                 handleCustomInputs={handleCustomInputs}
                 handleAddRow={handleAddRow}
                 handleDeleteRow={handleDeleteRow}
-                handleInputs={handleInputs}
+                handleInputValue={handleInputValue}
                 handleInputsBtn={handleInputsBtn}
                 handleAuth={handleAuth}
                 handleDownload={handleDownload}
@@ -160,7 +168,7 @@ const HomePage = ({
                 handleCustomInputs={handleCustomInputs}
                 handleAddRow={handleAddRow}
                 handleDeleteRow={handleDeleteRow}
-                handleInputs={handleInputs}
+                handleInputValue={handleInputValue}
                 handleInputsBtn={handleInputsBtn}
                 handleAuth={handleAuth}
                 handleDownload={handleDownload}
@@ -175,6 +183,8 @@ const HomePage = ({
 
 
         <FooterPage />
-    </Container >)
+
+    </Container >
+    )
 }
 export default HomePage;
