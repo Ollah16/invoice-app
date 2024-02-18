@@ -10,6 +10,9 @@ import { Navbar } from 'react-bootstrap';
 import { MdOutlineArrowBack } from 'react-icons/md'
 import StateDownloadPage from './stateDownloadPage';
 import ServerDownloadPage from './serverDownloadPage';
+import ReturnBtn from './returnBtn';
+import NavBar from './navBar';
+import FooterPage from './footer';
 
 const DownloadPage = ({
     state,
@@ -17,30 +20,43 @@ const DownloadPage = ({
     handleNavigation }) => {
 
     const downloadCurrentPage = useRef()
-    const { userSalesId, page } = useParams()
+    // const { userSalesId, page } = useParams()
     let [userInvoice, setUserInvoice] = useState('')
     let [userData, setUserData] = useState('')
     const accessToken = localStorage.getItem('accessToken')
 
     useEffect(() => {
-        switch (true) {
-            case page === 'homepage' && state.isLogged:
-                handleSaveDownload();
-                break;
-            case page === 'records':
-                handleGetInvoice();
-                break;
-            case page === 'homepage' && !state.isLogged:
-                handleDownloadPage();
-                break;
-        }
+        const footer_container = document.querySelector('.footer-container')
+        footer_container.classList.add('fixed')
+        const navRoutes = document.querySelector('.navRoutes')
+        const navToggleBurger = document.querySelector('.navToggleBurger')
+        const authenticate_col = document.querySelector('.authenticate-col')
+        const navBrandCol = document.querySelector('.navBrandCol')
+        navBrandCol.style.margin = '0px'
+        navRoutes.style.display = 'none'
+        navToggleBurger.style.display = 'none'
+        authenticate_col.style.display = 'none'
+    }, [])
+
+    useEffect(() => {
+        // switch (true) {
+        //     case page === 'homepage' && state.isLogged:
+        //         handleSaveDownload();
+        //         break;
+        //     case page === 'records':
+        //         handleGetInvoice();
+        //         break;
+        //     case page === 'homepage' && !state.isLogged:
+        //         handleDownloadPage();
+        //         break;
+        // }
     }, [])
 
     useEffect(() => {
         if (userInvoice.length === 0 && userData.length === 0) {
             return;
         }
-        handleDownloadPage();
+        // handleDownloadPage();
     }, [userInvoice, userData]);
 
 
@@ -58,29 +74,29 @@ const DownloadPage = ({
     }
 
     const handleReturn = () => {
-        switch (true) {
-            case page === 'records':
-                handleNavigation('/records');
-                break;
-            case page === 'homepage':
-                handleNavigation('/')
-                handleClearState();
-                break;
-        }
+        // switch (true) {
+        //     case page === 'records':
+        //         handleNavigation('/records');
+        //         break;
+        //     case page === 'homepage':
+        //         handleNavigation('/')
+        //         handleClearState();
+        //         break;
+        // }
     }
 
-    const handleGetInvoice = () => {
-        // axios.get(`http://localhost:9080/invoice/getinvoice/${userSalesId}`, {
-        axios.get(`https://invoice-back-end.vercel.app/invoice/getinvoice/${userSalesId}`, {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-            }
-        }).then((response) => {
-            const { userInvoice, userData } = response.data
-            setUserInvoice(userInvoice)
-            setUserData(userData)
-        }).catch((err) => { console.error(err) })
-    }
+    // const handleGetInvoice = () => {
+    //     // axios.get(`http://localhost:9080/invoice/getinvoice/${userSalesId}`, {
+    //     axios.get(`https://invoice-back-end.vercel.app/invoice/getinvoice/${userSalesId}`, {
+    //         headers: {
+    //             'Authorization': `Bearer ${accessToken}`,
+    //         }
+    //     }).then((response) => {
+    //         const { userInvoice, userData } = response.data
+    //         setUserInvoice(userInvoice)
+    //         setUserData(userData)
+    //     }).catch((err) => { console.error(err) })
+    // }
 
     const handleSaveDownload = () => {
         const formData = new FormData();
@@ -103,41 +119,13 @@ const DownloadPage = ({
         handleDownloadPage()
     }
 
-    return (<Container className='invoice-homepage' fluid style={{ opacity: '0' }}>
-        <Navbar>
-            <Container>
-                <Col lg={4} >
-                    <Navbar.Brand href="#home" className='text-white'>Invoice Generator</Navbar.Brand>
-                </Col>
-            </Container>
-        </Navbar>
-        <Row>
-            <Col lg={2} md={2} sm={4} xs={4} className='return-col'>
-                <button onClick={() => handleReturn()}> <MdOutlineArrowBack /><span>{page === 'records' ? 'Records' : 'Home'}</span></button>
-            </Col>
-        </Row>
+    return (<Container className='invoice-homepage' fluid>
+        <NavBar handleNavigation={handleNavigation} />
+        <ReturnBtn handleNavigation={handleNavigation} />
 
-        {page === 'records' && userInvoice.length > 0 &&
-            userInvoice.map((invoice, index) =>
-            (<ServerDownloadPage
-                downloadCurrentPage={downloadCurrentPage}
-                invoice={invoice}
-                key={index}
-                index={index}
-                userData={userData} />))
-        }
+        <StateDownloadPage state={state} downloadCurrentPage={downloadCurrentPage} />
 
-        {page === 'homepage' &&
-            <StateDownloadPage state={state} downloadCurrentPage={downloadCurrentPage} />
-        }
-
-        < footer className='footer-container' >
-            < Row className="invoice-footer" >
-                <Col lg={12} className="text-center">
-                    <p>&copy; {new Date().getFullYear()} Invoice Generator. All Rights Reserved.</p>
-                </Col>
-            </Row >
-        </footer >
+        <FooterPage />
     </Container >);
 }
 export default DownloadPage;

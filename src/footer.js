@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 const FooterPage = () => {
 
     const [footerLi, setFooter] = useState({
-        'USE INVOICE GENERATOR': [
+        'USE INVOICE SYSTEM': [
             'Invoice Template',
             'How to Use',
             'Sign In',

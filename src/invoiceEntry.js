@@ -6,7 +6,11 @@ const InvoiceEntry = ({ state,
     return (
         <Col lg={4} md={4} className="invoiceEntry">
             <div>
-                <h1>INVOICE</h1>
+                <input
+                    value={state.dFault}
+                    onInput={(event) => handleCustomInputs('ALTER_DEFAULT', event.target.value)}
+                />
+
             </div>
             <div className='invoice-no-div'>
                 <label htmlFor='1'>#</label>

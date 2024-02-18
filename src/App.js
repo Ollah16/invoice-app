@@ -99,21 +99,6 @@ const App = () => {
     handleNavigation(`/authenticate/${type}`)
   }
 
-  const handleDownload = (data) => {
-    const { userSalesId, page } = data;
-
-    if (!state.isLogged) {
-      handleNavigation(`/authenticate/${page}`);
-      return;
-    }
-
-    if (page && userSalesId) {
-      handleNavigation(`/download/${userSalesId}/${page}`);
-    } else if (page) {
-      handleNavigation(`/download/${userSalesId}/${page}`);
-    }
-  }
-
   const handleClearState = () => {
     dispatch({ type: actionTypes.CLEAR_STATE })
   }
@@ -166,11 +151,10 @@ const App = () => {
           handleAddRow={handleAddRow}
           handleDeleteRow={handleDeleteRow}
           handleInputsBtn={handleInputsBtn}
-          handleDownload={handleDownload}
           handleNavigation={handleNavigation}
           handleMessage={handleMessage} />} />
 
-      <Route path='/download/:userSalesId/:page'
+      <Route path='/download'
         element={<DownloadPage
           state={state}
           handleClearState={handleClearState}
@@ -181,14 +165,12 @@ const App = () => {
           state={state}
           handleAuth={handleAuth}
           handleNavigation={handleNavigation}
-          handleDownload={handleDownload}
           handleMessage={handleMessage}
         />} />
 
       <Route path='/records'
         element={<RecordPage
           state={state}
-          handleDownload={handleDownload}
           handleNavigation={handleNavigation} />} />
     </Routes>
   )

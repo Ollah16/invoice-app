@@ -3,8 +3,9 @@ import { Col, Container, Navbar, Row } from 'react-bootstrap';
 import SmXsDisplay from './smxsDisplay';
 import LgMdDisplay from './lgmdDisplayPage';
 import FooterPage from './footer';
-import { GiHamburgerMenu } from "react-icons/gi";
 import { LuBadgeDollarSign } from "react-icons/lu";
+import NavBar from './navBar';
+import { useControl } from './useControl/useControl';
 
 
 const HomePage = (
@@ -18,7 +19,6 @@ const HomePage = (
         handleInputValue,
         handleInputsBtn,
         handleAuth,
-        handleDownload,
         handleClearState,
         handleNavigation,
         handleSignOut,
@@ -30,14 +30,14 @@ const HomePage = (
 ) => {
 
     let [innerWid, setWidth] = useState(window.innerWidth)
-    let [isNavToggle, setToggle] = useState(false)
+    const [isNavToggle, handleToggle] = useControl()
 
     useEffect(() => {
         const custom_input_col = document.querySelectorAll('.smadjust');
         const invoiceEntry = document.querySelector('.invoiceEntry');
         const footer_container = document.querySelector('.footer-container');
         const downloadBtnWrapper = document.querySelector('.downloadBtnWrapper button').innerHTML.slice(0, -7);
-        const file_input_col = document.querySelector('.file-input-col label')
+        const file_input_col = document.querySelector('.file-input-col')
 
         if (innerWid < 768) {
             let checkFixedDiv = document.querySelector('.fixedDiv')
@@ -46,7 +46,7 @@ const HomePage = (
 
             const fixedDiv = document.createElement('div');
             fixedDiv.className = 'fixedDiv';
-            file_input_col.classList.add('imageInputSmall')
+            file_input_col.classList.add('smScEf')
 
             const recordBtn = document.createElement('button');
             recordBtn.innerHTML = `History`;
@@ -57,7 +57,7 @@ const HomePage = (
             const downloadBtn = document.createElement('button');
             downloadBtn.innerHTML = `${downloadBtnWrapper}`;
             downloadBtn.addEventListener('click', () => {
-                handleDownload({ userSalesId: null, page: 'homepage' });
+                handleNavigation('/download');
             });
 
             downloadBtn.style.opacity = proceedDownload ? '1' : '0.5';
@@ -82,7 +82,7 @@ const HomePage = (
                 norm.classList.remove('smEffect');
             });
         }
-    }, [innerWid, proceedDownload, handleNavigation, handleDownload]);
+    }, [innerWid, proceedDownload, handleNavigation]);
 
     useEffect(() => {
 
@@ -107,37 +107,12 @@ const HomePage = (
             <LuBadgeDollarSign size={40} />
         </div> */}
 
-        <Navbar>
-            <Container className='navBar_container'>
-                <Col className='navBrandCol'>
-                    <Navbar.Brand href="#home" className='text-white'>Invoice System</Navbar.Brand>
-                </Col>
-                <Col className={`authenticate-col`}>
-                    <ul>
-                        <li><span>Help</span></li>
-                        <li><span>Invoice Guide</span></li>
-                        <li><button onClick={() => toggleAuth('signin')}>Sign In</button></li>
-                        <li><button onClick={() => toggleAuth('signup')}>Sign Up</button></li>
-                    </ul>
-                </Col>
-
-                <Col className='navToggleBurger'>
-                    <span className={`${isNavToggle ? 'active' : ''}`} onClick={() => setToggle(!isNavToggle)}><GiHamburgerMenu /></span>
-                </Col>
-            </Container>
-
-            <Container className={`navRoutes ${isNavToggle ? 'collapsed' : ''}`}>
-
-                <ul>
-                    <li><hr></hr></li>
-                    <li><span>Help</span></li>
-                    <li><span>Invoice Guide</span></li>
-                    <li><hr></hr></li>
-                    <li><button onClick={() => toggleAuth('signin')}>Sign In</button></li>
-                    <li><button onClick={() => toggleAuth('signup')}>Sign Up</button></li>
-                </ul>
-            </Container>
-        </Navbar>
+        <NavBar
+            toggleAuth={toggleAuth}
+            isNavToggle={isNavToggle}
+            handleToggle={handleToggle}
+            handleNavigation={handleNavigation}
+        />
 
         <Col className='d-block d-md-none smallScreenDisplay'>
             <SmXsDisplay
@@ -150,7 +125,6 @@ const HomePage = (
                 handleInputValue={handleInputValue}
                 handleInputsBtn={handleInputsBtn}
                 handleAuth={handleAuth}
-                handleDownload={handleDownload}
                 handleClearState={handleClearState}
                 handleNavigation={handleNavigation}
                 handleSignOut={handleSignOut}
@@ -161,6 +135,8 @@ const HomePage = (
         </Col>
 
         <Col className='d-none d-md-block mt-5 largeScreenDisplay'>
+            <div class="border-effect"></div>
+
             <LgMdDisplay
                 state={state}
                 proceedDownload={proceedDownload}
@@ -171,7 +147,6 @@ const HomePage = (
                 handleInputValue={handleInputValue}
                 handleInputsBtn={handleInputsBtn}
                 handleAuth={handleAuth}
-                handleDownload={handleDownload}
                 handleClearState={handleClearState}
                 handleNavigation={handleNavigation}
                 handleSignOut={handleSignOut}

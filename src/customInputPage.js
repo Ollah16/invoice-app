@@ -11,7 +11,8 @@ const CustomDataPage = ({
     handleInputsBtn
 }) => {
 
-    const { discountTitle, taxTitle, shippingTitle, subTotalTitle, subTotal, isShipping, isDiscount, isTax, currency } = state
+    const { discountTitle, taxTitle, shippingTitle, subTotalTitle, subTotal, isShipping, isDiscount, isTax, currency, taxAmount, shippingAmount, discountAmount } = state
+
     return (
         <Col lg={5} md={5} >
             <Col lg={12} md={12} className='custom-col'>
@@ -30,6 +31,7 @@ const CustomDataPage = ({
                     </div>
                     <div className='customInputbutton'>
                         <input className='text-end'
+                            value={discountAmount}
                             onInput={(event) => handleInputValue('DISCOUNT', Number(event.target.value))} placeholder='%' />
                         <button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_DISCOUNT')}>
@@ -41,11 +43,13 @@ const CustomDataPage = ({
             {isTax === 1 &&
                 <Col lg={12} md={12} className='custom-col'>
                     <div className='customInput'>
+
                         <input value={taxTitle} onInput={(event) => handleCustomInputs('TAX_TITLE', event.target.value)} className='text-end' placeholder='Tax' />
                     </div>
                     <div className='customInputbutton'>
                         <input className='text-end'
-                            onInput={(event) => handleInputValue('TAX', Number(event.target.value))} placeholder='%' />
+                            value={taxAmount}
+                            onInput={(event) => handleInputValue('TAX', Number(event.target.value))} />
                         <button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_TAX')}>
                             <span><RxCross2 /></span>
@@ -60,7 +64,8 @@ const CustomDataPage = ({
                     </div>
                     <div className='customInputbutton'>
                         <input className='text-end'
-                            onInput={(event) => handleInputValue('SHIPPING', Number(event.target.value))} placeholder='%' />
+                            value={shippingAmount}
+                            onInput={(event) => handleInputValue('SHIPPING', Number(event.target.value))} />
                         <button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_SHIPPING')}>
                             <span><RxCross2 /></span>

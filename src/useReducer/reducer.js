@@ -1,6 +1,7 @@
 
 export const initialState = {
     isLogged: false,
+    dFault: 'INVOICE',
     discountTitle: 'Discount',
     termsTitle: 'Terms',
     taxTitle: 'Tax',
@@ -28,9 +29,9 @@ export const initialState = {
     paymentTerms: '',
     note: '',
     total: 0,
-    discountAmount: 0,
-    taxAmount: 0,
-    shippingAmount: 0,
+    discountAmount: '',
+    taxAmount: '',
+    shippingAmount: '',
     balance: 0,
     subTotal: 0,
     amountPaid: '',
@@ -43,7 +44,6 @@ export const initialState = {
 }
 
 const myReducer = (state = initialState, action) => {
-    console.log(action)
     switch (action.type) {
         case "IS_LOGGED":
             return {
@@ -69,6 +69,12 @@ const myReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLogged: false
+            }
+
+        case 'ALTER_DEFAULT':
+            return {
+                ...state,
+                dFault: action.payload.value
             }
 
         case "TERMS":
@@ -166,7 +172,7 @@ const myReducer = (state = initialState, action) => {
         case 'TOTAL':
             return {
                 ...state,
-                total: (state.subTotal + state.taxAmount) - (state.discountAmount) + (state.shippingAmount)
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0)
             }
 
         case 'AMOUNT_PAID':
@@ -184,13 +190,13 @@ const myReducer = (state = initialState, action) => {
         case 'DISCOUNT':
             return {
                 ...state,
-                discountAmount: (action.payload.value / 100) * state.subTotal
+                discountAmount: action.payload.value,
+                discountCost: (action.payload.value / 100) * state.subTotal
             }
-
         case 'TAX':
             return {
                 ...state,
-                taxAmount: (action.payload.value / 100) * state.subTotal
+                taxAmount: action.payload.value
             }
 
         case 'SHIPPING':
@@ -221,21 +227,22 @@ const myReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isDiscount: 0,
-                discountAmount: 0
+                discountAmount: '',
+                discountCost: ''
             }
 
         case 'IS_NOT_SHIPPING':
             return {
                 ...state,
                 isShipping: 0,
-                shippingAmount: 0
+                shippingAmount: ''
             }
 
         case 'IS_NOT_TAX':
             return {
                 ...state,
                 isTax: 0,
-                taxAmount: 0
+                taxAmount: ''
             }
 
         case 'PO_TITLE':
@@ -374,6 +381,7 @@ const myReducer = (state = initialState, action) => {
         case 'CLEAR_STATE':
             return {
                 ...state,
+                discountCost: '',
                 logo: '',
                 whoIsFrom: '',
                 billTo: '',

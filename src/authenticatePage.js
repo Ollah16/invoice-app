@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Navbar, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { IoCaretForward } from 'react-icons/io5'
-import { MdOutlineArrowBack } from 'react-icons/md'
 import FooterPage from "./footer";
+import NavBar from "./navBar";
+import { useControl } from "./useControl/useControl";
+import ReturnBtn from "./returnBtn";
 
 const RegisterPage = ({ state,
     isDownloadButtonDisabled,
@@ -23,7 +25,14 @@ const RegisterPage = ({ state,
     useEffect(() => {
         const footer_container = document.querySelector('.footer-container')
         footer_container.classList.add('fixed')
-
+        const navRoutes = document.querySelector('.navRoutes')
+        const navToggleBurger = document.querySelector('.navToggleBurger')
+        const authenticate_col = document.querySelector('.authenticate-col')
+        const navBrandCol = document.querySelector('.navBrandCol')
+        navBrandCol.style.margin = '0px'
+        navRoutes.style.display = 'none'
+        navToggleBurger.style.display = 'none'
+        authenticate_col.style.display = 'none'
     }, [])
 
     useEffect(() => {
@@ -93,21 +102,14 @@ const RegisterPage = ({ state,
     };
 
     return (<Container className='invoice-homepage' fluid>
-        <Navbar>
-            <Container>
-                <Col lg={4} >
-                    <Navbar.Brand href="#home" className='text-white'>Invoice Generator</Navbar.Brand>
-                </Col>
-            </Container>
-        </Navbar>
+
+        <NavBar
+            handleNavigation={handleNavigation}
+        />
 
         <div className="authPage">
 
-            <Row>
-                <Col lg={2} md={2} sm={4} xs={4} className='return-col'>
-                    <button onClick={() => handleNavigation(page)}> <MdOutlineArrowBack /><span>Back</span></button>
-                </Col>
-            </Row>
+            <ReturnBtn handleNavigation={handleNavigation} />
 
             {state.message &&
                 <Row className="justify-content-center my-1">
@@ -116,7 +118,7 @@ const RegisterPage = ({ state,
                     </Col>
                 </Row>}
 
-            <Container className="information_section">
+            <Container className="information_section my-5">
 
                 <Row className="justify-content-center my-2">
                     <Col lg={6} md={8} sm={10} xs={10} className="bg-white p-3 text-center">
@@ -169,18 +171,6 @@ const RegisterPage = ({ state,
                     </Col>
                 </Row>
 
-                {
-                    !state.isLogged && state.total > 0 &&
-                    <Row className="justify-content-center my-3">
-                        <Col lg={6} md={6} sm={10} xs={10} className="proceed-col">
-                            <button
-                                disabled={isDownloadButtonDisabled}
-                                onClick={() => handleNavigation(`/download/${'proceed'}/${page}`)}>
-                                <span>Proceed to download</span><IoCaretForward /><IoCaretForward />
-                            </button>
-                        </Col>
-                    </Row>
-                }
             </Container>
         </div>
         <FooterPage />

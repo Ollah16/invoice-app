@@ -19,6 +19,8 @@
   overflow: hidden;
 }
 
+
+
 .navBrandCol {
   margin-right: 5rem;
 }
@@ -27,12 +29,14 @@
   font-size: 24px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 }
 
 .navBar_container {
   margin: 0 auto;
   display: inline-block !important;
   position: relative;
+  padding: 0 !important;
 }
 
 .navBar_container>div:not(.navToggleBurger) {
@@ -55,32 +59,25 @@
   padding: .9em;
   margin-top: 2.3em;
   margin-bottom: 3em;
-  border-right: 3px double rgba(67, 67, 68, 0.5);
-  border-bottom: 3px double rgba(67, 67, 68, 0.5);
-  border-top: 1px solid rgba(4, 7, 21, 0.5);
-  border-left: 1px solid rgba(4, 7, 21, 0.5);
   border-right-style: inset;
   border-bottom-style: inset;
   background-color: white;
   overflow: hidden;
   position: relative;
   z-index: 3;
-  /* box-shadow: 2px 2px 3px 1px gray; */
+  border: 1px solid #ccc;
 }
 
 .xssm-display {
   padding: .8em;
   margin: 1em 1.5rem;
   width: 100%;
-  /* border-right: thick double rgba(4, 7, 21, 0.5);
-  border-bottom: thick double rgba(4, 7, 21, 0.5); */
-  border-right: 3px double rgba(67, 67, 68, 0.5);
-  border-bottom: 3px double rgba(67, 67, 68, 0.5);
-  border-top: 1px solid rgba(4, 7, 21, 0.5);
-  border-left: 1px solid rgba(4, 7, 21, 0.5);
+  border: 1px solid #ccc;
   border-right-style: inset;
   background-color: white;
 }
+
+
 
 .gapInclude {
   column-gap: 2px;
@@ -107,9 +104,15 @@ div.largeScreen {
 
 
 @media (min-width: 768px) {
+
   div.largeScreen {
     max-width: 720px;
     flex-direction: column !important;
+  }
+
+  .authPage {
+    max-width: 720px;
+    margin: 0 auto;
   }
 
   .currencyWrapper select {
@@ -134,6 +137,12 @@ div.largeScreen {
     flex-direction: row !important;
   }
 
+  .authPage {
+    max-width: 960px;
+    margin: 0 auto;
+
+  }
+
   .downloadSection {
     width: 20% !important;
     flex: none !important;
@@ -143,6 +152,11 @@ div.largeScreen {
 @media (min-width: 1200px) {
   div.largeScreen {
     max-width: 1200px;
+  }
+
+  .authPage {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 }
 
@@ -350,6 +364,10 @@ div.largeScreen {
   width: 12% !important;
 }
 
+.invoice-data-table div ul li:nth-of-type(5) input {
+  overflow: hidden;
+}
+
 .invoice-data-table div ul li:nth-of-type(6) {
   width: 10% !important;
 }
@@ -370,7 +388,6 @@ div.largeScreen {
 .invoice-data-table div ul li:last-of-type {
   width: 3%;
   padding: 0 5px;
-  display: none;
 }
 
 .invoice-data-table div ul li:last-of-type button {
@@ -403,6 +420,7 @@ div.largeScreen {
   height: 2em;
   margin: 0;
   width: 100%;
+  background-color: transparent;
 }
 
 .closeLi {
@@ -576,12 +594,22 @@ div.largeScreen {
   color: #0b3a6b;
 }
 
-h1 {
+
+.invoiceEntry>div:first-of-type input {
   font-size: 2.5em;
   font-weight: 400;
   color: rgb(54, 53, 53);
   letter-spacing: .01em;
   text-align: end;
+  margin: .3em 0;
+  display: inline-block;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.invoiceEntry>div:first-of-type input:focus {
+  outline: 0.01em solid #c4cad0;
 }
 
 /* .outer-content-colxs button, */
@@ -791,7 +819,8 @@ h1 {
   color: #0b3a6b;
 }
 
-.footer-container.fixed {
+.footer-container.fixed ul:first-of-type li:nth-of-type(4),
+.footer-container.fixed ul:first-of-type li:nth-of-type(5) {
   display: none;
 }
 
@@ -822,11 +851,21 @@ h1 {
   margin: 5px 0;
   display: block;
   width: 100%;
+  position: relative;
 }
 
-.invoiceEntry.smScreen h1 {
-  text-align: start;
+.invoiceEntry.smScreen>div:first-of-type {
+  display: flex;
+  justify-content: flex-start;
+  width: 60%;
+
 }
+
+.invoiceEntry.smScreen>div:first-of-type input {
+  text-align: start;
+  width: 100%;
+}
+
 
 @media (min-width:768px) {
   .invoice-footer {
@@ -960,12 +999,6 @@ label {
     transform: translateX(0px);
   }
 
-}
-
-.authPage,
-.recordPage {
-  max-width: 1350px;
-  margin: 0 auto;
 }
 
 .record-signup-div {
@@ -1285,10 +1318,6 @@ td {
   opacity: 1;
 }
 
-.information_section {
-  margin-bottom: 6rem;
-}
-
 @media (max-width: 768px) {
 
   .smallScreenDisplay {
@@ -1360,7 +1389,14 @@ td {
   padding: 10px 15px;
 }
 
-.imageInputSmall {
+.file-input-col.smScEf {
+  height: fit-content;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.file-input-col.smScEf label {
   border: 1px solid #c3d2e3;
   background-color: rgba(214, 207, 207, 0.2);
   border-radius: 2.9px;
@@ -1369,9 +1405,10 @@ td {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0.7em 0;
+  margin: 1em 0;
   text-align: center;
   cursor: pointer;
+  position: relative;
 }
 
 @media (max-width:576px) {

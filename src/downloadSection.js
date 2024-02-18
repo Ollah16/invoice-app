@@ -4,7 +4,6 @@ import { BiSolidDownload } from 'react-icons/bi';
 
 const DownloadBtnPage = ({
     handleCustomInputs,
-    handleDownload,
     handleNavigation,
     proceedDownload }) => {
 
@@ -14,7 +13,7 @@ const DownloadBtnPage = ({
                 <button
                     style={{ opacity: proceedDownload ? 1 : 0.5 }}
                     disabled={!proceedDownload}
-                    onClick={() => handleDownload({ userSalesId: null, page: 'homepage' })}
+                    onClick={() => handleNavigation('/download')}
                 >
                     <BiSolidDownload /> Download Invoice
                 </button>

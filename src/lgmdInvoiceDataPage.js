@@ -9,7 +9,7 @@ const InvoiceData = ({
     handleDeleteRow,
     handleAddRow
 }) => {
-    let { currency, data } = state
+    let { data } = state
 
     return (
         <Col lg={12} md={12} className='invoice-data-table'>
@@ -20,15 +20,15 @@ const InvoiceData = ({
                     <li>Quantity</li>
                     <li>Rate</li>
                     <li>Amount</li>
-                    <li className={data.length > 1 ? 'display' : ''}></li>
+                    <li className={data.length > 1 ? 'display' : 'd-none'}></li>
                 </ul>
                 {data.map((each, index) => (<ul key={index} className="table-inputs">
                     <li>{index + 1}</li>
                     <li><input value={each.description} onInput={(event) => handleDataInp('DESCRIPTION', event.target.value, index)} placeholder='item description' /></li>
                     <li><input value={each.quantity} onInput={(event) => handleDataInp('QUANTITY', Number(event.target.value), index)} placeholder='1' /></li>
                     <li><input value={each.rate} onInput={(event) => handleDataInp('RATE', Number(event.target.value), index)} placeholder='0' /></li>
-                    <li className="text-start">{currency}{each.amount}.00</li>
-                    <li><DeleteRow handleDeleteRow={handleDeleteRow} index={index} state={state} /></li>
+                    <li><input className="border-0" value={`${each.amount}.00`} disabled /></li>
+                    <li className={data.length > 1 ? 'display' : 'd-none'}><DeleteRow handleDeleteRow={handleDeleteRow} index={index} state={state} /></li>
                 </ul>))}
             </div>
 
