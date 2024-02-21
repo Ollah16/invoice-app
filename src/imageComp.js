@@ -1,12 +1,19 @@
 import React from "react";
 import { Col } from "react-bootstrap";
+import { RxCross2 } from "react-icons/rx";
 
-const ImageComp = ({ handleLogo, state }) => {
+const ImageComp = ({
+    handleLogo,
+    state,
+    removeLogo }) => {
 
     return (
         <Col lg={6} md={6} className='file-input-col'>
             <div>
-                <label htmlFor='logo'>{!state.logo ? '+ Add You Logo' : state.logo.name}</label>
+                {state.logo && <button onClick={() => removeLogo('REMOVE')}><RxCross2 /></button>}
+                <label htmlFor='logo'>
+                    {!state.logo ? '+ Add You Logo' : state.logo.name}
+                </label>
                 <input
                     id='logo'
                     type='file'

@@ -367,9 +367,17 @@ const myReducer = (state = initialState, action) => {
 
         case 'LOGO':
             const { logo } = action.payload
+
             return {
                 ...state,
                 logo
+            }
+
+        case 'REMOVE':
+
+            return {
+                ...state,
+                logo: ''
             }
 
         case 'CURRENCY':

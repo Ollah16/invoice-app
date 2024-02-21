@@ -17,12 +17,14 @@ const LgMdDisplay = (
         handleInputButtons,
         handleAddRow,
         handleDeleteRow,
-        handleDownload,
+        handleDownloadFunc,
         handleCustomInputs,
         handleInputsBtn,
         handleLogo,
         handleNavigation,
-        proceedDownload }) => {
+        proceedDownload,
+        isDownload,
+        removeLogo }) => {
 
 
     const {
@@ -41,7 +43,6 @@ const LgMdDisplay = (
         dueDate,
         paymentTerms,
         logo } = state
-    let [innerWid, setWidth] = useState(window.innerWidth)
 
     return (<Row className='justify-content-between largeScreen'>
 
@@ -50,7 +51,8 @@ const LgMdDisplay = (
 
                 <ImageComp
                     handleLogo={handleLogo}
-                    state={state} />
+                    state={state}
+                    removeLogo={removeLogo} />
 
                 <InvoiceEntry
                     state={state}
@@ -95,7 +97,8 @@ const LgMdDisplay = (
 
         <Col className="downloadSection">
             <DownloadBtnPage
-                handleDownload={handleDownload}
+                isDownload={isDownload}
+                handleDownloadFunc={handleDownloadFunc}
                 handleCustomInputs={handleCustomInputs}
                 handleNavigation={handleNavigation}
                 proceedDownload={proceedDownload}

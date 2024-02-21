@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Navbar, Row } from 'react-bootstrap';
+import { Col, Container } from 'react-bootstrap';
 import SmXsDisplay from './smxsDisplay';
 import LgMdDisplay from './lgmdDisplayPage';
 import FooterPage from './footer';
-import { LuBadgeDollarSign } from "react-icons/lu";
 import NavBar from './navBar';
 import { useControl } from './useControl/useControl';
+import ModalPage from './modal';
 
 
 const HomePage = (
@@ -25,12 +25,15 @@ const HomePage = (
         handleLogo,
         handleMessage,
         handleCloseMessage,
-        toggleAuth
+        toggleAuth,
+        removeLogo
     }
 ) => {
 
     let [innerWid, setWidth] = useState(window.innerWidth)
     const [isNavToggle, handleToggle] = useControl()
+
+    const [isDownload, handleDownloadFunc] = useState(false)
 
     useEffect(() => {
         const custom_input_col = document.querySelectorAll('.smadjust');
@@ -57,7 +60,7 @@ const HomePage = (
             const downloadBtn = document.createElement('button');
             downloadBtn.innerHTML = `${downloadBtnWrapper}`;
             downloadBtn.addEventListener('click', () => {
-                handleNavigation('/download');
+                handleDownloadFunc(!isDownload)
             });
 
             downloadBtn.style.opacity = proceedDownload ? '1' : '0.5';
@@ -82,7 +85,7 @@ const HomePage = (
                 norm.classList.remove('smEffect');
             });
         }
-    }, [innerWid, proceedDownload, handleNavigation]);
+    }, [innerWid, proceedDownload, handleDownloadFunc]);
 
     useEffect(() => {
 
@@ -102,64 +105,102 @@ const HomePage = (
         }
     }, [])
 
-    return (<Container className='invoice-homepage' fluid>
-        {/* <div className="moving-background" >
-            <LuBadgeDollarSign size={40} />
-        </div> */}
+    useEffect(() => {
+        const bodyEf = document.querySelector('body')
+        const largeScreenDisplay = document.querySelector('.largeScreenDisplay')
 
-        <NavBar
-            toggleAuth={toggleAuth}
-            isNavToggle={isNavToggle}
-            handleToggle={handleToggle}
-            handleNavigation={handleNavigation}
-        />
+        const funcDownload = () => {
+            if (isDownload) {
+                bodyEf.classList.add('dEffect')
+                largeScreenDisplay.classList.add('pointerNone')
+            }
+            else {
+                bodyEf.classList.remove('dEffect')
+                largeScreenDisplay.classList.remove('pointerNone')
+            }
+        }
 
-        <Col className='d-block d-md-none smallScreenDisplay'>
-            <SmXsDisplay
-                state={state}
-                proceedDownload={proceedDownload}
-                handleDataInp={handleDataInp}
-                handleCustomInputs={handleCustomInputs}
-                handleAddRow={handleAddRow}
-                handleDeleteRow={handleDeleteRow}
-                handleInputValue={handleInputValue}
-                handleInputsBtn={handleInputsBtn}
-                handleAuth={handleAuth}
-                handleClearState={handleClearState}
-                handleNavigation={handleNavigation}
-                handleSignOut={handleSignOut}
-                handleLogo={handleLogo}
-                handleMessage={handleMessage}
-                handleCloseMessage={handleCloseMessage}
-            />
-        </Col>
+        funcDownload()
+    }, [isDownload])
 
-        <Col className='d-none d-md-block mt-5 largeScreenDisplay'>
-            <div class="border-effect"></div>
+    const handleScaling = () => {
 
-            <LgMdDisplay
-                state={state}
-                proceedDownload={proceedDownload}
-                handleDataInp={handleDataInp}
-                handleCustomInputs={handleCustomInputs}
-                handleAddRow={handleAddRow}
-                handleDeleteRow={handleDeleteRow}
-                handleInputValue={handleInputValue}
-                handleInputsBtn={handleInputsBtn}
-                handleAuth={handleAuth}
-                handleClearState={handleClearState}
-                handleNavigation={handleNavigation}
-                handleSignOut={handleSignOut}
-                handleLogo={handleLogo}
-                handleMessage={handleMessage}
-                handleCloseMessage={handleCloseMessage}
-            />
-        </Col>
+        const modal_wrapper = document.querySelector('.modal_wrapper')
+        modal_wrapper.classList.add('scaleEffect')
+    }
 
 
-        <FooterPage />
+    return (
+        <Container fluid className='p-0 m-0'>
+            <ModalPage
+                handleScaling={handleScaling}
+                handleDownloadFunc={handleDownloadFunc}
+                isDownload={isDownload}
+                handleNavigation={handleNavigation} />
 
-    </Container >
+            <Container className='invoice-homepage' fluid>
+
+                <NavBar
+                    toggleAuth={toggleAuth}
+                    isNavToggle={isNavToggle}
+                    handleToggle={handleToggle}
+                    handleNavigation={handleNavigation}
+                />
+
+
+
+                <Col className='d-block d-md-none smallScreenDisplay'>
+                    <SmXsDisplay
+                        state={state}
+                        removeLogo={removeLogo}
+                        isDownload={isDownload}
+                        proceedDownload={proceedDownload}
+                        handleDataInp={handleDataInp}
+                        handleCustomInputs={handleCustomInputs}
+                        handleAddRow={handleAddRow}
+                        handleDeleteRow={handleDeleteRow}
+                        handleInputValue={handleInputValue}
+                        handleInputsBtn={handleInputsBtn}
+                        handleAuth={handleAuth}
+                        handleClearState={handleClearState}
+                        handleNavigation={handleNavigation}
+                        handleSignOut={handleSignOut}
+                        handleLogo={handleLogo}
+                        handleMessage={handleMessage}
+                        handleCloseMessage={handleCloseMessage}
+                    />
+                </Col>
+
+                <Col className='d-none d-md-block mt-5 largeScreenDisplay'>
+                    {/* <div class="border-effect"></div> */}
+
+                    <LgMdDisplay
+                        state={state}
+                        removeLogo={removeLogo}
+                        isDownload={isDownload}
+                        handleDownloadFunc={handleDownloadFunc}
+                        proceedDownload={proceedDownload}
+                        handleDataInp={handleDataInp}
+                        handleCustomInputs={handleCustomInputs}
+                        handleAddRow={handleAddRow}
+                        handleDeleteRow={handleDeleteRow}
+                        handleInputValue={handleInputValue}
+                        handleInputsBtn={handleInputsBtn}
+                        handleAuth={handleAuth}
+                        handleClearState={handleClearState}
+                        handleNavigation={handleNavigation}
+                        handleSignOut={handleSignOut}
+                        handleLogo={handleLogo}
+                        handleMessage={handleMessage}
+                        handleCloseMessage={handleCloseMessage}
+                    />
+                </Col>
+
+
+                <FooterPage />
+
+            </Container >
+        </Container>
     )
 }
 export default HomePage;

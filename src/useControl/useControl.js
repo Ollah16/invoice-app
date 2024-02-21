@@ -6,5 +6,6 @@ export const useControl = () => {
     const handleToggle = () => {
         setToggle(!isNavToggle)
     }
+
     return [isNavToggle, handleToggle]
 }

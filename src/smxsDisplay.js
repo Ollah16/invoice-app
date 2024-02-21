@@ -16,37 +16,14 @@ const SmXsDisplay = ({
     handleInputButtons,
     handleAddRow,
     handleDeleteRow,
-    handleDownload,
+    handleDownloadFunc,
     handleCustomInputs,
     handleInputsBtn,
     handleLogo,
-    isDownloadButtonDisabled,
+    removeLogo,
     handleNavigation,
     proceedDownload
 }) => {
-
-
-    let { termsTitle,
-        whoIsFrom,
-        logo,
-        address,
-        noteTitle,
-        billToTitle,
-        addressTitle,
-        invoiceNum,
-        dueDateTitle,
-        poTitle,
-        paymentTitle,
-        dateTitle,
-        billTo,
-        poNumber,
-        terms,
-        date,
-        dueDate,
-        paymentTerms,
-        note } = state
-
-
 
     return (<Row>
         <Row className="d-flex justify-content-center p-0 mt-5 mx-0 mb-0 me-0">
@@ -59,7 +36,9 @@ const SmXsDisplay = ({
                 <Col sm={12} xs={12}>
                     <ImageComp
                         handleLogo={handleLogo}
-                        state={state} />
+                        state={state}
+                        removeLogo={removeLogo}
+                    />
                 </Col>
 
                 <InvInfo
@@ -94,7 +73,7 @@ const SmXsDisplay = ({
             </Col >
         </Row >
         <DownloadBtnPage handleCustomInputs={handleCustomInputs}
-            handleDownload={handleDownload}
+            handleDownloadFunc={handleDownloadFunc}
             state={state}
             proceedDownload={proceedDownload}
             handleNavigation={handleNavigation} />

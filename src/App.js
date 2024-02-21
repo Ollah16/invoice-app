@@ -1,12 +1,15 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css'
+import './modal.css'
+import './thanksPage.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DownloadPage from './downloadPage';
 import HomePage from './homePage';
 import RegisterPage from './authenticatePage';
 import RecordPage from './recordPage';
 import myReducer, { initialState } from './useReducer/reducer';
+import ThanksPage from './thanksPage';
 
 const App = () => {
   const [state, dispatch] = useReducer(myReducer, initialState)
@@ -106,21 +109,35 @@ const App = () => {
   const handleNavigation = (page) => {
 
     if (page.includes('records')) {
+
       navigate('authenticate/homepage')
+
+    } else if (page.includes('clearState')) {
+
+      handleClearState()
+      navigate('/')
+
+    } else if (page.includes('thanks')) {
+      navigate(page)
+
     } else {
       navigate(page)
     }
 
   }
 
+
+
   const handleSignOut = () => {
     dispatch({ type: actionTypes.LOG_OUT })
   }
 
   const handleLogo = (e) => {
-
     dispatch({ type: actionTypes.LOGO, payload: { logo: e.target.files[0] } })
+  }
 
+  const removeLogo = (type) => {
+    dispatch({ type })
   }
 
   const handleMessage = (message) => {
@@ -152,13 +169,16 @@ const App = () => {
           handleDeleteRow={handleDeleteRow}
           handleInputsBtn={handleInputsBtn}
           handleNavigation={handleNavigation}
-          handleMessage={handleMessage} />} />
+          handleMessage={handleMessage}
+          removeLogo={removeLogo}
+        />} />
 
       <Route path='/download'
         element={<DownloadPage
           state={state}
           handleClearState={handleClearState}
-          handleNavigation={handleNavigation} />} />
+          handleNavigation={handleNavigation}
+        />} />
 
       <Route path='/authenticate/:page'
         element={<RegisterPage
@@ -172,6 +192,14 @@ const App = () => {
         element={<RecordPage
           state={state}
           handleNavigation={handleNavigation} />} />
+
+      <Route path='/thanks'
+        element={<ThanksPage
+          toggleAuth={toggleAuth}
+          handleNavigation={handleNavigation}
+          state={state}
+        />
+        } />
     </Routes>
   )
 }

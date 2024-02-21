@@ -5,15 +5,17 @@ import { BiSolidDownload } from 'react-icons/bi';
 const DownloadBtnPage = ({
     handleCustomInputs,
     handleNavigation,
-    proceedDownload }) => {
+    proceedDownload,
+    handleDownloadFunc,
+    isDownload }) => {
 
     return (<Row className='outer-content-col p-0 mx-auto me-auto'>
         <Col lg={10} md={12} sm={12} xs={12} className='p-0'>
             <Row className="justify-content-center my-2 downloadBtnWrapper">
                 <button
-                    style={{ opacity: proceedDownload ? 1 : 0.5 }}
-                    disabled={!proceedDownload}
-                    onClick={() => handleNavigation('/download')}
+                    // style={{ opacity: proceedDownload ? 1 : 0.5 }}
+                    // disabled={!proceedDownload}
+                    onClick={() => handleDownloadFunc(!isDownload)}
                 >
                     <BiSolidDownload /> Download Invoice
                 </button>

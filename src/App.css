@@ -110,6 +110,10 @@ div.largeScreen {
     flex-direction: column !important;
   }
 
+  .appr {
+    max-width: 700px !important;
+  }
+
   .authPage {
     max-width: 720px;
     margin: 0 auto;
@@ -132,9 +136,14 @@ div.largeScreen {
 }
 
 @media(min-width: 992px) {
+
   div.largeScreen {
-    max-width: 960px;
+    max-width: 980px;
     flex-direction: row !important;
+  }
+
+  .appr {
+    max-width: 880px !important;
   }
 
   .authPage {
@@ -144,14 +153,20 @@ div.largeScreen {
   }
 
   .downloadSection {
-    width: 20% !important;
+    width: 16.667% !important;
     flex: none !important;
+    padding: 0 !important;
   }
 }
 
 @media (min-width: 1200px) {
+
   div.largeScreen {
-    max-width: 1200px;
+    max-width: 1150px;
+  }
+
+  .appr {
+    max-width: 1000px !important;
   }
 
   .authPage {
@@ -190,6 +205,7 @@ div.largeScreen {
     margin: .7em 0;
     text-align: center;
     cursor: pointer;
+    position: relative;
     transition: background-color 250ms ease-in-out;
   }
 }
@@ -258,16 +274,18 @@ div.largeScreen {
 
 .invoice-no-div input:hover,
 .invoice-no-col input:hover {
-  border: 1px solid #668ab0;
+  border: 1px solid #649ad7;
   border-top-right-radius: 2.9px;
   border-bottom-right-radius: 2.9px;
 
 }
 
-.invoice-no-div input:focus,
-.invoice-no-col input:focus {
+.invoice-no-div input:focus {
   outline: 0;
-  border: 1px solid #abc0d8;
+}
+
+.invoice-no-col input:focus {
+  outline: .1px solid #668ab0;
   border-radius: 2.9px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -284,18 +302,16 @@ div.largeScreen {
   margin: .5em 0;
 }
 
-
-.custom-input-col .norm-Input-div input:focus {
-  border: .01em solid #abc0d8;
-  outline: 0;
-  border-radius: 2.9px;
-}
-
 .custom-input-col .norm-Input-div input:hover {
   border: .01em solid #668ab0;
   border-top-right-radius: 2.9px;
   border-bottom-right-radius: 2.9px;
 
+}
+
+.custom-input-col .norm-Input-div input:focus {
+  outline: none;
+  border-radius: 2.9px;
 }
 
 .invoice-data {
@@ -327,7 +343,6 @@ div.largeScreen {
 }
 
 .invoice-data .norm-input-div input:focus {
-  border: .01em solid #c3d2e3;
   outline: 0;
   border-top-right-radius: 2.9px;
   border-bottom-right-radius: 2.9px;
@@ -455,14 +470,13 @@ div.largeScreen {
 .custom-col .customInputbutton input:hover,
 .invoice-data-div input:hover {
   outline: none;
-  border: .01em solid #668ab0;
+  border: 0.01em solid #668ab0;
 }
 
 .invoice-data-table .table-inputs input:focus,
 .notesTerms-col .normInput input:focus,
 .custom-col .customInputbutton input:focus,
 .invoice-data-div input:focus {
-  border: .01em solid #c3d2e3;
   outline: 0;
 }
 
@@ -506,16 +520,15 @@ div.largeScreen {
 .notesTerms-col .customInput input:hover,
 .invoice-data .custom-input-div input:hover,
 .custom-input-col .custom-input-div input:hover {
-  border: 1px solid #c3d2e3;
+  border: .01em solid #d7e4f2;
 }
-
 
 .custom-col .customInput input:focus,
 .notesTerms-col .customInput input:focus,
 .invoice-data .custom-input-div input:focus,
 .custom-input-col .custom-input-div input:focus {
   outline: 0;
-  border: .01em solid #abc0d8;
+  /* border: .01em solid #668ab0; */
 
   /* border: none; */
 }
@@ -857,13 +870,14 @@ div.largeScreen {
 .invoiceEntry.smScreen>div:first-of-type {
   display: flex;
   justify-content: flex-start;
-  width: 60%;
-
+  width: 100%;
 }
 
 .invoiceEntry.smScreen>div:first-of-type input {
   text-align: start;
-  width: 100%;
+  width: 60%;
+  max-width: 70%;
+  padding: 0;
 }
 
 
@@ -1020,6 +1034,12 @@ label {
   background-color: rgb(252, 249, 249);
   padding: 1em;
   border: 0.01em solid rgba(89, 130, 174, .5);
+  position: relative;
+  min-height: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  overflow: auto;
 }
 
 .return-col button {
@@ -1326,6 +1346,10 @@ td {
     margin: 0 auto !important;
   }
 
+  .appr {
+    max-width: 700px !important;
+  }
+
   .currencyWrapper select {
     width: 100% !important;
     right: 0 !important;
@@ -1359,6 +1383,14 @@ td {
 
   .outer-content-col {
     width: 80% !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .appr {
+    width: 95% !important;
+    margin: 0 2.5% !important;
+    margin-top: 25px !important;
   }
 }
 
@@ -1411,6 +1443,34 @@ td {
   position: relative;
 }
 
+.file-input-col div button {
+  background-color: transparent;
+  position: absolute;
+  border-radius: 3px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  left: 13px;
+  top: 25px;
+  border: none;
+  z-index: 10;
+  background-color: #000;
+  padding: 0px;
+  line-height: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-input-col.smScEf button {
+  top: 17px;
+  left: 0px;
+}
+
+.file-input-col div button svg {
+  color: white;
+  line-height: normal;
+}
+
 @media (max-width:576px) {
 
   .navBar_container,
@@ -1455,4 +1515,9 @@ td {
   100% {
     transform: translate(0%, 100%);
   }
+}
+
+.dEffect {
+  overflow: hidden;
+  opacity: 1;
 }
