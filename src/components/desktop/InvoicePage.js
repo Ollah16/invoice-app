@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import InvoiceSummary from "./InvoiceSummary";
+import InvoiceSummary from "./InvoiceSummary/InvoiceSummary";
 import InvoiceTerms from "./InvoiceTerms";
 import InvoiceItemsTable from "./InvoiceItemsTable";
 import DownloadBtnPage from "../../downloadSection";
