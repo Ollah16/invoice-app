@@ -7,14 +7,14 @@ import InputField from "../common/InputField";
 
 const ImageComp = () => {
 
-    const { handleLogo, handleRemoveLogo, state } = useAppContext();
+    const { handleLogo, handleRemoveLogo, state: { logo } } = useAppContext();
 
     return (
         <Col lg={6} md={6} className='file-input-col'>
             <div>
-                {state.logo && <Button onClick={() => handleRemoveLogo('REMOVE')}><RxCross2 /></Button>}
+                {logo && <Button onClick={() => handleRemoveLogo('REMOVE')}><RxCross2 /></Button>}
                 <label htmlFor='logo'>
-                    {!state.logo ? '+ Add You Logo' : state.logo.name}
+                    {!logo ? '+ Add You Logo' : logo.name}
                 </label>
                 <InputField
                     id='logo'
