@@ -12,7 +12,7 @@ const InvoiceEntry = () => {
             <div>
                 <InputField
                     value={dFault}
-                    onChange={(event) => handleCustomInputs('ALTER_DEFAULT', event.target.value)}
+                    onChange={(value) => handleCustomInputs('ALTER_DEFAULT', value)}
                 />
 
             </div>
@@ -21,7 +21,7 @@ const InvoiceEntry = () => {
                 <InputField
                     id='1'
                     value={invoiceNum}
-                    onChange={(event) => handleCustomInputs('INVOICE_NUMBER', event.target.value)}
+                    onChange={(value) => handleCustomInputs('INVOICE_NUMBER', value)}
                     className='text-end'
                     placeholder="1"
                 />
