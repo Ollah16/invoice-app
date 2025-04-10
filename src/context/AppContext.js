@@ -40,7 +40,7 @@ export const AppProvider = ({ children }) => {
             dispatch({ type: actionTypes.BALANCE });
         }
         handleDataUpdate()
-    }, [state.data, state.discountAmount, state.taxAmount, state.shippingAmount, state.isTax, state.isShipping, state.isDiscount])
+    }, [state.data, state.discountAmount, state.taxAmount, state.shippingAmount, state.isTax, state.isShipping, state.isDiscount, state.amountPaid])
 
     const actionTypes = {
         IS_LOGGED: 'IS_LOGGED',
