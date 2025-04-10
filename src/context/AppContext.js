@@ -52,6 +52,7 @@ export const AppProvider = ({ children }) => {
 
     const handleDataChange = (fieldName, event, index) => {
         dispatch({ type: fieldName, payload: { [fieldName.toLowerCase()]: event, index } })
+        dispatch({ type: actionTypes.ADD_AMOUNT, payload: { index } })
     }
 
     const handleCustomInputs = (fieldName, value) => {
