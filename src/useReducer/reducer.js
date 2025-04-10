@@ -125,15 +125,12 @@ const myReducer = (state = initialState, action) => {
             const data = state.data.map((datas, index) => action.payload.index === index ?
                 ({
                     ...datas,
-                    rate: action.payload.rate,
+                    rate: Number(action.payload.rate) || 0,
                 }) : datas)
 
             return {
                 ...state,
                 data,
-                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
-                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
-                balance: state.amountPaid - state.total
             }
 
         case 'QUANTITY':
@@ -141,15 +138,12 @@ const myReducer = (state = initialState, action) => {
                 action.payload.index === index ?
                     ({
                         ...datas,
-                        quantity: action.payload.quantity,
+                        quantity: Number(action.payload.rate) || 0,
                     }) : datas)
 
             return {
                 ...state,
                 data: updatedata,
-                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
-                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
-                balance: state.amountPaid - state.total
             }
 
         case 'DESCRIPTION':
@@ -161,9 +155,6 @@ const myReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: dataUpdate,
-                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
-                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
-                balance: state.amountPaid - state.total
             }
 
         case 'ADD_AMOUNT':
@@ -190,7 +181,7 @@ const myReducer = (state = initialState, action) => {
         case 'AMOUNT_PAID':
             return {
                 ...state,
-                amountPaid: action.payload.value
+                amountPaid: Number(action.payload.rate) || 0
             }
 
         case 'BALANCE':
@@ -203,7 +194,7 @@ const myReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                discountAmount: action.payload.value,
+                discountAmount: Number(action.payload.rate) || 0,
                 discountCost: (action.payload.value / 100) * state.subTotal,
             }
 
