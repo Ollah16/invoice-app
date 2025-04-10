@@ -1,26 +1,27 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 import { useAppContext } from "./context/AppContext";
+import InputField from "./components/common/InputField";
 
 const InvoiceEntry = () => {
 
-    const { state, handleCustomInputs } = useAppContext();
+    const { state: { dFault, invoiceNum, }, handleCustomInputs } = useAppContext();
 
     return (
         <Col lg={4} md={4} className="invoiceEntry">
             <div>
-                <input
-                    value={state.dFault}
-                    onInput={(event) => handleCustomInputs('ALTER_DEFAULT', event.target.value)}
+                <InputField
+                    value={dFault}
+                    onChange={(event) => handleCustomInputs('ALTER_DEFAULT', event.target.value)}
                 />
 
             </div>
             <div className='invoice-no-div'>
                 <label htmlFor='1'>#</label>
-                <input
+                <InputField
                     id='1'
-                    value={state.invoiceNum}
-                    onInput={(event) => handleCustomInputs('INVOICE_NUMBER', event.target.value)}
+                    value={invoiceNum}
+                    onChange={(event) => handleCustomInputs('INVOICE_NUMBER', event.target.value)}
                     className='text-end'
                     placeholder="1"
                 />
