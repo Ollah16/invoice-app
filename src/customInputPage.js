@@ -4,6 +4,7 @@ import TotalAllPage from "./totalPage";
 import { RxCross2 } from "react-icons/rx";
 import { IoMdAdd } from "react-icons/io";
 import InputField from "./components/common/InputField";
+import Button from "./components/common/Button";
 
 const CustomDataPage = ({
     handleInputsBtn
@@ -31,10 +32,10 @@ const CustomDataPage = ({
                         <InputField className='text-end'
                             value={discountAmount}
                             onChange={(event) => handleDataChange('DISCOUNT', Number(event.target.value))} placeholder='%' />
-                        <button className='cancel-button'
+                        <Button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_DISCOUNT')}>
                             <span><RxCross2 /></span>
-                        </button>
+                        </Button>
                     </div>
                 </Col>}
 
@@ -48,10 +49,10 @@ const CustomDataPage = ({
                         <InputField className='text-end'
                             value={taxAmount}
                             onChange={(event) => handleDataChange('TAX', Number(event.target.value))} />
-                        <button className='cancel-button'
+                        <Button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_TAX')}>
                             <span><RxCross2 /></span>
-                        </button>
+                        </Button>
                     </div>
                 </Col>}
 
@@ -63,28 +64,28 @@ const CustomDataPage = ({
                     <div className='customInputbutton'>
                         <InputField className='text-end'
                             value={shippingAmount}
-                            onChange={(event) => handleDataChange('SHIPPING', Number(event.target.value))} />
-                        <button className='cancel-button'
+                            onChange={(event) => handleDataChange('SHIPPING', event.target.value)} />
+                        <Button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_SHIPPING')}>
                             <span><RxCross2 /></span>
-                        </button>
+                        </Button>
                     </div>
                 </Col>}
 
 
             <Col lg={12} md={12} className='custom-btn'>
                 {isDiscount === 0 &&
-                    <button onClick={() => handleInputsBtn('IS_DISCOUNT')} >
+                    <Button onClick={() => handleInputsBtn('IS_DISCOUNT')} >
                         <span><IoMdAdd size={15} /></span><span>Discount</span>
-                    </button>}
+                    </Button>}
                 {isTax === 0 &&
-                    <button onClick={() => handleInputsBtn('IS_TAX')} >
+                    <Button onClick={() => handleInputsBtn('IS_TAX')} >
                         <span><IoMdAdd size={15} /></span><span>Tax</span>
-                    </button>}
+                    </Button>}
                 {isShipping === 0 &&
-                    <button onClick={() => handleInputsBtn('IS_SHIPPING')} >
+                    <Button onClick={() => handleInputsBtn('IS_SHIPPING')} >
                         <span><IoMdAdd size={15} /></span><span>Shipping</span>
-                    </button>}
+                    </Button>}
             </Col>
 
             <TotalAllPage state={state} handleDataChange={handleDataChange} handleCustomInputs={handleCustomInputs} />
