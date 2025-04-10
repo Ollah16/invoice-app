@@ -3,12 +3,12 @@ import React from 'react'
 const InputField = ({ type, onChange, value, placeholder, ariaLabel, className, id }) => {
     return (
         <input
-            onChange={onChange}
+            onChange={(e) => onChange(e.target.value)}
             id={id}
             type={type}
             value={value}
             placeholder={placeholder}
-            ariaLabel={ariaLabel}
+            aria-label={ariaLabel}
             className={className}
         />
     )
