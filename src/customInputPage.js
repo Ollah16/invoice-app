@@ -6,11 +6,9 @@ import { IoMdAdd } from "react-icons/io";
 import InputField from "./components/common/InputField";
 import Button from "./components/common/Button";
 
-const CustomDataPage = ({
-    handleInputsBtn
-}) => {
+const CustomDataPage = () => {
 
-    const { state: { discountTitle, taxTitle, shippingTitle, subTotalTitle, subTotal, isShipping, isDiscount, isTax, currency, taxAmount, shippingAmount, discountAmount }, handleCustomInputs, handleDataChange } = state
+    const { state: { discountTitle, taxTitle, shippingTitle, subTotalTitle, subTotal, isShipping, isDiscount, isTax, currency, taxAmount, shippingAmount, discountAmount }, handleCustomInputs, handleInputValue, handleInputsBtn } = state
 
     return (
         <Col lg={5} md={5} >
@@ -31,7 +29,7 @@ const CustomDataPage = ({
                     <div className='customInputbutton'>
                         <InputField className='text-end'
                             value={discountAmount}
-                            onChange={(event) => handleDataChange('DISCOUNT', Number(event.target.value))} placeholder='%' />
+                            onChange={(event) => handleInputValue('DISCOUNT', Number(event.target.value))} placeholder='%' />
                         <Button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_DISCOUNT')}>
                             <span><RxCross2 /></span>
@@ -48,7 +46,7 @@ const CustomDataPage = ({
                     <div className='customInputbutton'>
                         <InputField className='text-end'
                             value={taxAmount}
-                            onChange={(event) => handleDataChange('TAX', Number(event.target.value))} />
+                            onChange={(event) => handleInputValue('TAX', Number(event.target.value))} />
                         <Button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_TAX')}>
                             <span><RxCross2 /></span>
@@ -64,7 +62,7 @@ const CustomDataPage = ({
                     <div className='customInputbutton'>
                         <InputField className='text-end'
                             value={shippingAmount}
-                            onChange={(event) => handleDataChange('SHIPPING', event.target.value)} />
+                            onChange={(event) => handleInputValue('SHIPPING', event.target.value)} />
                         <Button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_SHIPPING')}>
                             <span><RxCross2 /></span>
@@ -88,7 +86,7 @@ const CustomDataPage = ({
                     </Button>}
             </Col>
 
-            <TotalAllPage state={state} handleDataChange={handleDataChange} handleCustomInputs={handleCustomInputs} />
+            <TotalAllPage state={state} handleInputValue={handleInputValue} handleCustomInputs={handleCustomInputs} />
         </Col >)
 }
 export default CustomDataPage
