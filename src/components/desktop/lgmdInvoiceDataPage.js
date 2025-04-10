@@ -21,7 +21,7 @@ const InvoiceData = () => {
                     <li>Amount</li>
                     <li className={data.length ? 'display' : 'd-none'}></li>
                 </ul>
-                {data.map(({ description, quantity, rate }, index) => (<ul key={index} className="table-inputs">
+                {data.map(({ description, quantity, rate, amount }, index) => (<ul key={index} className="table-inputs">
                     <li>{index + 1}</li>
                     <li><InputField value={description} onChange={(event) => handleDataChange('DESCRIPTION', event.target.value, index)} placeholder='item description' /></li>
                     <li><InputField value={quantity} onChange={(event) => handleDataChange('QUANTITY', event.target.value, index)} placeholder='1' /></li>
