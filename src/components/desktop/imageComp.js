@@ -1,0 +1,31 @@
+import React from "react";
+import { Col } from "react-bootstrap";
+import { RxCross2 } from "react-icons/rx";
+import Button from "../common/Button";
+import { useAppContext } from "../../context/AppContext";
+
+const ImageComp = () => {
+
+    const { handleLogo, handleRemoveLogo, state } = useAppContext();
+
+    return (
+        <Col lg={6} md={6} className='file-input-col'>
+            <div>
+                {state.logo && <Button onClick={() => handleRemoveLogo('REMOVE')}><RxCross2 /></Button>}
+                <label htmlFor='logo'>
+                    {!state.logo ? '+ Add You Logo' : state.logo.name}
+                </label>
+                <input
+                    id='logo'
+                    type='file'
+                    onChange={handleLogo}
+                    className='text-center d-none'
+                    placeholder="+ Add You Logo"
+                    aria-describedby="Add Logo"
+                />
+            </div>
+        </Col>
+    )
+}
+
+export default ImageComp
