@@ -33,6 +33,13 @@ export const AppProvider = ({ children }) => {
         setProceed(areFieldsValid)
     }, [state])
 
+    useEffect(() => {
+        const handleDataUpdate = () => {
+            dispatch({ type: actionTypes.UPDATE_DATA })
+        }
+        handleDataUpdate()
+    }, [state.data])
+
     const actionTypes = {
         IS_LOGGED: 'IS_LOGGED',
         LOG_OUT: 'LOG_OUT',
@@ -44,6 +51,7 @@ export const AppProvider = ({ children }) => {
         SHIPPING: 'SHIPPING',
         TAX: 'TAX',
         BALANCE: 'BALANCE',
+        UPDATE_DATA: 'UPDATE_DATA',
         LOGO: 'LOGO',
         CLOSE_MESSAGE: 'CLOSE_MESSAGE'
     }
