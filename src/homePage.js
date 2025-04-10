@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container } from 'react-bootstrap';
-import SmXsDisplay from './smxsDisplay';
-import LgMdDisplay from './lgmdDisplayPage';
+import SmXsDisplay from './components/mobile/smxsDisplay';
+import LgMdDisplay from './components/desktop/lgmdDisplayPage';
 import FooterPage from './footer';
 import NavBar from './navBar';
 import { useControl } from './useControl/useControl';
 import ModalPage from './modal';
+import { useAppContext } from './context/AppContext';
 
 
 const HomePage = (
@@ -33,7 +34,7 @@ const HomePage = (
     let [innerWid, setWidth] = useState(window.innerWidth)
     const [isNavToggle, handleToggle] = useControl()
 
-    const [isDownload, handleDownloadFunc] = useState(false)
+    const { isDownload, handleDownloadFunc } = useAppContext()
 
     useEffect(() => {
         const custom_input_col = document.querySelectorAll('.smadjust');
