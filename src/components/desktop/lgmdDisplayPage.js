@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import CustomDataPage from "../../customInputPage";
 import TermAndCondPage from "../../termCondtions";
@@ -9,40 +9,7 @@ import InvInfo from "../../invoiceInformation";
 import InvoiceEntry from "../../invoiceEntry";
 import ImageComp from "./imageComp";
 
-const LgMdDisplay = (
-    {
-        state,
-        handleInputValue,
-        handleDataInp,
-        handleInputButtons,
-        handleAddRow,
-        handleDeleteRow,
-        handleDownloadFunc,
-        handleCustomInputs,
-        handleInputsBtn,
-        handleLogo,
-        handleNavigation,
-        proceedDownload,
-        isDownload,
-        removeLogo }) => {
-
-
-    const {
-        billToTitle,
-        poNumber,
-        whoIsFrom,
-        address,
-        addressTitle,
-        dueDateTitle,
-        poTitle,
-        paymentTitle,
-        dateTitle,
-        billTo,
-        invoiceNum,
-        date,
-        dueDate,
-        paymentTerms,
-        logo } = state
+const LgMdDisplay = () => {
 
     return (<Row className='justify-content-between largeScreen'>
 
@@ -72,13 +39,7 @@ const LgMdDisplay = (
         </Col>
 
         <Col className="downloadSection">
-            <DownloadBtnPage
-                isDownload={isDownload}
-                handleDownloadFunc={handleDownloadFunc}
-                handleCustomInputs={handleCustomInputs}
-                handleNavigation={handleNavigation}
-                proceedDownload={proceedDownload}
-            />
+            <DownloadBtnPage />
         </Col>
     </Row >)
 }
