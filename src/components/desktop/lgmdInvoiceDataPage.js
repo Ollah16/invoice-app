@@ -29,7 +29,7 @@ const InvoiceData = () => {
                     <li><InputField className="border-0" value={amount} disabled={true} /></li>
 
                     {data.length && <li >
-                        <Button onClick={() => handleDeleteRow(index)} >
+                        <Button className='py-0 border-0 bg-transparent' onClick={() => handleDeleteRow(index)} >
                             <span><RxCross2 /></span></Button>
                     </li>}
                 </ul>))}
