@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import CustomDataPage from "../../customInputPage";
-import TermAndCondPage from "../../termCondtions";
+import InvoiceTerms from "./InvoiceTerms";
 import InvoiceItemsTable from "./InvoiceItemsTable";
 import DownloadBtnPage from "../../downloadSection";
 import InvoiceDateDetails from "./InvoiceDateDetails";
@@ -15,16 +15,12 @@ const InvoicePage = () => {
 
         <Col lg={10} md={12} className="inner-content-col">
             <Col lg={12} md={12} className='d-flex justify-content-between align-items-center'>
-
                 <InvoiceLogoSection />
                 <InvoiceMeta />
-
             </Col>
 
             <Col lg={12} md={12} className='d-flex justify-content-between gapInclude'>
-
                 <InvoiceContactSection />
-
                 <InvoiceDateDetails />
             </Col>
 
@@ -32,7 +28,7 @@ const InvoicePage = () => {
 
             <Row className="justify-content-between">
 
-                <TermAndCondPage />
+                <InvoiceTerms />
 
                 <CustomDataPage />
             </Row>
