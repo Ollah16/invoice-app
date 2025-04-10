@@ -10,22 +10,22 @@ const TermAndCondPage = () => {
     return (
         <Col lg={7} md={7} className='notesTerms-col'>
             <div className='customInput'>
-                <InputField value={noteTitle} onChange={(event) => handleCustomInputs('NOTE_TITLE', event.target.value)} />
+                <InputField value={noteTitle} onChange={(value) => handleCustomInputs('NOTE_TITLE', value)} />
             </div>
             <div className='normInput'>
                 <InputField
                     value={note}
-                    onChange={(event) => handleCustomInputs('NOTE', event.target.value)}
+                    onChange={(value) => handleCustomInputs('NOTE', value)}
                     type="text"
                     placeholder="Notes- relevant information" />
             </div>
             <div className='customInput'>
-                <InputField value={termsTitle} onChange={(event) => handleCustomInputs('TERMS_TITLE', event.target.value)} />
+                <InputField value={termsTitle} onChange={(value) => handleCustomInputs('TERMS_TITLE', value)} />
             </div>
             <div className='normInput'>
                 <InputField
                     value={terms}
-                    onChange={(event) => handleCustomInputs('TERMS', event.target.value)}
+                    onChange={(value) => handleCustomInputs('TERMS', value)}
                     placeholder="Terms & conditions-late fees, payment method, delivery schedule" />
             </div>
         </Col>)
