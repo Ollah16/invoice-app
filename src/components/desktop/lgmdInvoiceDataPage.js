@@ -1,9 +1,10 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-import LineButton from "../../lineItem";
-import DeleteRow from "../../deleteRow";
 import InputField from "../common/InputField";
 import { useAppContext } from "../../context/AppContext";
+import Button from "../common/Button";
+import { RxCross2 } from "react-icons/rx";
+import { IoMdAdd } from "react-icons/io";
 
 const InvoiceData = () => {
 
@@ -26,11 +27,20 @@ const InvoiceData = () => {
                     <li><InputField value={quantity} onChange={(event) => handleInputChange('QUANTITY', event.target.value, index)} placeholder='1' /></li>
                     <li><InputField value={rate} onChange={(event) => handleInputChange('RATE', event.target.value, index)} placeholder='0' /></li>
                     <li><InputField className="border-0" value={amount} disabled={true} /></li>
-                    {data.length && <li ><DeleteRow handleDeleteRow={handleDeleteRow} index={index} state={state} /></li>}
+
+                    {data.length && <li >
+                        <Button onClick={() => handleDeleteRow(index)} >
+                            <span><RxCross2 /></span></Button>
+                    </li>}
                 </ul>))}
             </div>
 
-            <LineButton handleAddRow={handleAddRow} />
+            <Col>
+                <Button onClick={handleAddRow} className="d-flex align-items-center">
+                    <span><IoMdAdd size={15} /></span> <span>Line Item</span>
+                </Button>
+            </Col>
+
         </Col >)
 }
 export default InvoiceData
