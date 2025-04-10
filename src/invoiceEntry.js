@@ -1,7 +1,10 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-const InvoiceEntry = ({ state,
-    handleCustomInputs }) => {
+import { useAppContext } from "./context/AppContext";
+
+const InvoiceEntry = () => {
+
+    const { state, handleCustomInputs } = useAppContext();
 
     return (
         <Col lg={4} md={4} className="invoiceEntry">
