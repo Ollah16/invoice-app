@@ -118,9 +118,6 @@ const myReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: state.data.filter((_, index) => action.payload.index !== index),
-                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
-                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
-                balance: state.amountPaid - state.total
             }
 
         case 'RATE':
@@ -129,9 +126,13 @@ const myReducer = (state = initialState, action) => {
                     ...datas,
                     rate: action.payload.rate
                 }) : datas)
+
             return {
                 ...state,
-                data
+                data,
+                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'QUANTITY':
@@ -144,7 +145,10 @@ const myReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                data: updatedata
+                data: updatedata,
+                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'DESCRIPTION':
@@ -200,36 +204,50 @@ const myReducer = (state = initialState, action) => {
             return {
                 ...state,
                 discountAmount: action.payload.value,
-                discountCost: (action.payload.value / 100) * state.subTotal
+                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
         case 'TAX':
             return {
                 ...state,
-                taxAmount: action.payload.value
+                taxAmount: action.payload.value,
+                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'SHIPPING':
             return {
                 ...state,
-                shippingAmount: action.payload.value
+                shippingAmount: action.payload.value,
+                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'IS_SHIPPING':
             return {
                 ...state,
-                isShipping: 1
+                isShipping: 1,
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'IS_TAX':
             return {
                 ...state,
-                isTax: 1
+                isTax: 1,
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'IS_DISCOUNT':
             return {
                 ...state,
-                isDiscount: 1
+                isDiscount: 1,
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'IS_NOT_DISCOUNT':
@@ -237,21 +255,27 @@ const myReducer = (state = initialState, action) => {
                 ...state,
                 isDiscount: 0,
                 discountAmount: '',
-                discountCost: ''
+                discountCost: '',
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'IS_NOT_SHIPPING':
             return {
                 ...state,
                 isShipping: 0,
-                shippingAmount: ''
+                shippingAmount: '',
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'IS_NOT_TAX':
             return {
                 ...state,
                 isTax: 0,
-                taxAmount: ''
+                taxAmount: '',
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'PO_TITLE':
