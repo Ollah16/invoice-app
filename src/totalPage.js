@@ -1,13 +1,10 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
+import { useAppContext } from './context/AppContext'
 
-const TotalAllPage = ({
-    state,
-    handleCustomInputs,
-    handleInputValue
-}) => {
+const TotalAllPage = () => {
 
-    let { balanceDueTitle, totalTitle, amountPaidTitle, total, balance, amountPaid, currency } = state
+    const { state: { balanceDueTitle, totalTitle, amountPaidTitle, total, balance, amountPaid, currency }, handleCustomInputs, handleInputValue } = useAppContext();
 
     return (<>
         <Col lg={12} md={12} className="custom-col">
