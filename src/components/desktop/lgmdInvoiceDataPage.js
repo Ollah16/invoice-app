@@ -8,7 +8,7 @@ import { IoMdAdd } from "react-icons/io";
 
 const InvoiceData = () => {
 
-    const { state: { data }, handleInputChange, handleDeleteRow, handleAddRow } = useAppContext();
+    const { state: { data }, handleDataChange, handleDeleteRow, handleAddRow } = useAppContext();
 
     return (
         <Col lg={12} md={12} className='invoice-data-table'>
@@ -23,9 +23,9 @@ const InvoiceData = () => {
                 </ul>
                 {data.map(({ description, quantity, rate }, index) => (<ul key={index} className="table-inputs">
                     <li>{index + 1}</li>
-                    <li><InputField value={description} onChange={(event) => handleInputChange('DESCRIPTION', event.target.value, index)} placeholder='item description' /></li>
-                    <li><InputField value={quantity} onChange={(event) => handleInputChange('QUANTITY', event.target.value, index)} placeholder='1' /></li>
-                    <li><InputField value={rate} onChange={(event) => handleInputChange('RATE', event.target.value, index)} placeholder='0' /></li>
+                    <li><InputField value={description} onChange={(event) => handleDataChange('DESCRIPTION', event.target.value, index)} placeholder='item description' /></li>
+                    <li><InputField value={quantity} onChange={(event) => handleDataChange('QUANTITY', event.target.value, index)} placeholder='1' /></li>
+                    <li><InputField value={rate} onChange={(event) => handleDataChange('RATE', event.target.value, index)} placeholder='0' /></li>
                     <li><InputField className="border-0" value={amount} disabled={true} /></li>
 
                     {data.length && <li >
