@@ -5,7 +5,7 @@ import TermAndCondPage from "../../termCondtions";
 import InvoiceItemsTable from "./InvoiceItemsTable";
 import DownloadBtnPage from "../../downloadSection";
 import DateTermsPage from "../../datePage";
-import InvInfo from "../../invoiceInformation";
+import InvoiceContactSection from "./InvoiceContactSection";
 import InvoiceEntry from "../../invoiceEntry";
 import ImageComp from "./imageComp";
 
@@ -23,7 +23,7 @@ const InvoicePage = () => {
 
             <Col lg={12} md={12} className='d-flex justify-content-between gapInclude'>
 
-                <InvInfo />
+                <InvoiceContactSection />
 
                 <DateTermsPage />
             </Col>
