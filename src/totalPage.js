@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
 import { useAppContext } from './context/AppContext'
+import InputField from './components/common/InputField';
 
 const TotalAllPage = () => {
 
@@ -9,7 +10,7 @@ const TotalAllPage = () => {
     return (<>
         <Col lg={12} md={12} className="custom-col">
             <div className='customInput'>
-                <input value={totalTitle} onInput={(event) => handleCustomInputs('TOTAL_TITLE', event.target.value)} className='text-end' placeholder='Total' />
+                <InputField value={totalTitle} onChange={(event) => handleCustomInputs('TOTAL_TITLE', event.target.value)} className='text-end' placeholder='Total' />
             </div>
             <div className='customInputbutton text-end justify-content-end'>
                 {`${currency.toString().substring(0, 3)}${total}.00`}
@@ -18,20 +19,20 @@ const TotalAllPage = () => {
 
         <Col lg={12} md={12} className="custom-col">
             <div className='customInput'>
-                <input value={amountPaidTitle} onInput={(event) => handleCustomInputs('AMOUNT_PAID_TITLE', event.target.value)} className='text-end' placeholder='Amount Paid' />
+                <InputField value={amountPaidTitle} onChange={(event) => handleCustomInputs('AMOUNT_PAID_TITLE', event.target.value)} className='text-end' placeholder='Amount Paid' />
             </div>
             <div className='customInputbutton'>
-                <input
+                <InputField
                     className='customAmount text-end'
                     value={amountPaid}
-                    onInput={(event) => handleInputValue('AMOUNT_PAID', event.target.value)}
+                    onChange={(event) => handleInputValue('AMOUNT_PAID', event.target.value)}
                 />
             </div>
         </Col>
 
         <Col lg={12} md={12} className="custom-col">
             <div className='customInput'>
-                <input value={balanceDueTitle} onInput={(event) => handleCustomInputs('BALANCE_DUE_TITLE', event.target.value)} className='text-end' placeholder='Balance Due' />
+                <InputField value={balanceDueTitle} onChange={(event) => handleCustomInputs('BALANCE_DUE_TITLE', event.target.value)} className='text-end' placeholder='Balance Due' />
             </div>
             <div className='customInputbutton text-end d-flex justify-content-end'>
                 <span className='d-flex justify-content-end'>{`${currency.toString().substring(0, 3)}${balance}.00`}</span>
