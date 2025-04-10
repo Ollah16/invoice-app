@@ -35,7 +35,7 @@ const InvoiceData = () => {
                 </ul>))}
             </div>
 
-            <Col>
+            <Col className='line-col text-start'>
                 <Button onClick={handleAddRow} className="d-flex align-items-center">
                     <span><IoMdAdd size={15} /></span> <span>Line Item</span>
                 </Button>
