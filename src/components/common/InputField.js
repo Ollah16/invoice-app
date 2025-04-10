@@ -9,7 +9,7 @@ const InputField = ({ type, onChange, value, placeholder, ariaLabel, className, 
             value={value}
             placeholder={placeholder}
             aria-label={ariaLabel}
-            className={className}
+            className={`${className} overflow-auto p-1`}
         />
     )
 }
