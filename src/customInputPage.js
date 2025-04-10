@@ -15,7 +15,7 @@ const CustomDataPage = () => {
         <Col lg={5} md={5} >
             <Col lg={12} md={12} className='custom-col'>
                 <div className='customInput'>
-                    <InputField value={subTotalTitle} onChange={(event) => handleCustomInputs('SUB_TOTAL_TITLE', event.target.value)} className='text-end' placeholder='Subtotal' />
+                    <InputField value={subTotalTitle} onChange={(value) => handleCustomInputs('SUB_TOTAL_TITLE', value)} className='text-end' placeholder='Subtotal' />
                 </div>
                 <div className='customInputbutton d-flex justify-content-end'>
                     {`${currency.toString().substring(0, 3)}${subTotal}.00`}
@@ -25,12 +25,12 @@ const CustomDataPage = () => {
             {isDiscount === 1 &&
                 <Col lg={12} md={12} className='custom-col'>
                     <div className='customInput'>
-                        <InputField value={discountTitle} onChange={(event) => handleCustomInputs('DISCOUNT_TITLE', event.target.value)} className='text-end' placeholder='Discount' />
+                        <InputField value={discountTitle} onChange={(value) => handleCustomInputs('DISCOUNT_TITLE', value)} className='text-end' placeholder='Discount' />
                     </div>
                     <div className='customInputbutton'>
                         <InputField className='text-end'
                             value={discountAmount}
-                            onChange={(event) => handleInputValue('DISCOUNT', Number(event.target.value))} placeholder='%' />
+                            onChange={(value) => handleInputValue('DISCOUNT', value)} placeholder='%' />
                         <Button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_DISCOUNT')}>
                             <span><RxCross2 /></span>
@@ -42,12 +42,12 @@ const CustomDataPage = () => {
                 <Col lg={12} md={12} className='custom-col'>
                     <div className='customInput'>
 
-                        <InputField value={taxTitle} onChange={(event) => handleCustomInputs('TAX_TITLE', event.target.value)} className='text-end' placeholder='Tax' />
+                        <InputField value={taxTitle} onChange={(value) => handleCustomInputs('TAX_TITLE', value)} className='text-end' placeholder='Tax' />
                     </div>
                     <div className='customInputbutton'>
                         <InputField className='text-end'
                             value={taxAmount}
-                            onChange={(event) => handleInputValue('TAX', Number(event.target.value))} />
+                            onChange={(value) => handleInputValue('TAX', value)} />
                         <Button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_TAX')}>
                             <span><RxCross2 /></span>
@@ -58,12 +58,12 @@ const CustomDataPage = () => {
             {isShipping === 1 &&
                 <Col lg={12} md={12} className='custom-col'>
                     <div className='customInput'>
-                        <InputField value={shippingTitle} onChange={(event) => handleCustomInputs('SHIPPING_TITLE', event.target.value)} className='text-end' placeholder='Shipping' />
+                        <InputField value={shippingTitle} onChange={(value) => handleCustomInputs('SHIPPING_TITLE', value)} className='text-end' placeholder='Shipping' />
                     </div>
                     <div className='customInputbutton'>
                         <InputField className='text-end'
                             value={shippingAmount}
-                            onChange={(event) => handleInputValue('SHIPPING', event.target.value)} />
+                            onChange={(value) => handleInputValue('SHIPPING', value)} />
                         <Button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_SHIPPING')}>
                             <span><RxCross2 /></span>
