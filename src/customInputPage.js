@@ -3,6 +3,7 @@ import { Col } from "react-bootstrap";
 import TotalAllPage from "./totalPage";
 import { RxCross2 } from "react-icons/rx";
 import { IoMdAdd } from "react-icons/io";
+import InputField from "./components/common/InputField";
 
 const CustomDataPage = ({
     handleInputsBtn
@@ -14,7 +15,7 @@ const CustomDataPage = ({
         <Col lg={5} md={5} >
             <Col lg={12} md={12} className='custom-col'>
                 <div className='customInput'>
-                    <input value={subTotalTitle} onInput={(event) => handleCustomInputs('SUB_TOTAL_TITLE', event.target.value)} className='text-end' placeholder='Subtotal' />
+                    <InputField value={subTotalTitle} onChange={(event) => handleCustomInputs('SUB_TOTAL_TITLE', event.target.value)} className='text-end' placeholder='Subtotal' />
                 </div>
                 <div className='customInputbutton d-flex justify-content-end'>
                     {`${currency.toString().substring(0, 3)}${subTotal}.00`}
@@ -24,12 +25,12 @@ const CustomDataPage = ({
             {isDiscount === 1 &&
                 <Col lg={12} md={12} className='custom-col'>
                     <div className='customInput'>
-                        <input value={discountTitle} onInput={(event) => handleCustomInputs('DISCOUNT_TITLE', event.target.value)} className='text-end' placeholder='Discount' />
+                        <InputField value={discountTitle} onChange={(event) => handleCustomInputs('DISCOUNT_TITLE', event.target.value)} className='text-end' placeholder='Discount' />
                     </div>
                     <div className='customInputbutton'>
-                        <input className='text-end'
+                        <InputField className='text-end'
                             value={discountAmount}
-                            onInput={(event) => handleDataChange('DISCOUNT', Number(event.target.value))} placeholder='%' />
+                            onChange={(event) => handleDataChange('DISCOUNT', Number(event.target.value))} placeholder='%' />
                         <button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_DISCOUNT')}>
                             <span><RxCross2 /></span>
@@ -41,12 +42,12 @@ const CustomDataPage = ({
                 <Col lg={12} md={12} className='custom-col'>
                     <div className='customInput'>
 
-                        <input value={taxTitle} onInput={(event) => handleCustomInputs('TAX_TITLE', event.target.value)} className='text-end' placeholder='Tax' />
+                        <InputField value={taxTitle} onChange={(event) => handleCustomInputs('TAX_TITLE', event.target.value)} className='text-end' placeholder='Tax' />
                     </div>
                     <div className='customInputbutton'>
-                        <input className='text-end'
+                        <InputField className='text-end'
                             value={taxAmount}
-                            onInput={(event) => handleDataChange('TAX', Number(event.target.value))} />
+                            onChange={(event) => handleDataChange('TAX', Number(event.target.value))} />
                         <button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_TAX')}>
                             <span><RxCross2 /></span>
@@ -57,12 +58,12 @@ const CustomDataPage = ({
             {isShipping === 1 &&
                 <Col lg={12} md={12} className='custom-col'>
                     <div className='customInput'>
-                        <input value={shippingTitle} onInput={(event) => handleCustomInputs('SHIPPING_TITLE', event.target.value)} className='text-end' placeholder='Shipping' />
+                        <InputField value={shippingTitle} onChange={(event) => handleCustomInputs('SHIPPING_TITLE', event.target.value)} className='text-end' placeholder='Shipping' />
                     </div>
                     <div className='customInputbutton'>
-                        <input className='text-end'
+                        <InputField className='text-end'
                             value={shippingAmount}
-                            onInput={(event) => handleDataChange('SHIPPING', Number(event.target.value))} />
+                            onChange={(event) => handleDataChange('SHIPPING', Number(event.target.value))} />
                         <button className='cancel-button'
                             onClick={() => handleInputsBtn('IS_NOT_SHIPPING')}>
                             <span><RxCross2 /></span>
