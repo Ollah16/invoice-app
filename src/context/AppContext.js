@@ -49,7 +49,7 @@ export const AppProvider = ({ children }) => {
 
     const navigate = useNavigate()
 
-    const handleInputChange = (fieldName, event, index) => {
+    const handleDataChange = (fieldName, event, index) => {
         dispatch({ type: fieldName, payload: { [paramId.toLowerCase()]: event, index } })
     }
 
@@ -139,7 +139,7 @@ export const AppProvider = ({ children }) => {
         }, 5000)
     }
 
-    return (<AppContext.Provider value={{ state, handleInputChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs }}>
+    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs }}>
         {children}
     </AppContext.Provider>)
 }
