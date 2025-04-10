@@ -65,19 +65,13 @@ export const AppProvider = ({ children }) => {
         dispatch({ type: 'DELETE_ROW', payload: { index } })
     }
 
-    const handleInputValue = (paramId, value) => {
+    const handleInputValue = (fieldName, value) => {
+        dispatch({ type: fieldName, payload: { value } })
 
-        dispatch({ type: paramId, payload: { value } })
-        dispatch({ type: actionTypes.SUB_TOTAL })
-        dispatch({ type: actionTypes.TOTAL })
-        dispatch({ type: actionTypes.BALANCE })
     }
 
-    const handleInputsBtn = (paramId) => {
-
-        dispatch({ type: paramId })
-        dispatch({ type: actionTypes.TOTAL })
-        dispatch({ type: actionTypes.BALANCE })
+    const handleInputsBtn = (fieldName) => {
+        dispatch({ type: fieldName })
     }
 
     const handleAuth = () => {
@@ -139,7 +133,7 @@ export const AppProvider = ({ children }) => {
         }, 5000)
     }
 
-    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs }}>
+    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs, handleInputValue, handleInputsBtn }}>
         {children}
     </AppContext.Provider>)
 }
