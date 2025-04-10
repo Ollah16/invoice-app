@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { BiSolidDownload } from 'react-icons/bi';
+import { useAppContext } from './context/AppContext';
 
-const DownloadBtnPage = ({
-    handleCustomInputs,
-    handleNavigation,
-    proceedDownload,
-    handleDownloadFunc,
-    isDownload }) => {
+const DownloadBtnPage = () => {
+
+    const { handleCustomInputs, handleNavigation, proceedDownload, handleDownloadFunc, isDownload } = useAppContext()
 
     return (<Row className='outer-content-col p-0 mx-auto me-auto'>
         <Col lg={10} md={12} sm={12} xs={12} className='p-0'>
