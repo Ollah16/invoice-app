@@ -43,6 +43,7 @@ export const initialState = {
     message: ''
 }
 
+
 const myReducer = (state = initialState, action) => {
     switch (action.type) {
         case "IS_LOGGED":
@@ -116,7 +117,10 @@ const myReducer = (state = initialState, action) => {
         case 'DELETE_ROW':
             return {
                 ...state,
-                data: state.data.filter((_, index) => action.payload.index !== index)
+                data: state.data.filter((_, index) => action.payload.index !== index),
+                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'RATE':
