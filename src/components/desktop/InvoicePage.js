@@ -4,7 +4,7 @@ import CustomDataPage from "../../customInputPage";
 import TermAndCondPage from "../../termCondtions";
 import InvoiceItemsTable from "./InvoiceItemsTable";
 import DownloadBtnPage from "../../downloadSection";
-import DateTermsPage from "../../datePage";
+import InvoiceDateDetails from "./InvoiceDateDetails";
 import InvoiceContactSection from "./InvoiceContactSection";
 import InvoiceEntry from "../../invoiceEntry";
 import ImageComp from "./imageComp";
@@ -25,7 +25,7 @@ const InvoicePage = () => {
 
                 <InvoiceContactSection />
 
-                <DateTermsPage />
+                <InvoiceDateDetails />
             </Col>
 
             <InvoiceItemsTable />
