@@ -10,24 +10,26 @@ export const AppProvider = ({ children }) => {
     let [proceedDownload, setProceed] = useState('');
 
     useEffect(() => {
-        const isDataValid = state.data.every(item => (item.description && item.amount && item.rate && item.quantity));
+        const { data, total, logo, whoIsFrom, billTo, address, poNumber, terms, invoiceNum, date, dueDate, paymentTerms, note, amountPaid } = state;
+
+        const isDataValid = data.every(item => (item.description && item.amount && item.rate && item.quantity));
         const requiredFields = [
-            state.total,
-            state.logo,
-            state.whoIsFrom,
-            state.billTo,
-            state.address,
-            state.poNumber,
-            state.terms,
-            state.invoiceNum,
-            state.date,
-            state.dueDate,
-            state.paymentTerms,
-            state.note,
-            state.amountPaid
+            total,
+            logo,
+            whoIsFrom,
+            billTo,
+            address,
+            poNumber,
+            terms,
+            invoiceNum,
+            date,
+            dueDate,
+            paymentTerms,
+            note,
+            amountPaid
         ];
-        const areFieldsValid = requiredFields.every((value) => value);
-        setProceed(isDataValid && areFieldsValid ? true : false)
+        const areFieldsValid = isDataValid && requiredFields.every((value) => value);
+        setProceed(areFieldsValid)
     }, [state])
 
     const actionTypes = {
