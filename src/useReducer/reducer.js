@@ -147,7 +147,7 @@ const myReducer = (state = initialState, action) => {
             const dataUpdate = state.data.map((datas, index) => action.payload.index === index ? ({
                 ...datas,
                 description: action.payload.description,
-                amount: datas.rate * datas.quantity
+                amount: (datas.rate * datas.quantity).toFixed(2)
 
             }) : datas)
 
@@ -164,7 +164,7 @@ const myReducer = (state = initialState, action) => {
                 ...state,
                 data: state.data.map((datas, index) => action.payload.index === index ? ({
                     ...datas,
-                    amount: datas.rate * datas.quantity
+                    amount: (datas.rate * datas.quantity).toFixed(2)
                 }) : datas)
             }
 
