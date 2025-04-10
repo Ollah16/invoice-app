@@ -10,7 +10,7 @@ const TotalAllPage = () => {
     return (<>
         <Col lg={12} md={12} className="custom-col">
             <div className='customInput'>
-                <InputField value={totalTitle} onChange={(event) => handleCustomInputs('TOTAL_TITLE', event.target.value)} className='text-end' placeholder='Total' />
+                <InputField value={totalTitle} onChange={(value) => handleCustomInputs('TOTAL_TITLE', value)} className='text-end' placeholder='Total' />
             </div>
             <div className='customInputbutton text-end justify-content-end'>
                 {`${currency.toString().substring(0, 3)}${total}.00`}
@@ -19,20 +19,20 @@ const TotalAllPage = () => {
 
         <Col lg={12} md={12} className="custom-col">
             <div className='customInput'>
-                <InputField value={amountPaidTitle} onChange={(event) => handleCustomInputs('AMOUNT_PAID_TITLE', event.target.value)} className='text-end' placeholder='Amount Paid' />
+                <InputField value={amountPaidTitle} onChange={(value) => handleCustomInputs('AMOUNT_PAID_TITLE', value)} className='text-end' placeholder='Amount Paid' />
             </div>
             <div className='customInputbutton'>
                 <InputField
                     className='customAmount text-end'
                     value={amountPaid}
-                    onChange={(event) => handleInputValue('AMOUNT_PAID', event.target.value)}
+                    onChange={(value) => handleInputValue('AMOUNT_PAID', value)}
                 />
             </div>
         </Col>
 
         <Col lg={12} md={12} className="custom-col">
             <div className='customInput'>
-                <InputField value={balanceDueTitle} onChange={(event) => handleCustomInputs('BALANCE_DUE_TITLE', event.target.value)} className='text-end' placeholder='Balance Due' />
+                <InputField value={balanceDueTitle} onChange={(value) => handleCustomInputs('BALANCE_DUE_TITLE', value)} className='text-end' placeholder='Balance Due' />
             </div>
             <div className='customInputbutton text-end d-flex justify-content-end'>
                 <span className='d-flex justify-content-end'>{`${currency.toString().substring(0, 3)}${balance}.00`}</span>
