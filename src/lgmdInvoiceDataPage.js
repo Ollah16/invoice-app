@@ -6,10 +6,9 @@ import InputField from "./components/common/InputField";
 import { useAppContext } from "./context/AppContext";
 
 const InvoiceData = ({
-    handleDeleteRow,
     handleAddRow
 }) => {
-    const { state: { data }, handleInputChange } = useAppContext()
+    const { state: { data }, handleInputChange, handleDeleteRow } = useAppContext()
 
     return (
         <Col lg={12} md={12} className='invoice-data-table'>
