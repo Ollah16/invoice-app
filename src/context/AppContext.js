@@ -51,7 +51,7 @@ export const AppProvider = ({ children }) => {
     const navigate = useNavigate()
 
     const handleDataChange = (fieldName, event, index) => {
-        dispatch({ type: fieldName, payload: { [paramId.toLowerCase()]: event, index } })
+        dispatch({ type: fieldName, payload: { [fieldName.toLowerCase()]: event, index } })
     }
 
     const handleCustomInputs = (fieldName, value) => {
