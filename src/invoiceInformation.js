@@ -1,17 +1,18 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
+import { useAppContext } from "./context/AppContext";
+import InputField from "./components/common/InputField";
 
-const InvInfo = ({
-    handleCustomInputs,
-    state }) => {
+const InvInfo = () => {
 
-    const { whoIsFrom, billTo, billToTitle, address, addressTitle } = state
+    const { state: { whoIsFrom, billTo, billToTitle, address, addressTitle }, handleCustomInputs } = useAppContext();
+
     return (
         <Col >
             <Col lg={9} md={9} className="custom-input-col">
                 <div className="norm-Input-div">
-                    <input
-                        onInput={(event) => handleCustomInputs('WHOISFROM', event.target.value)}
+                    <InputField
+                        onChange={(event) => handleCustomInputs('WHOISFROM', event.target.value)}
                         value={whoIsFrom}
                         placeholder="Who is the invoice from? (required)" />
                 </div>
@@ -20,11 +21,11 @@ const InvInfo = ({
             <Row className='justify-content-around smadjust'>
                 <Col lg={6} md={6} className="custom-input-col">
                     <div className="custom-input-div">
-                        <input value={billToTitle} onInput={(event) => handleCustomInputs('BILL_TITLE', event.target.value)} />
+                        <InputField value={billToTitle} onChange={(event) => handleCustomInputs('BILL_TITLE', event.target.value)} />
                     </div>
                     <div className="norm-Input-div">
-                        <input
-                            onInput={(event) => handleCustomInputs('BILL', event.target.value)}
+                        <InputField
+                            onChange={(event) => handleCustomInputs('BILL', event.target.value)}
                             value={billTo}
                             type="text"
                             placeholder="Who is the invoice to?(required)"
@@ -34,11 +35,11 @@ const InvInfo = ({
 
                 <Col lg={6} md={6} className="custom-input-col">
                     <div className="custom-input-div">
-                        <input value={addressTitle} onInput={(event) => handleCustomInputs('ADDRESS_TITLE', event.target.value)} />
+                        <InputField value={addressTitle} onChange={(event) => handleCustomInputs('ADDRESS_TITLE', event.target.value)} />
                     </div>
                     <div className="norm-Input-div">
-                        <input
-                            onInput={(event) => handleCustomInputs('ADDRESS', event.target.value)}
+                        <InputField
+                            onChange={(event) => handleCustomInputs('ADDRESS', event.target.value)}
                             type="text"
                             value={address}
                             placeholder="(optional)"
