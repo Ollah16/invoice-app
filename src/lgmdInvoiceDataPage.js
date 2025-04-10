@@ -5,10 +5,9 @@ import DeleteRow from "./deleteRow";
 import InputField from "./components/common/InputField";
 import { useAppContext } from "./context/AppContext";
 
-const InvoiceData = ({
-    handleAddRow
-}) => {
-    const { state: { data }, handleInputChange, handleDeleteRow } = useAppContext()
+const InvoiceData = () => {
+
+    const { state: { data }, handleInputChange, handleDeleteRow, handleAddRow } = useAppContext();
 
     return (
         <Col lg={12} md={12} className='invoice-data-table'>
@@ -27,12 +26,11 @@ const InvoiceData = ({
                     <li><InputField value={quantity} onChange={(event) => handleInputChange('QUANTITY', event.target.value, index)} placeholder='1' /></li>
                     <li><InputField value={rate} onChange={(event) => handleInputChange('RATE', event.target.value, index)} placeholder='0' /></li>
                     <li><InputField className="border-0" value={amount} disabled={true} /></li>
-                    <li className={data.length ? 'display' : 'd-none'}><DeleteRow handleDeleteRow={handleDeleteRow} index={index} state={state} /></li>
+                    {data.length && <li ><DeleteRow handleDeleteRow={handleDeleteRow} index={index} state={state} /></li>}
                 </ul>))}
             </div>
 
-            <LineButton
-                handleAddRow={handleAddRow} />
+            <LineButton handleAddRow={handleAddRow} />
         </Col >)
 }
 export default InvoiceData
