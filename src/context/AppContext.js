@@ -7,7 +7,8 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(myReducer, initialState)
-    let [proceedDownload, setProceed] = useState(false);
+    const [proceedDownload, setProceed] = useState(false);
+    const [isDownload, handleDownloadFunc] = useState(false)
 
     useEffect(() => {
         const { data, total, logo, whoIsFrom, billTo, address, poNumber, terms, invoiceNum, date, dueDate, paymentTerms, note, amountPaid } = state;
@@ -133,7 +134,7 @@ export const AppProvider = ({ children }) => {
         }, 5000)
     }
 
-    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs, handleInputValue, handleInputsBtn }}>
+    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs, handleInputValue, handleInputsBtn, handleNavigation, proceedDownload, isDownload, handleDownloadFunc }}>
         {children}
     </AppContext.Provider>)
 }
