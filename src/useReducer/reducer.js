@@ -126,7 +126,6 @@ const myReducer = (state = initialState, action) => {
                 ({
                     ...datas,
                     rate: action.payload.rate,
-                    amount: (datas.rate * datas.quantity).toFixed(2)
                 }) : datas)
 
             return {
@@ -143,7 +142,6 @@ const myReducer = (state = initialState, action) => {
                     ({
                         ...datas,
                         quantity: action.payload.quantity,
-                        amount: (datas.rate * datas.quantity).toFixed(2)
                     }) : datas)
 
             return {
@@ -158,8 +156,6 @@ const myReducer = (state = initialState, action) => {
             const dataUpdate = state.data.map((datas, index) => action.payload.index === index ? ({
                 ...datas,
                 description: action.payload.description,
-                amount: (datas.rate * datas.quantity).toFixed(2)
-
             }) : datas)
 
             return {
@@ -168,6 +164,15 @@ const myReducer = (state = initialState, action) => {
                 subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
                 total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
                 balance: state.amountPaid - state.total
+            }
+
+        case 'ADD_AMOUNT':
+            return {
+                ...state,
+                data: state.data.map((datas, index) => action.payload.index === index ? ({
+                    ...datas,
+                    amount: (datas.rate * datas.quantity)
+                }) : datas)
             }
 
         case 'SUB_TOTAL':
@@ -270,6 +275,17 @@ const myReducer = (state = initialState, action) => {
                 taxAmount: '',
                 total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
                 balance: state.amountPaid - state.total
+            }
+
+        case 'UPDATE_DATA':
+
+            const newSubTotal = state.data.reduce((acc, each) => acc + each.amount, 0)
+            const newTotal = (newSubTotal + state.taxAmount || 0) - (state.discountCost || 0) + (state.shippingAmount || 0)
+            return {
+                ...state,
+                subTotal: newSubTotal,
+                total: newTotal,
+                balance: state.amountPaid - newTotal
             }
 
         case 'PO_TITLE':
