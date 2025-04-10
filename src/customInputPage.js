@@ -5,10 +5,11 @@ import { RxCross2 } from "react-icons/rx";
 import { IoMdAdd } from "react-icons/io";
 import InputField from "./components/common/InputField";
 import Button from "./components/common/Button";
+import { useAppContext } from "./context/AppContext";
 
 const CustomDataPage = () => {
 
-    const { state: { discountTitle, taxTitle, shippingTitle, subTotalTitle, subTotal, isShipping, isDiscount, isTax, currency, taxAmount, shippingAmount, discountAmount }, handleCustomInputs, handleInputValue, handleInputsBtn } = state
+    const { state: { discountTitle, taxTitle, shippingTitle, subTotalTitle, subTotal, isShipping, isDiscount, isTax, currency, taxAmount, shippingAmount, discountAmount }, handleCustomInputs, handleInputValue, handleInputsBtn } = useAppContext()
 
     return (
         <Col lg={5} md={5} >
