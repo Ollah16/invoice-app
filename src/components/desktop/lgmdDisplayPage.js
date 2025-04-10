@@ -50,11 +50,7 @@ const LgMdDisplay = (
             <Col lg={12} md={12} className='d-flex justify-content-between align-items-center'>
 
                 <ImageComp />
-
-                <InvoiceEntry
-                    state={state}
-                    handleCustomInputs={handleCustomInputs}
-                />
+                <InvoiceEntry />
 
             </Col>
 
