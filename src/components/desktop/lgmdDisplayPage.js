@@ -58,10 +58,7 @@ const LgMdDisplay = (
 
                 <InvInfo />
 
-                <DateTermsPage
-                    state={state}
-                    handleCustomInputs={handleCustomInputs}
-                />
+                <DateTermsPage />
             </Col>
 
             <InvoiceData />
