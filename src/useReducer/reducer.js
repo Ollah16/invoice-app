@@ -146,12 +146,17 @@ const myReducer = (state = initialState, action) => {
         case 'DESCRIPTION':
             const dataUpdate = state.data.map((datas, index) => action.payload.index === index ? ({
                 ...datas,
-                description: action.payload.description
+                description: action.payload.description,
+                amount: datas.rate * datas.quantity
+
             }) : datas)
 
             return {
                 ...state,
-                data: dataUpdate
+                data: dataUpdate,
+                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0),
+                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0),
+                balance: state.amountPaid - state.total
             }
 
         case 'ADD_AMOUNT':

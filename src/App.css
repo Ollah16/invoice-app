@@ -13,8 +13,11 @@
   background-color: #113358 !important;
   padding: 15px 0 !important;
   border-bottom: 2px solid #ffc107;
-  margin: 0;
+  margin: 0 !important;
   position: relative;
+  width: 100%;
+  left: 0;
+  right: 0;
   z-index: 5;
   overflow: hidden;
 }
@@ -911,18 +914,23 @@ label {
   font-weight: 600;
 }
 
+.login-form input {
+  height: 35px;
+  border: 1px solid #686a6c;
+  border-radius: 3px;
+}
+
+.login-form input:hover {
+  border: 1px solid #3e5a77;
+}
+
+.login-form input:focus {
+  border: 1px solid #0b3a6b;
+  outline: none;
+}
+
 .text-center {
   text-align: center;
-}
-
-.login-form input:focus::placeholder {
-  font-size: 15px;
-  transform: scaleY(.8) translateY(-15px)
-}
-
-.login-form input::placeholder {
-  transition: transform 200ms ease-in-out, font-size 200ms ease-in-out;
-  position: relative;
 }
 
 .login-button {

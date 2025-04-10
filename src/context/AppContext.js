@@ -49,14 +49,8 @@ export const AppProvider = ({ children }) => {
 
     const navigate = useNavigate()
 
-    const handleDataInp = (paramId, event, index) => {
-
-        dispatch({ type: paramId, payload: { [paramId.toLowerCase()]: event, index } })
-
-        dispatch({ type: actionTypes.ADD_AMOUNT, payload: { index } })
-        dispatch({ type: actionTypes.SUB_TOTAL })
-        dispatch({ type: actionTypes.TOTAL })
-        dispatch({ type: actionTypes.BALANCE })
+    const handleInputChange = (fieldName, event, index) => {
+        dispatch({ type: fieldName, payload: { [paramId.toLowerCase()]: event, index } })
     }
 
     const handleCustomInputs = (paramId, value) => {
