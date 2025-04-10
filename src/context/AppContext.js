@@ -7,7 +7,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(myReducer, initialState)
-    let [proceedDownload, setProceed] = useState('');
+    let [proceedDownload, setProceed] = useState(false);
 
     useEffect(() => {
         const { data, total, logo, whoIsFrom, billTo, address, poNumber, terms, invoiceNum, date, dueDate, paymentTerms, note, amountPaid } = state;
