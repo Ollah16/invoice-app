@@ -53,9 +53,8 @@ export const AppProvider = ({ children }) => {
         dispatch({ type: fieldName, payload: { [paramId.toLowerCase()]: event, index } })
     }
 
-    const handleCustomInputs = (paramId, value) => {
-        dispatch({ type: paramId, payload: { value } })
-
+    const handleCustomInputs = (fieldName, value) => {
+        dispatch({ type: fieldName, payload: { value } })
     }
 
     const handleAddRow = () => {
@@ -140,7 +139,7 @@ export const AppProvider = ({ children }) => {
         }, 5000)
     }
 
-    return (<AppContext.Provider value={{ state, handleInputChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo }}>
+    return (<AppContext.Provider value={{ state, handleInputChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs }}>
         {children}
     </AppContext.Provider>)
 }
