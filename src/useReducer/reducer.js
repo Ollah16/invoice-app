@@ -138,7 +138,7 @@ const myReducer = (state = initialState, action) => {
                 action.payload.index === index ?
                     ({
                         ...datas,
-                        quantity: Number(action.payload.rate) || 0,
+                        quantity: Number(action.payload.quantity) || 0,
                     }) : datas)
 
             return {
@@ -181,7 +181,7 @@ const myReducer = (state = initialState, action) => {
         case 'AMOUNT_PAID':
             return {
                 ...state,
-                amountPaid: Number(action.payload.rate) || 0
+                amountPaid: Number(action.payload.value) || 0
             }
 
         case 'BALANCE':
@@ -194,8 +194,8 @@ const myReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                discountAmount: Number(action.payload.rate) || 0,
-                discountCost: (action.payload.value / 100) * state.subTotal,
+                discountAmount: Number(action.payload.value),
+                discountCost: (Number(action.payload.value) / 100) * state.subTotal,
             }
 
         case 'TAX':
