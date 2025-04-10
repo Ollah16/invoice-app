@@ -35,10 +35,12 @@ export const AppProvider = ({ children }) => {
 
     useEffect(() => {
         const handleDataUpdate = () => {
-            dispatch({ type: actionTypes.UPDATE_DATA })
+            dispatch({ type: actionTypes.SUB_TOTAL });
+            dispatch({ type: actionTypes.TOTAL });
+            dispatch({ type: actionTypes.BALANCE });
         }
         handleDataUpdate()
-    }, [state.data])
+    }, [state.data, state.discountAmount, state.taxAmount, state.shippingAmount, state.isTax, state.isShipping, state.isDiscount])
 
     const actionTypes = {
         IS_LOGGED: 'IS_LOGGED',
@@ -115,8 +117,6 @@ export const AppProvider = ({ children }) => {
         }
 
     }
-
-
 
     const handleSignOut = () => {
         dispatch({ type: actionTypes.LOG_OUT })
