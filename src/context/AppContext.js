@@ -123,7 +123,7 @@ export const AppProvider = ({ children }) => {
         dispatch({ type: actionTypes.LOGO, payload: { logo: e.target.files[0] } })
     }
 
-    const removeLogo = (type) => {
+    const handleRemoveLogo = (type) => {
         dispatch({ type })
     }
 
@@ -140,7 +140,7 @@ export const AppProvider = ({ children }) => {
         }, 5000)
     }
 
-    return (<AppContext.Provider value={{ state, handleInputChange, handleDeleteRow, handleAddRow, handleLogo, removeLogo }}>
+    return (<AppContext.Provider value={{ state, handleInputChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo }}>
         {children}
     </AppContext.Provider>)
 }
