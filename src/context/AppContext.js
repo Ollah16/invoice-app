@@ -8,7 +8,7 @@ export const AppProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(myReducer, initialState)
     const [proceedDownload, setProceed] = useState(false);
-    const [isDownload, handleDownloadFunc] = useState(false)
+    const [isDownload, handleDownload] = useState(false)
 
     useEffect(() => {
         const { data, total, logo, whoIsFrom, billTo, address, poNumber, terms, invoiceNum, date, dueDate, paymentTerms, note, amountPaid } = state;
@@ -90,7 +90,7 @@ export const AppProvider = ({ children }) => {
         dispatch({ type: actionTypes.IS_LOGGED });
     };
 
-    const toggleAuth = (type) => {
+    const handleAuthentication = (type) => {
         handleNavigation(`/authenticate/${type}`)
     }
 
@@ -123,6 +123,7 @@ export const AppProvider = ({ children }) => {
     }
 
     const handleLogo = (e) => {
+
         dispatch({ type: actionTypes.LOGO, payload: { logo: e.target.files[0] } })
     }
 
@@ -143,7 +144,7 @@ export const AppProvider = ({ children }) => {
         }, 5000)
     }
 
-    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs, handleInputValue, handleInputsBtn, handleNavigation, proceedDownload, isDownload, handleDownloadFunc }}>
+    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs, handleInputValue, handleInputsBtn, handleNavigation, proceedDownload, isDownload, handleDownload, handleAuthentication }}>
         {children}
     </AppContext.Provider>)
 }
