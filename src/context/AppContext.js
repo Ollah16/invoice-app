@@ -148,4 +148,4 @@ export const AppProvider = ({ children }) => {
     </AppContext.Provider>)
 }
 
-export const useStore = () => useContext(AppContext)
+export const useAppContext = () => useContext(AppContext)
