@@ -19,7 +19,7 @@ const InvoiceData = () => {
                     <li>Quantity</li>
                     <li>Rate</li>
                     <li>Amount</li>
-                    <li className={data.length ? 'display' : 'd-none'}></li>
+                    {data.length > 1 && <li></li>}
                 </ul>
                 {data.map(({ description, quantity, rate, amount }, index) => (<ul key={index} className="table-inputs">
                     <li>{index + 1}</li>
@@ -28,10 +28,11 @@ const InvoiceData = () => {
                     <li><InputField value={rate} onChange={(value) => handleDataChange('RATE', value, index)} placeholder='0' /></li>
                     <li><InputField className="border-0" value={amount} disabled={true} /></li>
 
-                    {data.length && <li >
-                        <Button className='py-0 border-0 bg-transparent' onClick={() => handleDeleteRow(index)} >
+                    {data.length > 1 && <li>
+                        <Button className={`py-0 border-0 bg-transparent`} onClick={() => handleDeleteRow(index)} >
                             <span><RxCross2 /></span></Button>
                     </li>}
+
                 </ul>))}
             </div>
 
