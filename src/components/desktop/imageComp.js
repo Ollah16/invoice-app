@@ -3,6 +3,7 @@ import { Col } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
 import Button from "../common/Button";
 import { useAppContext } from "../../context/AppContext";
+import InputField from "../common/InputField";
 
 const ImageComp = () => {
 
@@ -15,7 +16,7 @@ const ImageComp = () => {
                 <label htmlFor='logo'>
                     {!state.logo ? '+ Add You Logo' : state.logo.name}
                 </label>
-                <input
+                <InputField
                     id='logo'
                     type='file'
                     onChange={handleLogo}
