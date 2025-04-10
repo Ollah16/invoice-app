@@ -87,7 +87,7 @@ const CustomDataPage = () => {
                     </Button>}
             </Col>
 
-            <TotalAllPage state={state} handleInputValue={handleInputValue} handleCustomInputs={handleCustomInputs} />
+            <TotalAllPage />
         </Col >)
 }
 export default CustomDataPage
