@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import CustomDataPage from "../../customInputPage";
-import TermAndCondPage from "../../term&Condtions";
+import TermAndCondPage from "../../termCondtions";
 import InvoiceData from "./lgmdInvoiceDataPage";
 import DownloadBtnPage from "../../downloadSection";
 import DateTermsPage from "../../datePage";
@@ -65,9 +65,7 @@ const LgMdDisplay = (
 
             <Row className="justify-content-between">
 
-                <TermAndCondPage
-                    state={state}
-                    handleCustomInputs={handleCustomInputs} />
+                <TermAndCondPage />
 
                 <CustomDataPage
                     handleInputsBtn={handleInputsBtn}
