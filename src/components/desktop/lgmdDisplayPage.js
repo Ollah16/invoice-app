@@ -55,10 +55,8 @@ const LgMdDisplay = (
             </Col>
 
             <Col lg={12} md={12} className='d-flex justify-content-between gapInclude'>
-                <InvInfo
-                    state={state}
-                    handleCustomInputs={handleCustomInputs}
-                />
+
+                <InvInfo />
 
                 <DateTermsPage
                     state={state}
