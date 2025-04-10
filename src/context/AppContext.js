@@ -64,9 +64,6 @@ export const AppProvider = ({ children }) => {
 
     const handleDeleteRow = (index) => {
         dispatch({ type: 'DELETE_ROW', payload: { index } })
-        dispatch({ type: actionTypes.SUB_TOTAL })
-        dispatch({ type: actionTypes.TOTAL })
-        dispatch({ type: actionTypes.BALANCE })
     }
 
     const handleInputValue = (paramId, value) => {
@@ -143,7 +140,7 @@ export const AppProvider = ({ children }) => {
         }, 5000)
     }
 
-    return (<AppContext.Provider value={{ state, handleInputChange }}>
+    return (<AppContext.Provider value={{ state, handleInputChange, handleDeleteRow }}>
         {children}
     </AppContext.Provider>)
 }
