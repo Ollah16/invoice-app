@@ -143,7 +143,7 @@ export const AppProvider = ({ children }) => {
         }, 5000)
     }
 
-    return (<AppContext.Provider value={{ handleInputChange }}>
+    return (<AppContext.Provider value={{ state, handleInputChange }}>
         {children}
     </AppContext.Provider>)
 }
