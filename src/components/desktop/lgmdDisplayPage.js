@@ -67,13 +67,7 @@ const LgMdDisplay = (
 
                 <TermAndCondPage />
 
-                <CustomDataPage
-                    handleInputsBtn={handleInputsBtn}
-                    handleCustomInputs={handleCustomInputs}
-                    handleDataInp={handleDataInp}
-                    handleInputValue={handleInputValue}
-                    handleInputButtons={handleInputButtons}
-                    state={state} />
+                <CustomDataPage />
             </Row>
         </Col>
 
