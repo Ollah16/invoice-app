@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import CustomDataPage from "../../customInputPage";
+import InvoiceSummary from "./InvoiceSummary";
 import InvoiceTerms from "./InvoiceTerms";
 import InvoiceItemsTable from "./InvoiceItemsTable";
 import DownloadBtnPage from "../../downloadSection";
@@ -30,7 +30,7 @@ const InvoicePage = () => {
 
                 <InvoiceTerms />
 
-                <CustomDataPage />
+                <InvoiceSummary />
             </Row>
         </Col>
 
