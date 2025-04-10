@@ -6,8 +6,8 @@ import InvoiceItemsTable from "./InvoiceItemsTable";
 import DownloadBtnPage from "../../downloadSection";
 import InvoiceDateDetails from "./InvoiceDateDetails";
 import InvoiceContactSection from "./InvoiceContactSection";
-import InvoiceEntry from "./InvoiceMeta";
-import ImageComp from "./imageComp";
+import InvoiceMeta from "./InvoiceMeta";
+import InvoiceLogoSection from "./InvoiceLogoSection";
 
 const InvoicePage = () => {
 
@@ -16,8 +16,8 @@ const InvoicePage = () => {
         <Col lg={10} md={12} className="inner-content-col">
             <Col lg={12} md={12} className='d-flex justify-content-between align-items-center'>
 
-                <ImageComp />
-                <InvoiceEntry />
+                <InvoiceLogoSection />
+                <InvoiceMeta />
 
             </Col>
 
