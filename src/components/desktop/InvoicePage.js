@@ -6,7 +6,7 @@ import InvoiceItemsTable from "./InvoiceItemsTable";
 import DownloadBtnPage from "../../downloadSection";
 import InvoiceDateDetails from "./InvoiceDateDetails";
 import InvoiceContactSection from "./InvoiceContactSection";
-import InvoiceEntry from "../../invoiceEntry";
+import InvoiceEntry from "./InvoiceMeta";
 import ImageComp from "./imageComp";
 
 const InvoicePage = () => {
