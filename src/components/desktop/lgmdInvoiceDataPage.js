@@ -26,7 +26,7 @@ const InvoiceData = () => {
                     <li><InputField value={description} onChange={(value) => handleDataChange('DESCRIPTION', value, index)} placeholder='Item Description' /></li>
                     <li><InputField value={quantity} onChange={(value) => handleDataChange('QUANTITY', value, index)} placeholder='1' /></li>
                     <li><InputField value={rate} onChange={(value) => handleDataChange('RATE', value, index)} placeholder='0' /></li>
-                    <li><InputField className="border-0" value={amount} disabled={true} /></li>
+                    <li><InputField className="border-0" value={amount?.toFixed(2)} disabled={true} /></li>
 
                     {data.length > 1 && <li>
                         <Button className={`py-0 border-0 bg-transparent`} onClick={() => handleDeleteRow(index)} >
