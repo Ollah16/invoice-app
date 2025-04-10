@@ -7,7 +7,7 @@ import DownloadBtnPage from "../../downloadSection";
 import DateTermsPage from "../../datePage";
 import InvInfo from "../../invoiceInformation";
 import InvoiceEntry from "../../invoiceEntry";
-import ImageComp from "../../imageComp";
+import ImageComp from "./imageComp";
 
 const LgMdDisplay = (
     {
@@ -49,10 +49,7 @@ const LgMdDisplay = (
         <Col lg={10} md={12} className="inner-content-col">
             <Col lg={12} md={12} className='d-flex justify-content-between align-items-center'>
 
-                <ImageComp
-                    handleLogo={handleLogo}
-                    state={state}
-                    removeLogo={removeLogo} />
+                <ImageComp />
 
                 <InvoiceEntry
                     state={state}
