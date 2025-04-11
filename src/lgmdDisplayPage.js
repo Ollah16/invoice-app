@@ -73,11 +73,7 @@ const LgMdDisplay = (
                 />
             </Col>
 
-            <InvoiceData
-                handleDataInp={handleDataInp}
-                state={state}
-                handleAddRow={handleAddRow}
-                handleDeleteRow={handleDeleteRow} />
+            <InvoiceData />
 
             <Row className="justify-content-between">
 

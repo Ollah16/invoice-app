@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container } from 'react-bootstrap';
-import SmXsDisplay from './smxsDisplay';
-import LgMdDisplay from './lgmdDisplayPage';
+import SmXsDisplay from './components/mobile/smxsDisplay';
+import LgMdDisplay from './components/desktop/lgmdDisplayPage';
 import FooterPage from './footer';
 import NavBar from './navBar';
 import { useControl } from './useControl/useControl';
+import InvoicePage from './components/desktop/InvoicePage'
 import ModalPage from './modal';
+import { useAppContext } from './context/AppContext';
 
 
 const HomePage = (
@@ -31,9 +33,8 @@ const HomePage = (
 ) => {
 
     let [innerWid, setWidth] = useState(window.innerWidth)
-    const [isNavToggle, handleToggle] = useControl()
 
-    const [isDownload, handleDownloadFunc] = useState(false)
+    const { isDownload, handleDownloadFunc } = useAppContext()
 
     useEffect(() => {
         const custom_input_col = document.querySelectorAll('.smadjust');
@@ -140,17 +141,12 @@ const HomePage = (
 
             <Container className='invoice-homepage' fluid>
 
-                <NavBar
-                    toggleAuth={toggleAuth}
-                    isNavToggle={isNavToggle}
-                    handleToggle={handleToggle}
-                    handleNavigation={handleNavigation}
-                />
+                <NavBar />
 
 
 
                 <Col className='d-block d-md-none smallScreenDisplay'>
-                    <SmXsDisplay
+                    {/* <SmXsDisplay
                         state={state}
                         removeLogo={removeLogo}
                         isDownload={isDownload}
@@ -168,32 +164,11 @@ const HomePage = (
                         handleLogo={handleLogo}
                         handleMessage={handleMessage}
                         handleCloseMessage={handleCloseMessage}
-                    />
+                    /> */}
                 </Col>
 
                 <Col className='d-none d-md-block mt-5 largeScreenDisplay'>
-                    {/* <div class="border-effect"></div> */}
-
-                    <LgMdDisplay
-                        state={state}
-                        removeLogo={removeLogo}
-                        isDownload={isDownload}
-                        handleDownloadFunc={handleDownloadFunc}
-                        proceedDownload={proceedDownload}
-                        handleDataInp={handleDataInp}
-                        handleCustomInputs={handleCustomInputs}
-                        handleAddRow={handleAddRow}
-                        handleDeleteRow={handleDeleteRow}
-                        handleInputValue={handleInputValue}
-                        handleInputsBtn={handleInputsBtn}
-                        handleAuth={handleAuth}
-                        handleClearState={handleClearState}
-                        handleNavigation={handleNavigation}
-                        handleSignOut={handleSignOut}
-                        handleLogo={handleLogo}
-                        handleMessage={handleMessage}
-                        handleCloseMessage={handleCloseMessage}
-                    />
+                    <InvoicePage />
                 </Col>
 
 

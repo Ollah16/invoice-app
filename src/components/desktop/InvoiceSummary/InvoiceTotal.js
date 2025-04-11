@@ -1,9 +1,9 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
-import { useAppContext } from './context/AppContext'
-import InputField from './components/common/InputField';
+import { useAppContext } from '../../../context/AppContext'
+import InputField from '../../common/InputField';
 
-const TotalAllPage = () => {
+const InvoiceTotal = () => {
 
     const { state: { balanceDueTitle, totalTitle, amountPaidTitle, total, balance, amountPaid, currency }, handleCustomInputs, handleInputValue } = useAppContext();
 
@@ -41,4 +41,4 @@ const TotalAllPage = () => {
     </>
     )
 }
-export default TotalAllPage
+export default InvoiceTotal

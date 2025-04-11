@@ -1,9 +1,9 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-import { useAppContext } from "./context/AppContext";
-import InputField from "./components/common/InputField";
+import { useAppContext } from "../../context/AppContext";
+import InputField from "../common/InputField";
 
-const InvoiceEntry = () => {
+const InvoiceMeta = () => {
 
     const { state: { dFault, invoiceNum, }, handleCustomInputs } = useAppContext();
 
@@ -30,4 +30,4 @@ const InvoiceEntry = () => {
     )
 }
 
-export default InvoiceEntry
+export default InvoiceMeta

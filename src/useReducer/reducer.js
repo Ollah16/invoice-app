@@ -43,7 +43,9 @@ export const initialState = {
     message: ''
 }
 
+
 const myReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case "IS_LOGGED":
             return {
@@ -116,18 +118,19 @@ const myReducer = (state = initialState, action) => {
         case 'DELETE_ROW':
             return {
                 ...state,
-                data: state.data.filter((_, index) => action.payload.index !== index)
+                data: state.data.filter((_, index) => action.payload.index !== index),
             }
 
         case 'RATE':
             const data = state.data.map((datas, index) => action.payload.index === index ?
                 ({
                     ...datas,
-                    rate: action.payload.rate
+                    rate: Number(action.payload.rate) || 0,
                 }) : datas)
+
             return {
                 ...state,
-                data
+                data,
             }
 
         case 'QUANTITY':
@@ -135,23 +138,23 @@ const myReducer = (state = initialState, action) => {
                 action.payload.index === index ?
                     ({
                         ...datas,
-                        quantity: action.payload.quantity
+                        quantity: Number(action.payload.quantity) || 0,
                     }) : datas)
 
             return {
                 ...state,
-                data: updatedata
+                data: updatedata,
             }
 
         case 'DESCRIPTION':
             const dataUpdate = state.data.map((datas, index) => action.payload.index === index ? ({
                 ...datas,
-                description: action.payload.description
+                description: action.payload.description,
             }) : datas)
 
             return {
                 ...state,
-                data: dataUpdate
+                data: dataUpdate,
             }
 
         case 'ADD_AMOUNT':
@@ -159,7 +162,7 @@ const myReducer = (state = initialState, action) => {
                 ...state,
                 data: state.data.map((datas, index) => action.payload.index === index ? ({
                     ...datas,
-                    amount: datas.rate * datas.quantity
+                    amount: (datas.rate * datas.quantity)
                 }) : datas)
             }
 
@@ -178,7 +181,7 @@ const myReducer = (state = initialState, action) => {
         case 'AMOUNT_PAID':
             return {
                 ...state,
-                amountPaid: action.payload.value
+                amountPaid: Number(action.payload.value) || 0
             }
 
         case 'BALANCE':
@@ -188,39 +191,41 @@ const myReducer = (state = initialState, action) => {
             }
 
         case 'DISCOUNT':
+
             return {
                 ...state,
-                discountAmount: action.payload.value,
-                discountCost: (action.payload.value / 100) * state.subTotal
+                discountAmount: Number(action.payload.value),
+                discountCost: (Number(action.payload.value) / 100) * state.subTotal,
             }
+
         case 'TAX':
             return {
                 ...state,
-                taxAmount: action.payload.value
+                taxAmount: Number(action.payload.value) || 0,
             }
 
         case 'SHIPPING':
             return {
                 ...state,
-                shippingAmount: action.payload.value
+                shippingAmount: Number(action.payload.value) || 0,
             }
 
         case 'IS_SHIPPING':
             return {
                 ...state,
-                isShipping: 1
+                isShipping: 1,
             }
 
         case 'IS_TAX':
             return {
                 ...state,
-                isTax: 1
+                isTax: 1,
             }
 
         case 'IS_DISCOUNT':
             return {
                 ...state,
-                isDiscount: 1
+                isDiscount: 1,
             }
 
         case 'IS_NOT_DISCOUNT':
@@ -228,21 +233,21 @@ const myReducer = (state = initialState, action) => {
                 ...state,
                 isDiscount: 0,
                 discountAmount: '',
-                discountCost: ''
+                discountCost: '',
             }
 
         case 'IS_NOT_SHIPPING':
             return {
                 ...state,
                 isShipping: 0,
-                shippingAmount: ''
+                shippingAmount: '',
             }
 
         case 'IS_NOT_TAX':
             return {
                 ...state,
                 isTax: 0,
-                taxAmount: ''
+                taxAmount: '',
             }
 
         case 'PO_TITLE':

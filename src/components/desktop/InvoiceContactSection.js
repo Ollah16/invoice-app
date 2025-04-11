@@ -1,9 +1,9 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { useAppContext } from "./context/AppContext";
-import InputField from "./components/common/InputField";
+import { useAppContext } from "../../context/AppContext";
+import InputField from "../common/InputField";
 
-const InvInfo = () => {
+const InvoiceContactSection = () => {
 
     const { state: { whoIsFrom, billTo, billToTitle, address, addressTitle }, handleCustomInputs } = useAppContext();
 
@@ -14,6 +14,7 @@ const InvInfo = () => {
                     <InputField
                         onChange={(value) => handleCustomInputs('WHOISFROM', value)}
                         value={whoIsFrom}
+                        type="text"
                         placeholder="Who is the invoice from? (required)" />
                 </div>
             </Col>
@@ -21,7 +22,10 @@ const InvInfo = () => {
             <Row className='justify-content-around smadjust'>
                 <Col lg={6} md={6} className="custom-input-col">
                     <div className="custom-input-div">
-                        <InputField value={billToTitle} onChange={(value) => handleCustomInputs('BILL_TITLE', value)} />
+                        <InputField
+                            value={billToTitle}
+                            onChange={(value) => handleCustomInputs('BILL_TITLE', value)}
+                        />
                     </div>
                     <div className="norm-Input-div">
                         <InputField
@@ -51,4 +55,4 @@ const InvInfo = () => {
     )
 }
 
-export default InvInfo
+export default InvoiceContactSection		

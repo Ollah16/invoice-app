@@ -1,9 +1,9 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-import { useAppContext } from "./context/AppContext";
-import InputField from "./components/common/InputField";
+import { useAppContext } from "../../context/AppContext";
+import InputField from "../common/InputField";
 
-const DateTermsPage = () => {
+const InvoiceDateDetails = () => {
 
     const { state: { dateTitle, date, paymentTerms, paymentTitle, dueDate, dueDateTitle, poNumber, poTitle }, handleCustomInputs } = useAppContext();
 
@@ -64,4 +64,4 @@ const DateTermsPage = () => {
     </Col>)
 }
 
-export default DateTermsPage
+export default InvoiceDateDetails

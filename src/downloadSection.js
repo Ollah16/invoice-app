@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { BiSolidDownload } from 'react-icons/bi';
+import { useAppContext } from './context/AppContext';
+import Button from './components/common/Button';
 
-const DownloadBtnPage = ({
-    handleCustomInputs,
-    handleNavigation,
-    proceedDownload,
-    handleDownloadFunc,
-    isDownload }) => {
+const DownloadBtnPage = () => {
+
+    const { handleCustomInputs, handleNavigation, proceedDownload, handleDownloadFunc, isDownload } = useAppContext()
 
     return (<Row className='outer-content-col p-0 mx-auto me-auto'>
         <Col lg={10} md={12} sm={12} xs={12} className='p-0'>
             <Row className="justify-content-center my-2 downloadBtnWrapper">
-                <button
-                    // style={{ opacity: proceedDownload ? 1 : 0.5 }}
-                    // disabled={!proceedDownload}
+                <Button
+                    style={{ opacity: proceedDownload ? 1 : 0.5 }}
+                    disabled={!proceedDownload}
                     onClick={() => handleDownloadFunc(!isDownload)}
                 >
                     <BiSolidDownload /> Download Invoice
-                </button>
+                </Button>
             </Row>
 
             <Row className="mt-2 mb-0 labelWrapper">
@@ -42,7 +41,7 @@ const DownloadBtnPage = ({
             </Row>
 
             <Row className="justify-content-center my-2 recordBtnWrapper">
-                <button onClick={() => handleNavigation('/records')}>History</button>
+                <Button onClick={() => handleNavigation('/records')}>History</Button>
             </Row>
 
         </Col>
