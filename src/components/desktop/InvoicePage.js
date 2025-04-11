@@ -14,7 +14,7 @@ const InvoicePage = () => {
     return (<Container fluid className="main d-flex flex-column">
         <Row className='justify-content-between p-5'>
 
-            <Col lg={9} md={9} className="invoice-information-section">
+            <Col lg={10} md={10} className="invoice-information-section">
                 <Row className='d-flex justify-content-between align-items-center'>
                     <InvoiceLogoSection />
                     <InvoiceMeta />
@@ -33,7 +33,7 @@ const InvoicePage = () => {
                 </Row>
             </Col>
 
-            <Col lg={3} md={3} className="downloadSection">
+            <Col lg={2} md={2} className="downloadSection">
                 <DownloadBtnPage />
             </Col>
         </Row >
