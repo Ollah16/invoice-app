@@ -68,15 +68,15 @@ const InvoiceCharges = () => {
         <Col lg={12} md={12} className={`d-flex justify-content-end charges-button`}>
             {isDiscount === 0 && (
                 <Button onClick={() => handleInputsBtn('IS_DISCOUNT')} className="d-flex justify-content-between align-items-center border-0 bg-transparent fw-semibold p-0 ms-3">
-                    <span><IoMdAdd size={15} /></span><span>Discount</span>
+                    <span className="d-flex align-items-center"><IoMdAdd size={15} /></span><span>Discount</span>
                 </Button>)}
             {isTax === 0 && (
                 <Button onClick={() => handleInputsBtn('IS_TAX')} className="d-flex justify-content-between align-items-center border-0 bg-transparent fw-semibold p-0 ms-3">
-                    <span><IoMdAdd size={15} /></span><span>Tax</span>
+                    <span className="d-flex align-items-center"><IoMdAdd size={15} /></span><span>Tax</span>
                 </Button>)}
             {isShipping === 0 &&
                 (<Button onClick={() => handleInputsBtn('IS_SHIPPING')} className="d-flex justify-content-between align-items-center border-0 bg-transparent fw-semibold p-0 ms-3">
-                    <span><IoMdAdd size={15} /></span><span>Shipping</span>
+                    <span className="d-flex align-items-center"><IoMdAdd size={15} /></span><span>Shipping</span>
                 </Button>)}
         </Col>
 
