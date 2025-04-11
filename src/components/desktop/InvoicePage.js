@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import InvoiceSummary from "./InvoiceSummary/InvoiceSummary";
 import InvoiceTerms from "./InvoiceTerms";
 import InvoiceItemsTable from "./InvoiceItemsTable";
@@ -11,32 +11,32 @@ import InvoiceLogoSection from "./InvoiceLogoSection";
 
 const InvoicePage = () => {
 
-    return (<Row className='justify-content-between largeScreen'>
+    return (<Container fluid className="main d-flex flex-column">
+        <Row className='justify-content-between p-5'>
 
-        <Col lg={10} md={12} className="inner-content-col">
-            <Col lg={12} md={12} className='d-flex justify-content-between align-items-center'>
-                <InvoiceLogoSection />
-                <InvoiceMeta />
+            <Col lg={9} md={9} className="invoice-information-section">
+                <Row className='d-flex justify-content-between align-items-center'>
+                    <InvoiceLogoSection />
+                    <InvoiceMeta />
+                </Row>
+
+                <Row className='justify-content-between gap-1'>
+                    <InvoiceContactSection />
+                    <InvoiceDateDetails />
+                </Row>
+
+                <InvoiceItemsTable />
+
+                <Row className="justify-content-between">
+                    <InvoiceTerms />
+                    <InvoiceSummary />
+                </Row>
             </Col>
 
-            <Col lg={12} md={12} className='d-flex justify-content-between gapInclude'>
-                <InvoiceContactSection />
-                <InvoiceDateDetails />
+            <Col lg={3} md={3} className="downloadSection">
+                <DownloadBtnPage />
             </Col>
-
-            <InvoiceItemsTable />
-
-            <Row className="justify-content-between">
-
-                <InvoiceTerms />
-
-                <InvoiceSummary />
-            </Row>
-        </Col>
-
-        <Col className="downloadSection">
-            <DownloadBtnPage />
-        </Col>
-    </Row >)
+        </Row >
+    </Container>)
 }
 export default InvoicePage
