@@ -1,5 +1,5 @@
 import React from "react";
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useAppContext } from "../../context/AppContext";
 import InputField from "../common/InputField";
 
@@ -7,60 +7,64 @@ const InvoiceDateDetails = () => {
 
     const { state: { dateTitle, date, paymentTerms, paymentTitle, dueDate, dueDateTitle, poNumber, poTitle }, handleCustomInputs } = useAppContext();
 
-    return (<Col >
-        <Col className='invoice-data'>
-            <div className="custom-input-div">
-                <InputField value={dateTitle} onChange={(event) => handleCustomInputs('DATE_TITLE', event.target.value)} />
-            </div>
+    return (<Col lg={4}>
+        <Row className="d-flex flex-column gap-2 invoice-meta-fields">
+            <Row className='invoice-data d-flex justify-content-between p-0 meta-field-row'>
+                <Col className="p-0 label-input">
+                    <InputField value={dateTitle} onChange={(event) => handleCustomInputs('DATE_TITLE', event.target.value)} />
+                </Col>
 
-            <div className="norm-input-div">
-                <InputField
-                    value={date}
-                    onChange={(event) => handleCustomInputs('DATE', event.target.value)}
-                    type='date' />
-            </div>
-        </Col>
+                <Col className="p-0 meta-value-input">
+                    <InputField
+                        value={date}
+                        className={"w-100 d-inline-block"}
+                        onChange={(event) => handleCustomInputs('DATE', event.target.value)}
+                        type='date' />
+                </Col>
+            </Row>
 
-        <Col className='invoice-data'>
-            <div className="custom-input-div">
-                <InputField value={paymentTitle} onChange={(event) => handleCustomInputs('PAYMENT_TITLE', event.target.value)} />
-            </div>
-            <div className="norm-input-div">
-                <InputField
-                    value={paymentTerms}
-                    onChange={(event) => handleCustomInputs('PAYMENT_TERMS', event.target.value)}
-                    type='text' />
-            </div>
-        </Col>
+            <Row className='invoice-data d-flex justify-content-between p-0 meta-field-row'>
+                <Col className="p-0 label-input">
+                    <InputField value={paymentTitle} onChange={(event) => handleCustomInputs('PAYMENT_TITLE', event.target.value)} />
+                </Col>
+                <Col className="p-0 meta-value-input">
+                    <InputField
+                        value={paymentTerms}
+                        className={"w-100 d-inline-block"}
+                        onChange={(event) => handleCustomInputs('PAYMENT_TERMS', event.target.value)}
+                        type='text' />
+                </Col>
+            </Row>
 
-        <Col className='invoice-data'>
-            <div className="custom-input-div">
-                <InputField value={dueDateTitle} onChange={(event) => handleCustomInputs('DUE_DATE_TITLE', event.target.value)} />
-            </div>
-            <div className="norm-input-div">
-                <InputField
-                    value={dueDate}
-                    onChange={(event) => handleCustomInputs('DUE_DATE', event.target.value)}
-                    type='date'
-                    placeholder="Recipient's username" />
-            </div>
-        </Col>
+            <Row className='invoice-data d-flex justify-content-between p-0 meta-field-row'>
+                <Col className="p-0 label-input">
+                    <InputField value={dueDateTitle} onChange={(event) => handleCustomInputs('DUE_DATE_TITLE', event.target.value)} />
+                </Col>
+                <Col className="p-0 meta-value-input">
+                    <InputField
+                        value={dueDate}
+                        className={"w-100 d-inline-block"}
+                        onChange={(event) => handleCustomInputs('DUE_DATE', event.target.value)}
+                        type='date'
+                        placeholder="Recipient's username" />
+                </Col>
+            </Row>
 
-        <Col className='invoice-data'>
-
-            <div className="custom-input-div">
-                <InputField value={poTitle} onChange={(event) => handleCustomInputs('PO_TITLE', event.target.value)} />
-            </div>
-
-            <div className="norm-input-div">
-                <InputField
-                    value={poNumber}
-                    onChange={(event) => handleCustomInputs('PO_NUMBER', event.target.value)}
-                    aria-label="Recipient's username"
-                    aria-describedby="basic-addon2"
-                />
-            </div>
-        </Col>
+            <Row className='invoice-data d-flex justify-content-between p-0 meta-field-row'>
+                <Col className="p-0 label-input">
+                    <InputField value={poTitle} onChange={(event) => handleCustomInputs('PO_TITLE', event.target.value)} />
+                </Col>
+                <Col className="p-0 meta-value-input">
+                    <InputField
+                        value={poNumber}
+                        className={"w-100 d-inline-block"}
+                        onChange={(event) => handleCustomInputs('PO_NUMBER', event.target.value)}
+                        aria-label="Recipient's username"
+                        aria-describedby="basic-addon2"
+                    />
+                </Col>
+            </Row>
+        </Row>
     </Col>)
 }
 
