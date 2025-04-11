@@ -8,7 +8,7 @@ import InvoiceTotal from "./InvoiceTotal";
 const InvoiceSummary = () => {
 
     return (
-        <Col lg={5} md={5} >
+        <Col lg={5} md={5} className="pb-3">
             <InvoiceSubTotal />
 
             <InvoiceCharges />
