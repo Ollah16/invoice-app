@@ -1,34 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container } from 'react-bootstrap';
-import SmXsDisplay from './components/mobile/smxsDisplay';
-import LgMdDisplay from './components/desktop/lgmdDisplayPage';
 import FooterPage from './footer';
-import NavBar from './navBar';
-import { useControl } from './useControl/useControl';
 import InvoicePage from './components/desktop/InvoicePage'
 import ModalPage from './modal';
 import { useAppContext } from './context/AppContext';
+import NavBar from './components/NavBar';
 
 
 const HomePage = (
     {
-        state,
         proceedDownload,
-        handleDataInp,
-        handleCustomInputs,
-        handleAddRow,
-        handleDeleteRow,
-        handleInputValue,
-        handleInputsBtn,
-        handleAuth,
-        handleClearState,
         handleNavigation,
-        handleSignOut,
-        handleLogo,
-        handleMessage,
-        handleCloseMessage,
-        toggleAuth,
-        removeLogo
     }
 ) => {
 
