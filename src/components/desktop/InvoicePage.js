@@ -15,7 +15,7 @@ const InvoicePage = () => {
         <Row className='justify-content-between p-5'>
 
             <Col lg={10} md={10} className="invoice-information-section">
-                <Row className='d-flex justify-content-between align-items-center'>
+                <Row className='d-flex flex-column-reverse md-flex-row justify-content-between align-items-center'>
                     <InvoiceLogoSection />
                     <InvoiceMeta />
                 </Row>

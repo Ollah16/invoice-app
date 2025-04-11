@@ -139,19 +139,19 @@ const HomePage = (
                 isDownload={isDownload}
                 handleNavigation={handleNavigation} />
 
-            <Container className='invoice-homepage' fluid>
 
-                <NavBar />
-                <InvoicePage />
+            <NavBar />
 
-                <Col className='d-none d-md-block mt-5 largeScreenDisplay'>
-                </Col>
+            <InvoicePage />
 
 
-                <FooterPage />
+            <Col className='d-none d-md-block mt-5 largeScreenDisplay'>
+            </Col>
 
-            </Container >
-        </Container>
+
+            <FooterPage />
+
+        </Container >
     )
 }
 export default HomePage;
