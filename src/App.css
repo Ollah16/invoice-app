@@ -1,12 +1,8 @@
-.invoice-homepage {
-  color: rgb(73, 73, 75);
+body {
+  min-height: 100dvh;
+  min-width: 100dvw;
+  overflow-x: hidden;
   font-size: 1em;
-  background-color: rgba(201, 213, 226, 0.2);
-  font-family: 'Arial Narrow Bold';
-  padding: 0 !important;
-  min-height: 100vh;
-  overflow: hidden;
-  position: relative;
 }
 
 .navbar {
@@ -58,19 +54,6 @@
   margin-top: 25px;
 }
 
-.inner-content-col {
-  padding: .9em;
-  margin-top: 2.3em;
-  margin-bottom: 3em;
-  border-right-style: inset;
-  border-bottom-style: inset;
-  background-color: white;
-  overflow: hidden;
-  position: relative;
-  z-index: 3;
-  border: 1px solid #ccc;
-}
-
 .xssm-display {
   padding: .8em;
   margin: 1em 1.5rem;
@@ -96,7 +79,7 @@
   flex: none;
 }
 
-div.largeScreen {
+.main {
   display: flex;
   column-gap: .5rem;
   flex-wrap: nowrap;
@@ -107,12 +90,6 @@ div.largeScreen {
 
 
 @media (min-width: 768px) {
-
-  div.largeScreen {
-    max-width: 720px;
-    flex-direction: column !important;
-  }
-
   .appr {
     max-width: 700px !important;
   }
@@ -140,11 +117,6 @@ div.largeScreen {
 
 @media(min-width: 992px) {
 
-  div.largeScreen {
-    max-width: 980px;
-    flex-direction: row !important;
-  }
-
   .appr {
     max-width: 880px !important;
   }
@@ -164,8 +136,9 @@ div.largeScreen {
 
 @media (min-width: 1200px) {
 
-  div.largeScreen {
-    max-width: 1150px;
+  .main {
+    max-width: 90%;
+    margin: 0 auto;
   }
 
   .appr {
@@ -318,11 +291,19 @@ div.largeScreen {
   --color-primary: #49494b;
   --color-border: #c3d2e3;
   --color-border-hover: #668ab0;
+  --color-white: #ffffff;
+}
+
+.invoice-information-section {
+  background-color: var(--color-white);
+  overflow: hidden;
+  border: 1px solid #ccc;
 }
 
 .meta-value-input input,
 .items-input-value input,
-.contact-value-input input {
+.contact-value-input input,
+.payment-input-value input {
   border: 1px solid var(--color-border);
   min-width: 10em;
   border-radius: 3px;
@@ -332,14 +313,16 @@ div.largeScreen {
 
 .meta-value-input input:hover,
 .items-input-value input:hover,
-.contact-value-input input:hover {
-  outline: none;
+.contact-value-input input:hover,
+.payment-input-value input:hover {
+  outline: 0;
   border-color: var(--color-border-hover);
 }
 
 .meta-value-input input:focus,
 .items-input-value input:focus,
-.contact-value-input input:focus {
+.contact-value-input input:focus,
+.payment-input-value input:focus {
   outline: 0;
   border-color: var(--color-border-hover);
 }
@@ -363,6 +346,14 @@ div.largeScreen {
 
 .contact-value-input input {
   height: 3.4em;
+}
+
+.payment-input-value input {
+  min-width: 5em;
+}
+
+.payment-input-value::-webkit-scrollbar {
+  display: none;
 }
 
 .custom-input-col .norm-Input-div input:focus {

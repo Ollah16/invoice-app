@@ -1,6 +1,6 @@
 import React from 'react'
 
-const InputField = ({ type, onChange, value, placeholder, ariaLabel, className, id }) => {
+const InputField = ({ type, onChange = () => { }, value, placeholder, ariaLabel, className, id }) => {
     return (
         <input
             onChange={(e) => onChange(e.target.value)}
