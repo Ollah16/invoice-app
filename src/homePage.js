@@ -139,43 +139,19 @@ const HomePage = (
                 isDownload={isDownload}
                 handleNavigation={handleNavigation} />
 
-            <Container className='invoice-homepage' fluid>
 
-                <NavBar />
+            <NavBar />
 
-
-
-                <Col className='d-block d-md-none smallScreenDisplay'>
-                    {/* <SmXsDisplay
-                        state={state}
-                        removeLogo={removeLogo}
-                        isDownload={isDownload}
-                        proceedDownload={proceedDownload}
-                        handleDataInp={handleDataInp}
-                        handleCustomInputs={handleCustomInputs}
-                        handleAddRow={handleAddRow}
-                        handleDeleteRow={handleDeleteRow}
-                        handleInputValue={handleInputValue}
-                        handleInputsBtn={handleInputsBtn}
-                        handleAuth={handleAuth}
-                        handleClearState={handleClearState}
-                        handleNavigation={handleNavigation}
-                        handleSignOut={handleSignOut}
-                        handleLogo={handleLogo}
-                        handleMessage={handleMessage}
-                        handleCloseMessage={handleCloseMessage}
-                    /> */}
-                </Col>
-
-                <Col className='d-none d-md-block mt-5 largeScreenDisplay'>
-                    <InvoicePage />
-                </Col>
+            <InvoicePage />
 
 
-                <FooterPage />
+            <Col className='d-none d-md-block mt-5 largeScreenDisplay'>
+            </Col>
 
-            </Container >
-        </Container>
+
+            <FooterPage />
+
+        </Container >
     )
 }
 export default HomePage;
