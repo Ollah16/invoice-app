@@ -294,29 +294,6 @@ div.largeScreen {
   border-bottom-left-radius: 0px;
 }
 
-.custom-input-col .norm-Input-div input {
-  border: 1px solid #c3d2e3;
-  height: 3.4em;
-  width: 100%;
-  border-radius: 2.9px;
-  text-align: start;
-  padding: 0 .4em;
-  padding-bottom: 1.8em;
-  margin: .5em 0;
-}
-
-.custom-input-col .norm-Input-div input:hover {
-  border: .01em solid #668ab0;
-  border-top-right-radius: 2.9px;
-  border-bottom-right-radius: 2.9px;
-
-}
-
-.custom-input-col .norm-Input-div input:focus {
-  outline: none;
-  border-radius: 2.9px;
-}
-
 .invoice-data {
   display: flex;
   justify-content: space-between;
@@ -333,22 +310,64 @@ div.largeScreen {
   border-radius: 2.9px;
   margin: .1em 0;
   width: 100%;
-  max-width: 8em;
   height: 2em;
   padding: 0 .4em;
 }
 
-.invoice-data .norm-input-div input:hover {
-  outline: none;
-  border: .01em solid #668ab0;
-  border-top-right-radius: 2.9px;
-  border-bottom-right-radius: 2.9px;
+:root {
+  --color-primary: #49494b;
+  --color-border: #c3d2e3;
+  --color-border-hover: #668ab0;
 }
 
-.invoice-data .norm-input-div input:focus {
+.meta-value-input input,
+.items-input-value input,
+.contact-value-input input {
+  border: 1px solid var(--color-border);
+  min-width: 10em;
+  border-radius: 3px;
+  height: 2em;
+  width: 100%;
+}
+
+.meta-value-input input:hover,
+.items-input-value input:hover,
+.contact-value-input input:hover {
+  outline: none;
+  border-color: var(--color-border-hover);
+}
+
+.meta-value-input input:focus,
+.items-input-value input:focus,
+.contact-value-input input:focus {
   outline: 0;
-  border-top-right-radius: 2.9px;
-  border-bottom-right-radius: 2.9px;
+  border-color: var(--color-border-hover);
+}
+
+.label-input input {
+  border-radius: 3px;
+  border: 1px solid transparent;
+  height: 2em;
+  width: 100%;
+  color: var(--color-primary);
+}
+
+.label-input input:hover {
+  border-color: var(--color-border);
+}
+
+.label-input input:focus {
+  outline: 0;
+  border-color: var(--color-border);
+}
+
+.contact-value-input input {
+  height: 3.4em;
+}
+
+.custom-input-col .norm-Input-div input:focus {
+  outline: 0;
+  border-color: var(--color-border-hover);
 }
 
 .invoice-data-table>div:first-of-type {
@@ -418,13 +437,6 @@ div.largeScreen {
   width: 20%;
   flex: 1;
 } */
-
-.invoice-data-div {
-  margin: .5em 0;
-  border: 1px solid #c3d2e3;
-  padding: .2em .5em;
-  border-radius: 2.9px;
-}
 
 .invoice-data-div span {
   margin-right: .4em;
@@ -1316,18 +1328,6 @@ label {
 .dotted-line {
   border-top: 1px dashed #000;
   margin: 2em 0;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
 }
 
 .message-col {

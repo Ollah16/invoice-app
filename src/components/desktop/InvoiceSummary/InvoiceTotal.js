@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import { useAppContext } from '../../../context/AppContext'
 import InputField from '../../common/InputField';
 
@@ -7,38 +7,37 @@ const InvoiceTotal = () => {
 
     const { state: { balanceDueTitle, totalTitle, amountPaidTitle, total, balance, amountPaid, currency }, handleCustomInputs, handleInputValue } = useAppContext();
 
-    return (<>
-        <Col lg={12} md={12} className="custom-col">
-            <div className='customInput'>
+    return (<Col lg={12} md={12} className='d-flex flex-column gap-2'>
+        <Row className='align-items-center justify-content-between'>
+            <Col lg={7} md={6} className='label-input'>
                 <InputField value={totalTitle} onChange={(value) => handleCustomInputs('TOTAL_TITLE', value)} className='text-end' placeholder='Total' />
-            </div>
-            <div className='customInputbutton text-end justify-content-end'>
+            </Col>
+            <Col lg={5} md={6} className='payment-input-value text-end justify-content-end overflow-auto'>
                 {`${currency.toString().substring(0, 3)}${total}.00`}
-            </div>
-        </Col>
+            </Col>
+        </Row>
 
-        <Col lg={12} md={12} className="custom-col">
-            <div className='customInput'>
+        <Row className='align-items-center justify-content-between'>
+            <Col lg={7} md={6} className='label-input'>
                 <InputField value={amountPaidTitle} onChange={(value) => handleCustomInputs('AMOUNT_PAID_TITLE', value)} className='text-end' placeholder='Amount Paid' />
-            </div>
-            <div className='customInputbutton'>
+            </Col>
+            <Col lg={5} md={6} className='payment-input-value'>
                 <InputField
-                    className='customAmount text-end'
                     value={amountPaid}
                     onChange={(value) => handleInputValue('AMOUNT_PAID', value)}
                 />
-            </div>
-        </Col>
+            </Col>
+        </Row>
 
-        <Col lg={12} md={12} className="custom-col">
-            <div className='customInput'>
+        <Row className='align-items-center justify-content-between'>
+            <Col lg={7} md={6} className='label-input'>
                 <InputField value={balanceDueTitle} onChange={(value) => handleCustomInputs('BALANCE_DUE_TITLE', value)} className='text-end' placeholder='Balance Due' />
-            </div>
-            <div className='customInputbutton text-end d-flex justify-content-end'>
-                <span className='d-flex justify-content-end'>{`${currency.toString().substring(0, 3)}${balance}.00`}</span>
-            </div>
-        </Col >
-    </>
+            </Col>
+            <Col lg={5} md={6} className='payment-input-value text-end d-flex justify-content-end overflow-auto'>
+                {`${currency.toString().substring(0, 3)}${balance}.00`}
+            </Col>
+        </Row >
+    </Col>
     )
 }
 export default InvoiceTotal
