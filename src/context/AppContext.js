@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import myReducer, { initialState } from "../useReducer/reducer";
 import { useNavigate } from "react-router-dom";
+import { handleInputValidation } from "../utils/validateInputs";
 
 const AppContext = createContext();
 
@@ -55,10 +56,16 @@ export const AppProvider = ({ children }) => {
         BALANCE: 'BALANCE',
         UPDATE_DATA: 'UPDATE_DATA',
         LOGO: 'LOGO',
-        CLOSE_MESSAGE: 'CLOSE_MESSAGE'
+        CLOSE_MESSAGE: 'CLOSE_MESSAGE',
+        ERROR: 'ERROR'
     }
 
     const navigate = useNavigate()
+
+    const handleBlur = (fieldName, value) => {
+        const error = handleInputValidation(fieldName, value);
+        dispatch({ type: actionTypes.ERROR, payload: { fieldName, error } })
+    }
 
     const handleDataChange = (fieldName, event, index) => {
         dispatch({ type: fieldName, payload: { [fieldName.toLowerCase()]: event, index } })
@@ -66,6 +73,7 @@ export const AppProvider = ({ children }) => {
     }
 
     const handleCustomInputs = (fieldName, value) => {
+        const error = handleInputValidation();
         dispatch({ type: fieldName, payload: { value } })
     }
 
@@ -144,7 +152,7 @@ export const AppProvider = ({ children }) => {
         }, 5000)
     }
 
-    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs, handleInputValue, handleInputsBtn, handleNavigation, proceedDownload, isDownload, handleDownload, handleAuthentication }}>
+    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs, handleInputValue, handleInputsBtn, handleNavigation, proceedDownload, isDownload, handleDownload, handleAuthentication, handleBlur }}>
         {children}
     </AppContext.Provider>)
 }
