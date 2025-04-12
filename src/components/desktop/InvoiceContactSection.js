@@ -5,15 +5,17 @@ import InputField from "../common/InputField";
 
 const InvoiceContactSection = () => {
 
-    const { state: { whoIsFrom, billTo, billToTitle, address, addressTitle }, handleCustomInputs } = useAppContext();
+    const { state: { whoIsFrom, billTo, billToTitle, address, addressTitle }, handleCustomInputs, handleBlur } = useAppContext();
 
     return (
         <Col lg={7} className="d-flex flex-column gap-2">
             <Row lg={9} md={9}>
                 <Col className="contact-value-input">
                     <InputField
+                        fieldName="WHOISFROM"
                         onChange={(value) => handleCustomInputs('WHOISFROM', value)}
                         value={whoIsFrom}
+                        onBlur={() => handleBlur('WHOISFROM', whoIsFrom)}
                         type="text"
                         placeholder="Who is the invoice from? (required)" />
                 </Col>
