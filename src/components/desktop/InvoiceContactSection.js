@@ -25,13 +25,19 @@ const InvoiceContactSection = () => {
                 <Col lg={6} md={6}>
                     <Col className="label-input mb-1">
                         <InputField
+                            fieldName="BILL_TITLE"
                             value={billToTitle}
+                            onBlur={() => handleBlur('BILL_TITLE', billToTitle)}
                             onChange={(value) => handleCustomInputs('BILL_TITLE', value)}
+                            type="text"
+                            placeholder=''
                         />
                     </Col>
                     <Col className="contact-value-input">
                         <InputField
+                            fieldName="BILL"
                             onChange={(value) => handleCustomInputs('BILL', value)}
+                            onBlur={() => handleBlur('BILL', billTo)}
                             value={billTo}
                             type="text"
                             placeholder="Who is the invoice to?(required)"
