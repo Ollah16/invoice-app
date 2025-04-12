@@ -16,11 +16,12 @@ const InputField = ({ type, onChange = () => { }, onBlur, value, placeholder, ar
                 type={type}
                 value={value}
                 placeholder={placeholder}
-                aria-label={ariaLabel}
+                aria-label={fieldName.toLowerCase()}
+                aria-invalid={!!errorfield}
                 className={`${className} overflow-auto p-1`}
             />
             {errorfield && (
-                <span>
+                <span role='alert' className='form-error text-danger'>
                     {errorfield}
                 </span>
             )}
