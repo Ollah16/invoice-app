@@ -1,7 +1,7 @@
 
 export const handleInputValidation = (type, value) => {
 
-    const inputValue = value.trim();
+    const inputValue = value?.trim();
 
     switch (type) {
         case "WHOISFROM":
