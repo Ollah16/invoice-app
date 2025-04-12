@@ -17,6 +17,7 @@ const InvoiceContactSection = () => {
                         value={whoIsFrom}
                         onBlur={() => handleBlur('WHOISFROM', whoIsFrom)}
                         type="text"
+                        aria-label="whoisfrom"
                         placeholder="Who is the invoice from? (required)" />
                 </Col>
             </Row>
@@ -30,7 +31,8 @@ const InvoiceContactSection = () => {
                             onBlur={() => handleBlur('BILL_TITLE', billToTitle)}
                             onChange={(value) => handleCustomInputs('BILL_TITLE', value)}
                             type="text"
-                            placeholder=''
+                            placeholder='Receiver'
+                            aria-label="receiver title"
                         />
                     </Col>
                     <Col className="contact-value-input">
@@ -41,6 +43,7 @@ const InvoiceContactSection = () => {
                             value={billTo}
                             type="text"
                             placeholder="Who is the invoice to?(required)"
+                            aria-label="receiver"
                         />
                     </Col>
                 </Col>
