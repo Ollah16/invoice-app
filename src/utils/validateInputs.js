@@ -9,7 +9,7 @@ export const handleInputValidation = (type, value) => {
             break;
         case "BILL_TITLE":
             if (!value.trim()) {
-                return "Please enter receiver title";
+                return "Please enter a title";
             }
             break;
         case "BILL":
