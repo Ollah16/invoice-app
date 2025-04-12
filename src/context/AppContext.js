@@ -74,7 +74,8 @@ export const AppProvider = ({ children }) => {
 
     const handleCustomInputs = (fieldName, value) => {
         const error = handleInputValidation();
-        dispatch({ type: fieldName, payload: { value } })
+        dispatch({ type: fieldName, payload: { value } });
+        dispatch({ type: actionTypes.ERROR, payload: { fieldName, error } });
     }
 
     const handleAddRow = () => {
