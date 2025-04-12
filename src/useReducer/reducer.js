@@ -40,7 +40,8 @@ export const initialState = {
     isTax: 0,
     currency: 'US$',
     data: [{ description: '', quantity: '', rate: '', amount: 0 }],
-    message: ''
+    message: '',
+    error: {},
 }
 
 
@@ -326,6 +327,13 @@ const myReducer = (state = initialState, action) => {
             return {
                 ...state,
                 whoIsFrom: action.payload.value
+            }
+        case 'ERROR':
+            const { fieldName, error } = action.payload;
+
+            return {
+                ...state,
+                error: { ...state.error, [fieldName.toLowerCase()]: error }
             }
 
         case 'BILL':
