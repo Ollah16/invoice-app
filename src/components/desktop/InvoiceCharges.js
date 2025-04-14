@@ -15,12 +15,23 @@ const InvoiceCharges = () => {
         {isDiscount === 1 &&
             <Row className='p-0 justify-content-between my-1'>
                 <Col lg={7} md={7} className='label-input'>
-                    <InputField value={discountTitle} onChange={(value) => handleCustomInputs('DISCOUNT_TITLE', value)} className='text-end' placeholder='Discount' />
+                    <InputField
+                        value={discountTitle}
+                        onChange={(value) => handleCustomInputs('DISCOUNT_TITLE', value)}
+                        aria-label='Discount Title'
+                        type='text'
+                        className='text-end'
+                        placeholder='Discount' />
                 </Col>
                 <Col lg={5} md={5} className='charges-input-value d-flex justify-content-end p-0'>
-                    <InputField className='text-end w-100'
+                    <InputField
                         value={discountAmount}
-                        onChange={(value) => handleInputValue('DISCOUNT', value)} placeholder='%' />
+                        onChange={(value) => handleInputValue('DISCOUNT', value)}
+                        aria-label='Discount Cost'
+                        type='number'
+                        className='text-end w-100'
+                        placeholder='%' />
+
                     <Button className='cancel-button'
                         onClick={() => handleInputsBtn('IS_NOT_DISCOUNT')}>
                         <span><RxCross2 /></span>
@@ -32,12 +43,23 @@ const InvoiceCharges = () => {
             isTax === 1 &&
             <Row className='p-0 justify-content-between my-1'>
                 <Col lg={7} md={7} className='label-input'>
-                    <InputField value={taxTitle} onChange={(value) => handleCustomInputs('TAX_TITLE', value)} className='text-end' placeholder='Tax' />
+                    <InputField
+                        value={taxTitle}
+                        onChange={(value) => handleCustomInputs('TAX_TITLE', value)}
+                        aria-label='Tax Title'
+                        type='text'
+                        className='text-end'
+                        placeholder='Tax' />
                 </Col>
                 <Col lg={5} md={5} className='charges-input-value d-flex justify-content-end p-0'>
-                    <InputField className='text-end w-100'
+                    <InputField
                         value={taxAmount}
-                        onChange={(value) => handleInputValue('TAX', value)} />
+                        onChange={(value) => handleInputValue('TAX', value)}
+                        aria-label='Tax Cost'
+                        type='number'
+                        className='text-end w-100'
+                        placeholder='0'
+                    />
                     <Button className='cancel-button'
                         onClick={() => handleInputsBtn('IS_NOT_TAX')}>
                         <span><RxCross2 /></span>
@@ -50,12 +72,23 @@ const InvoiceCharges = () => {
             isShipping === 1 &&
             <Row className='p-0 justify-content-between my-1'>
                 <Col lg={7} md={7} className='label-input'>
-                    <InputField value={shippingTitle} onChange={(value) => handleCustomInputs('SHIPPING_TITLE', value)} className='text-end' placeholder='Shipping' />
+                    <InputField
+                        value={shippingTitle}
+                        onChange={(value) => handleCustomInputs('SHIPPING_TITLE', value)}
+                        aria-label='Shipping Title'
+                        type='text'
+                        className='text-end'
+                        placeholder='Shipping' />
                 </Col>
                 <Col lg={5} md={5} className='charges-input-value d-flex justify-content-end p-0'>
-                    <InputField className='text-end'
+                    <InputField
                         value={shippingAmount}
-                        onChange={(value) => handleInputValue('SHIPPING', value)} />
+                        onChange={(value) => handleInputValue('SHIPPING', value)}
+                        aria-label='Shipping Cost'
+                        type='number'
+                        className='text-end'
+                        placeholder='0' />
+
                     <Button className='cancel-button'
                         onClick={() => handleInputsBtn('IS_NOT_SHIPPING')}>
                         <span><RxCross2 /></span>
