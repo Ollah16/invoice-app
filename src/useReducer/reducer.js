@@ -126,7 +126,7 @@ const myReducer = (state = initialState, action) => {
             const data = state.data.map((datas, index) => action.payload.index === index ?
                 ({
                     ...datas,
-                    rate: Number(action.payload.rate) || 0,
+                    rate: action.payload.rate,
                 }) : datas)
 
             return {
@@ -139,7 +139,7 @@ const myReducer = (state = initialState, action) => {
                 action.payload.index === index ?
                     ({
                         ...datas,
-                        quantity: Number(action.payload.quantity) || 0,
+                        quantity: action.payload.quantity,
                     }) : datas)
 
             return {
