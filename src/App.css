@@ -375,10 +375,15 @@ input[aria-invalid="true"]:focus {
   border-color: var(--color-error);
 }
 
+input[type='number']::-webkit-inner-spin-button {
+  display: none;
+}
+
 .form-error {
   font-size: var(--font-size-xsmall);
   margin-top: 1px;
   font-style: normal;
+  line-height: 1px;
 }
 
 .custom-input-col .norm-Input-div input:focus {
