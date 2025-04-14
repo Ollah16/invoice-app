@@ -31,7 +31,7 @@ const InvoiceTotal = () => {
                     className='text-end'
                     placeholder='Total' />
             </Col>
-            <Col lg={5} md={5} className='payment-input-value text-end justify-content-end overflow-auto'>
+            <Col lg={5} md={5} className='payment-input-value ps-0'>
                 <InputField
                     value={totalValue}
                     type='text'
