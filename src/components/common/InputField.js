@@ -1,16 +1,25 @@
 import React from 'react'
+import { useAppContext } from '../../context/AppContext'
 
-const InputField = ({ type, onChange = () => { }, value, placeholder, ariaLabel, className, id }) => {
+const InputField = ({ onChange = () => { }, className, fieldName = '', ...rest }) => {
+
+    const { state: { error } } = useAppContext();
+
+    const errorfield = error[fieldName.toLowerCase()];
+
     return (
-        <input
-            onChange={(e) => onChange(e.target.value)}
-            id={id}
-            type={type}
-            value={value}
-            placeholder={placeholder}
-            aria-label={ariaLabel}
-            className={`${className} overflow-auto p-1`}
-        />
+        <div>
+            <input
+                onChange={(e) => onChange(e.target.value)}
+                className={`${className} overflow-auto p-1`}
+                {...rest}
+            />
+            {errorfield && (
+                <span role='alert' className='form-error text-danger'>
+                    {errorfield}
+                </span>
+            )}
+        </div>
     )
 }
 

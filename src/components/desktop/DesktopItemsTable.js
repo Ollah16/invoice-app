@@ -25,9 +25,9 @@ const DesktopItemsTable = () => {
                 {data.map(({ description, quantity, rate, amount }, index) =>
                 (<tr key={index}>
                     <td className='px-1'>{index + 1}</td>
-                    <td className='items-input-value'><InputField className="text-start" value={description} onChange={(value) => handleDataChange('DESCRIPTION', value, index)} placeholder='Item Description' /></td>
-                    <td className='items-input-value'><InputField className="text-start" value={quantity} onChange={(value) => handleDataChange('QUANTITY', value, index)} placeholder='1' /></td>
-                    <td className='items-input-value'><InputField className="text-start" value={rate} onChange={(value) => handleDataChange('RATE', value, index)} placeholder='0' /></td>
+                    <td className='items-input-value'><InputField className="text-start" aria-label='Item Description' type='text' value={description} onChange={(value) => handleDataChange('DESCRIPTION', value, index)} placeholder='Item Description' /></td>
+                    <td className='items-input-value'><InputField className="text-start" aria-label='Item Quantity' type='number' value={quantity} onChange={(value) => handleDataChange('QUANTITY', value, index)} placeholder='1' /></td>
+                    <td className='items-input-value'><InputField className="text-start" aria-label='Item Rate' type='number' value={rate} onChange={(value) => handleDataChange('RATE', value, index)} placeholder='0' /></td>
                     <td className={`${isDataLength ? 'w-75' : 'w-100'} d-inline-block`}><InputField className="border-0 w-100" readonly value={amount?.toFixed(2)} disabled={true} /></td>
 
                     <td className={`${isDataLength ? 'w-25 d-inline-block' : 'd-none'}`}>

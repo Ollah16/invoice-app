@@ -292,6 +292,9 @@ body {
   --color-border: #c3d2e3;
   --color-border-hover: #668ab0;
   --color-white: #ffffff;
+  --color-error: #d32f2f;
+
+  --font-size-xsmall: 12px;
 }
 
 .invoice-information-section {
@@ -357,6 +360,30 @@ body {
 
 .payment-input-value::-webkit-scrollbar {
   display: none;
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+input[aria-invalid="true"]:hover {
+  border-color: var(--color-error);
+}
+
+input[aria-invalid="true"]:focus {
+  border-color: var(--color-error);
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  display: none;
+}
+
+.form-error {
+  font-size: var(--font-size-xsmall);
+  margin-top: 1px;
+  font-style: normal;
+  line-height: 1px;
 }
 
 .custom-input-col .norm-Input-div input:focus {

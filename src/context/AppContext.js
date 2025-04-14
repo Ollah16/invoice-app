@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import myReducer, { initialState } from "../useReducer/reducer";
-import { useNavigate } from "react-router-dom";
+import { handleInputValidation } from "../utils/validateInputs";
 
 const AppContext = createContext();
 
@@ -55,10 +55,14 @@ export const AppProvider = ({ children }) => {
         BALANCE: 'BALANCE',
         UPDATE_DATA: 'UPDATE_DATA',
         LOGO: 'LOGO',
-        CLOSE_MESSAGE: 'CLOSE_MESSAGE'
+        CLOSE_MESSAGE: 'CLOSE_MESSAGE',
+        ERROR: 'ERROR'
     }
 
-    const navigate = useNavigate()
+    const handleBlur = (fieldName, value) => {
+        const error = handleInputValidation(fieldName, value);
+        dispatch({ type: actionTypes.ERROR, payload: { fieldName, error } })
+    }
 
     const handleDataChange = (fieldName, event, index) => {
         dispatch({ type: fieldName, payload: { [fieldName.toLowerCase()]: event, index } })
@@ -66,7 +70,9 @@ export const AppProvider = ({ children }) => {
     }
 
     const handleCustomInputs = (fieldName, value) => {
-        dispatch({ type: fieldName, payload: { value } })
+        const error = handleInputValidation();
+        dispatch({ type: fieldName, payload: { value } });
+        dispatch({ type: actionTypes.ERROR, payload: { fieldName, error } });
     }
 
     const handleAddRow = () => {
@@ -90,32 +96,8 @@ export const AppProvider = ({ children }) => {
         dispatch({ type: actionTypes.IS_LOGGED });
     };
 
-    const handleAuthentication = (type) => {
-        handleNavigation(`/authenticate/${type}`)
-    }
-
     const handleClearState = () => {
         dispatch({ type: actionTypes.CLEAR_STATE })
-    }
-
-    const handleNavigation = (page) => {
-
-        if (page.includes('records')) {
-
-            navigate('authenticate/homepage')
-
-        } else if (page.includes('clearState')) {
-
-            handleClearState()
-            navigate('/')
-
-        } else if (page.includes('thanks')) {
-            navigate(page)
-
-        } else {
-            navigate(page)
-        }
-
     }
 
     const handleSignOut = () => {
@@ -144,7 +126,7 @@ export const AppProvider = ({ children }) => {
         }, 5000)
     }
 
-    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs, handleInputValue, handleInputsBtn, handleNavigation, proceedDownload, isDownload, handleDownload, handleAuthentication }}>
+    return (<AppContext.Provider value={{ state, handleDataChange, handleDeleteRow, handleAddRow, handleLogo, handleRemoveLogo, handleCustomInputs, handleInputValue, handleInputsBtn, proceedDownload, isDownload, handleDownload, handleBlur }}>
         {children}
     </AppContext.Provider>)
 }

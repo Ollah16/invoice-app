@@ -1,34 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container } from 'react-bootstrap';
-import SmXsDisplay from './components/mobile/smxsDisplay';
-import LgMdDisplay from './components/desktop/lgmdDisplayPage';
 import FooterPage from './footer';
-import NavBar from './navBar';
-import { useControl } from './useControl/useControl';
 import InvoicePage from './components/desktop/InvoicePage'
 import ModalPage from './modal';
 import { useAppContext } from './context/AppContext';
+import NavBar from './components/NavBar';
 
 
 const HomePage = (
     {
-        state,
         proceedDownload,
-        handleDataInp,
-        handleCustomInputs,
-        handleAddRow,
-        handleDeleteRow,
-        handleInputValue,
-        handleInputsBtn,
-        handleAuth,
-        handleClearState,
         handleNavigation,
-        handleSignOut,
-        handleLogo,
-        handleMessage,
-        handleCloseMessage,
-        toggleAuth,
-        removeLogo
     }
 ) => {
 
@@ -139,43 +121,19 @@ const HomePage = (
                 isDownload={isDownload}
                 handleNavigation={handleNavigation} />
 
-            <Container className='invoice-homepage' fluid>
 
-                <NavBar />
+            <NavBar />
 
-
-
-                <Col className='d-block d-md-none smallScreenDisplay'>
-                    {/* <SmXsDisplay
-                        state={state}
-                        removeLogo={removeLogo}
-                        isDownload={isDownload}
-                        proceedDownload={proceedDownload}
-                        handleDataInp={handleDataInp}
-                        handleCustomInputs={handleCustomInputs}
-                        handleAddRow={handleAddRow}
-                        handleDeleteRow={handleDeleteRow}
-                        handleInputValue={handleInputValue}
-                        handleInputsBtn={handleInputsBtn}
-                        handleAuth={handleAuth}
-                        handleClearState={handleClearState}
-                        handleNavigation={handleNavigation}
-                        handleSignOut={handleSignOut}
-                        handleLogo={handleLogo}
-                        handleMessage={handleMessage}
-                        handleCloseMessage={handleCloseMessage}
-                    /> */}
-                </Col>
-
-                <Col className='d-none d-md-block mt-5 largeScreenDisplay'>
-                    <InvoicePage />
-                </Col>
+            <InvoicePage />
 
 
-                <FooterPage />
+            <Col className='d-none d-md-block mt-5 largeScreenDisplay'>
+            </Col>
 
-            </Container >
-        </Container>
+
+            <FooterPage />
+
+        </Container >
     )
 }
 export default HomePage;

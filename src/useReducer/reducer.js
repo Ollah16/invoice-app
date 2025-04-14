@@ -40,7 +40,8 @@ export const initialState = {
     isTax: 0,
     currency: 'US$',
     data: [{ description: '', quantity: '', rate: '', amount: 0 }],
-    message: ''
+    message: '',
+    error: {},
 }
 
 
@@ -125,7 +126,7 @@ const myReducer = (state = initialState, action) => {
             const data = state.data.map((datas, index) => action.payload.index === index ?
                 ({
                     ...datas,
-                    rate: Number(action.payload.rate) || 0,
+                    rate: action.payload.rate,
                 }) : datas)
 
             return {
@@ -138,7 +139,7 @@ const myReducer = (state = initialState, action) => {
                 action.payload.index === index ?
                     ({
                         ...datas,
-                        quantity: Number(action.payload.quantity) || 0,
+                        quantity: action.payload.quantity,
                     }) : datas)
 
             return {
@@ -326,6 +327,13 @@ const myReducer = (state = initialState, action) => {
             return {
                 ...state,
                 whoIsFrom: action.payload.value
+            }
+        case 'ERROR':
+            const { fieldName, error } = action.payload;
+
+            return {
+                ...state,
+                error: { ...state.error, [fieldName.toLowerCase()]: error }
             }
 
         case 'BILL':
