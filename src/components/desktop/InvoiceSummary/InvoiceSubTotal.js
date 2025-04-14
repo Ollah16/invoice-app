@@ -16,14 +16,14 @@ const InvoiceSubTotal = () => {
                         onChange={(value) => handleCustomInputs('SUB_TOTAL_TITLE', value)}
                         type='text'
                         className='text-end'
-                        aria-label='Sub Total'
+                        aria-label='Sub Total Title'
                         placeholder='Subtotal' />
                 </Col>
-                <Col lg={5} md={5} className='d-flex justify-content-end overflow-auto'>
+                <Col lg={5} md={5} className='payment-input-value ps-0'>
                     <InputField
                         value={subTotalValue}
                         type='text'
-                        aria-label='Balance Due'
+                        aria-label='Sub Total'
                         className='text-end border-0'
                         placeholder={subTotalValue}
                         readOnly />
