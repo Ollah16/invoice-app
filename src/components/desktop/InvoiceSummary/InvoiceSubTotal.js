@@ -5,6 +5,7 @@ import { useAppContext } from '../../../context/AppContext'
 
 const InvoiceSubTotal = () => {
     const { state: { subTotalTitle, subTotal, currency }, handleCustomInputs } = useAppContext()
+    const subTotalValue = `${currency}${subTotal.toFixed(2)}`
 
     return (
         <Col lg={12} md={12} >
@@ -19,7 +20,13 @@ const InvoiceSubTotal = () => {
                         placeholder='Subtotal' />
                 </Col>
                 <Col lg={5} md={5} className='d-flex justify-content-end overflow-auto'>
-                    {`${currency.toString().substring(0, 3)}${subTotal}.00`}
+                    <InputField
+                        value={subTotalValue}
+                        type='text'
+                        aria-label='Balance Due'
+                        className='text-end border-0'
+                        placeholder={subTotalValue}
+                        readOnly />
                 </Col>
             </Row>
         </Col>)
