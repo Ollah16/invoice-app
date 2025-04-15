@@ -17,8 +17,6 @@ const InvoiceTotal = () => {
         handleCustomInputs,
         handleInputValue } = useAppContext();
 
-    const balanceValue = `${currency}${balance.toFixed(2)}`;
-    const totalValue = `${currency}${total.toFixed(2)}`;
 
     return (<Col lg={12} md={12} className='d-flex flex-column gap-2'>
         <Row className='align-items-center justify-content-between'>
@@ -33,11 +31,11 @@ const InvoiceTotal = () => {
             </Col>
             <Col lg={5} md={5} className='payment-input-value ps-0'>
                 <InputField
-                    value={totalValue}
+                    value={`${currency}${total}`}
                     type='text'
                     aria-label='Total Cost'
                     className='text-end border-0'
-                    placeholder={totalValue}
+                    placeholder={total}
                     readOnly />
             </Col>
         </Row>
@@ -76,11 +74,11 @@ const InvoiceTotal = () => {
             </Col>
             <Col lg={5} md={5} className='payment-input-value ps-0'>
                 <InputField
-                    value={balanceValue}
+                    value={`${currency}${balance}`}
                     type='text'
                     aria-label='Balance Due'
                     className='text-end border-0'
-                    placeholder={balanceValue}
+                    placeholder={balance}
                     readOnly />
             </Col>
         </Row >
