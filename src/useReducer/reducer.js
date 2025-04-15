@@ -1,4 +1,3 @@
-
 export const initialState = {
     isLogged: false,
     dFault: 'INVOICE',
@@ -28,8 +27,9 @@ export const initialState = {
     dueDate: '',
     paymentTerms: '',
     note: '',
-    total: 0,
-    discountAmount: '',
+    total: '',
+    discountValue: '',
+    discountCost: '',
     taxAmount: '',
     shippingAmount: '',
     balance: 0,
@@ -46,7 +46,6 @@ export const initialState = {
 
 
 const myReducer = (state = initialState, action) => {
-
     switch (action.type) {
         case "IS_LOGGED":
             return {
@@ -168,47 +167,54 @@ const myReducer = (state = initialState, action) => {
             }
 
         case 'SUB_TOTAL':
+            const refinedSubTotal = state.data.reduce((acc, each) => acc + each.amount, 0).toFixed(2)
+
             return {
                 ...state,
-                subTotal: state.data.reduce((acc, each) => acc + each.amount, 0)
+                subTotal: refinedSubTotal,
             }
 
         case 'TOTAL':
+            const { subTotal, taxAmount, discountCost: refinedDiscountCost, shippingAmount } = state
+            const refinedTotal = parseInt(subTotal) + (taxAmount || 0) - (refinedDiscountCost || 0) + (shippingAmount || 0)
             return {
                 ...state,
-                total: (state.subTotal + state.taxAmount ?? 0) - (state.discountCost ?? 0) + (state.shippingAmount ?? 0)
+                total: refinedTotal.toFixed(2),
             }
 
         case 'AMOUNT_PAID':
             return {
                 ...state,
-                amountPaid: Number(action.payload.value) || 0
+                amountPaid: action.payload.value
             }
 
         case 'BALANCE':
+            const refinedBalance = (state.amountPaid || 0) - (state.total || 0)
+
             return {
                 ...state,
-                balance: state.amountPaid - state.total
+                balance: refinedBalance.toFixed(2),
             }
 
         case 'DISCOUNT':
+            const discountCost = ((action.payload.value || 0) / 100) * state.subTotal
 
             return {
                 ...state,
-                discountAmount: Number(action.payload.value),
-                discountCost: (Number(action.payload.value) / 100) * state.subTotal,
+                discountValue: action.payload.value || 0,
+                discountCost,
             }
 
         case 'TAX':
             return {
                 ...state,
-                taxAmount: Number(action.payload.value) || 0,
+                taxAmount: action.payload.value || 0,
             }
 
         case 'SHIPPING':
             return {
                 ...state,
-                shippingAmount: Number(action.payload.value) || 0,
+                shippingAmount: action.payload.value || 0,
             }
 
         case 'IS_SHIPPING':
@@ -233,7 +239,7 @@ const myReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isDiscount: 0,
-                discountAmount: '',
+                discountValue: '',
                 discountCost: '',
             }
 
@@ -402,7 +408,6 @@ const myReducer = (state = initialState, action) => {
         case 'CLEAR_STATE':
             return {
                 ...state,
-                discountCost: '',
                 logo: '',
                 whoIsFrom: '',
                 billTo: '',
@@ -415,12 +420,13 @@ const myReducer = (state = initialState, action) => {
                 paymentTerms: '',
                 note: '',
                 total: 0,
-                discountAmount: 0,
+                discountCost: 0,
+                discountValue: 0,
                 taxAmount: 0,
                 shippingAmount: 0,
                 balance: 0,
                 subTotal: 0,
-                amountPaid: '',
+                amountPaid: 0,
                 isShipping: 0,
                 isDiscount: 0,
                 isTax: 0,
