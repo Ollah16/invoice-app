@@ -5,7 +5,6 @@ import { useAppContext } from '../../../context/AppContext'
 
 const InvoiceSubTotal = () => {
     const { state: { subTotalTitle, subTotal, currency }, handleCustomInputs } = useAppContext()
-    const subTotalValue = `${currency}${subTotal.toFixed(2)}`
 
     return (
         <Col lg={12} md={12} >
@@ -21,11 +20,11 @@ const InvoiceSubTotal = () => {
                 </Col>
                 <Col lg={5} md={5} className='payment-input-value ps-0'>
                     <InputField
-                        value={subTotalValue}
+                        value={`${currency}${subTotal}`}
                         type='text'
                         aria-label='Sub Total'
                         className='text-end border-0'
-                        placeholder={subTotalValue}
+                        placeholder={subTotal}
                         readOnly />
                 </Col>
             </Row>
