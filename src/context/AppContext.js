@@ -40,7 +40,7 @@ export const AppProvider = ({ children }) => {
             dispatch({ type: actionTypes.BALANCE });
         }
         handleDataUpdate()
-    }, [state.data, state.discountAmount, state.taxAmount, state.shippingAmount, state.isTax, state.isShipping, state.isDiscount, state.amountPaid])
+    }, [state.data, state.discountCost, state.taxAmount, state.shippingAmount, state.isTax, state.isShipping, state.isDiscount, state.amountPaid])
 
     const actionTypes = {
         IS_LOGGED: 'IS_LOGGED',
@@ -84,7 +84,7 @@ export const AppProvider = ({ children }) => {
     }
 
     const handleInputValue = (fieldName, value) => {
-        dispatch({ type: fieldName, payload: { value } })
+        dispatch({ type: fieldName, payload: { value: parseInt(value) } })
 
     }
 
