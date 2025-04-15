@@ -8,7 +8,7 @@ import { IoMdAdd } from 'react-icons/io'
 
 const InvoiceCharges = () => {
 
-    const { state: { discountTitle, taxTitle, shippingTitle, isShipping, isDiscount, isTax, taxAmount, shippingAmount, discountAmount }, handleCustomInputs, handleInputValue, handleInputsBtn } = useAppContext()
+    const { state: { discountTitle, taxTitle, shippingTitle, isShipping, isDiscount, isTax, taxAmount, shippingAmount, discountValue }, handleCustomInputs, handleInputValue, handleInputsBtn } = useAppContext()
 
     return (<Col lg={12} md={12} className='my-2'>
 
@@ -25,7 +25,7 @@ const InvoiceCharges = () => {
                 </Col>
                 <Col lg={5} md={5} className='charges-input-value d-flex justify-content-end p-0'>
                     <InputField
-                        value={discountAmount}
+                        value={discountValue}
                         onChange={(value) => handleInputValue('DISCOUNT', value)}
                         aria-label='Discount Cost'
                         type='number'
