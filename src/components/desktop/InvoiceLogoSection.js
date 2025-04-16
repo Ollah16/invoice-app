@@ -11,18 +11,19 @@ const InvoiceLogoSection = () => {
 
     return (
         <Col lg={6} md={6} className='file-input-col'>
-            <div>
+            <div className="position-relative">
                 {logo && <Button onClick={() => handleRemoveLogo('REMOVE')}><RxCross2 /></Button>}
                 <label htmlFor='logo'>
-                    {!logo ? '+ Add You Logo' : logo.name}
+                    {!logo ? '+ Add Your Logo' : logo.name}
                 </label>
                 <InputField
                     id='logo'
                     type='file'
-                    onChange={handleLogo}
+                    onInput={handleLogo}
                     className='text-center d-none'
-                    placeholder="+ Add You Logo"
-                    aria-describedby="Add Logo"
+                    placeholder="+ Add Your Logo"
+                    aria-label='Add Logo'
+                    aria-labelledby="Add Your Logo"
                 />
             </div>
         </Col>
