@@ -11,12 +11,17 @@ const InvoiceDateDetails = () => {
         <Row className="d-flex flex-column gap-2 invoice-meta-fields">
             <Row className='invoice-data d-flex justify-content-between p-0 meta-field-row'>
                 <Col className="p-0 label-input">
-                    <InputField value={dateTitle} onChange={(value) => handleCustomInputs('DATE_TITLE', value)} />
+                    <InputField
+                        value={dateTitle}
+                        aria-label='Date Title'
+                        type='text'
+                        onChange={(value) => handleCustomInputs('DATE_TITLE', value)} />
                 </Col>
 
                 <Col className="p-0 meta-value-input">
                     <InputField
                         value={date}
+                        aria-label='Date Value'
                         className={"w-100 d-inline-block"}
                         onChange={(value) => handleCustomInputs('DATE', value)}
                         type='date' />
@@ -25,11 +30,16 @@ const InvoiceDateDetails = () => {
 
             <Row className='invoice-data d-flex justify-content-between p-0 meta-field-row'>
                 <Col className="p-0 label-input">
-                    <InputField value={paymentTitle} onChange={(value) => handleCustomInputs('PAYMENT_TITLE', value)} />
+                    <InputField
+                        value={paymentTitle}
+                        aria-label='Payment Title'
+                        type='text'
+                        onChange={(value) => handleCustomInputs('PAYMENT_TITLE', value)} />
                 </Col>
                 <Col className="p-0 meta-value-input">
                     <InputField
                         value={paymentTerms}
+                        aria-label='Payment Terms'
                         className={"w-100 d-inline-block"}
                         onChange={(value) => handleCustomInputs('PAYMENT_TERMS', value)}
                         type='text' />
@@ -38,11 +48,16 @@ const InvoiceDateDetails = () => {
 
             <Row className='invoice-data d-flex justify-content-between p-0 meta-field-row'>
                 <Col className="p-0 label-input">
-                    <InputField value={dueDateTitle} onChange={(value) => handleCustomInputs('DUE_DATE_TITLE', value)} />
+                    <InputField
+                        value={dueDateTitle}
+                        aria-label='Due Date Title'
+                        type='text'
+                        onChange={(value) => handleCustomInputs('DUE_DATE_TITLE', value)} />
                 </Col>
                 <Col className="p-0 meta-value-input">
                     <InputField
                         value={dueDate}
+                        aria-label='Due Date Value'
                         className={"w-100 d-inline-block"}
                         onChange={(value) => handleCustomInputs('DUE_DATE', value)}
                         type='date'
@@ -52,14 +67,19 @@ const InvoiceDateDetails = () => {
 
             <Row className='invoice-data d-flex justify-content-between p-0 meta-field-row'>
                 <Col className="p-0 label-input">
-                    <InputField value={poTitle} onChange={(value) => handleCustomInputs('PO_TITLE', value)} />
+                    <InputField
+                        value={poTitle}
+                        aria-label='Purchase Order Title'
+                        type='text'
+                        onChange={(value) => handleCustomInputs('PO_TITLE', value)} />
                 </Col>
                 <Col className="p-0 meta-value-input">
                     <InputField
                         value={poNumber}
                         className={"w-100 d-inline-block"}
                         onChange={(value) => handleCustomInputs('PO_NUMBER', value)}
-                        aria-label="Recipient's username"
+                        aria-label="Purchase Order Number"
+                        type='number'
                         aria-describedby="basic-addon2"
                     />
                 </Col>

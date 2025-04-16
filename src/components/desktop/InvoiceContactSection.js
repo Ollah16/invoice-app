@@ -50,12 +50,17 @@ const InvoiceContactSection = () => {
 
                 <Col lg={6} md={6}>
                     <Col className="label-input mb-1">
-                        <InputField value={addressTitle} onChange={(value) => handleCustomInputs('ADDRESS_TITLE', value)} />
+                        <InputField
+                            value={addressTitle}
+                            type="text"
+                            aria-label="Shipping Title"
+                            onChange={(value) => handleCustomInputs('ADDRESS_TITLE', value)} />
                     </Col>
                     <Col className="contact-value-input">
                         <InputField
                             onChange={(value) => handleCustomInputs('ADDRESS', value)}
                             type="text"
+                            aria-label="Shipping Address"
                             value={address}
                             placeholder="(optional)"
                         />

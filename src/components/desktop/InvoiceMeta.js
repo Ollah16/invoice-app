@@ -12,15 +12,17 @@ const InvoiceMeta = () => {
             <div>
                 <InputField
                     value={dFault}
+                    aria-label="Invoice Number Title"
                     onChange={(value) => handleCustomInputs('ALTER_DEFAULT', value)}
                 />
 
             </div>
             <div className='invoice-no-div'>
-                <label htmlFor='1'>#</label>
+                <label htmlFor='Invoice Number'>#</label>
                 <InputField
-                    id='1'
+                    id='Invoice Number'
                     value={invoiceNum}
+                    aria-label="Invoice Number"
                     onChange={(value) => handleCustomInputs('INVOICE_NUMBER', value)}
                     className='text-end'
                     placeholder="1"
