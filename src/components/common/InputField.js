@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAppContext } from '../../context/AppContext'
 
-const InputField = ({ onChange = () => { }, className, fieldName = '', ...rest }) => {
+const InputField = ({ onChange = () => { }, onInput = () => { }, className, fieldName = '', ...rest }) => {
 
     const { state: { error } } = useAppContext();
 
@@ -11,6 +11,7 @@ const InputField = ({ onChange = () => { }, className, fieldName = '', ...rest }
         <div>
             <input
                 onChange={(e) => onChange(e.target.value)}
+                onInput={onInput}
                 className={`${className} overflow-auto p-1`}
                 {...rest}
             />
